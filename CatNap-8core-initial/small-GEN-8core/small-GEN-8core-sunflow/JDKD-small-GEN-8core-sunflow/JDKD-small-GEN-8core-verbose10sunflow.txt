@@ -1,0 +1,2603 @@
+<?xml version="1.0" ?>
+
+<verbosegc xmlns="http://www.ibm.com/j9/verbosegc" version="08cc62e_CMPRSS">
+
+<initialized id="1" timestamp="2019-08-02T21:32:46.090">
+  <attribute name="gcPolicy" value="-Xgcpolicy:gencon" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="0" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name="GC Util Range Max" value="0" />
+  <attribute name="Current GC Util" value="0" />
+  <attribute name= "Current Time Running" value="0" />
+  <attribute name="maxHeapSize" value="0x7cba0000" />
+  <attribute name="initialHeapSize" value="0x800000" />
+  <attribute name="compressedRefs" value="true" />
+  <attribute name="compressedRefsDisplacement" value="0x0" />
+  <attribute name="compressedRefsShift" value="0x0" />
+  <attribute name="pageSize" value="0x1000" />
+  <attribute name="pageType" value="not used" />
+  <attribute name="requestedPageSize" value="0x1000" />
+  <attribute name="requestedPageType" value="not used" />
+  <attribute name="gcthreads" value="8" />
+  <attribute name="gcthreads Concurrent Mark" value="1" />
+  <attribute name="packetListSplit" value="8" />
+  <attribute name="cacheListSplit" value="8" />
+  <attribute name="splitFreeListSplitAmount" value="1" />
+  <attribute name="numaNodes" value="0" />
+  <system>
+    <attribute name="physicalMemory" value="8370401280" />
+    <attribute name="numCPUs" value="8" />
+    <attribute name="architecture" value="amd64" />
+    <attribute name="os" value="Linux" />
+    <attribute name="osVersion" value="4.4.0-154-generic" />
+  </system>
+  <vmargs>
+    <vmarg name="-Xoptionsfile=/vagrant/jdk/lib/options.default" />
+    <vmarg name="-Xlockword:mode=default,noLockword=java/lang/String,noLockword=java/util/MapEntry,noLockword=java/util/HashMap$Entry,noLockword..." />
+    <vmarg name="-Xjcl:jclse29" />
+    <vmarg name="-Dcom.ibm.oti.vm.bootstrap.library.path=/vagrant/jdk/lib/compressedrefs:/vagrant/jdk/lib" />
+    <vmarg name="-Dsun.boot.library.path=/vagrant/jdk/lib/compressedrefs:/vagrant/jdk/lib" />
+    <vmarg name="-Djava.library.path=/vagrant/jdk/lib/compressedrefs:/vagrant/jdk/lib:/usr/lib64:/usr/lib" />
+    <vmarg name="-Djava.home=/vagrant/jdk" />
+    <vmarg name="-Duser.dir=/vagrant" />
+    <vmarg name="-Xgcelastic" />
+    <vmarg name="-Xcheck:gc:::elasticGC" />
+    <vmarg name="-verbose:gc" />
+    <vmarg name="-Xloggc:jdkD-small-GEN-8core-verbose10sunflow.txt" />
+    <vmarg name="-Djava.class.path=dacapo-9.12-MR1-bach.jar" />
+    <vmarg name="-Dsun.java.command=dacapo-9.12-MR1-bach.jar sunflow --size=small" />
+    <vmarg name="-Dsun.java.launcher=SUN_STANDARD" />
+    <vmarg name="-Dsun.java.launcher.pid=26118" />
+  </vmargs>
+</initialized>
+
+<exclusive-start id="2" timestamp="2019-08-02T21:32:46.284" intervalms="194.329">
+  <response-info timems="0.022" idlems="0.022" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<af-start id="3" threadId="0000000000749388" totalBytesRequested="7184" timestamp="2019-08-02T21:32:46.285" intervalms="194.864" type="nursery" />
+<cycle-start id="4" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.285" intervalms="195.202" />
+<gc-start id="5" type="scavenge" contextid="4" timestamp="2019-08-02T21:32:46.285">
+  <mem-info id="6" free="6062624" total="8388608" percent="72">
+    <mem type="nursery" free="0" total="2097152" percent="0">
+      <mem type="allocate" free="0" total="1048576" percent="0" />
+      <mem type="survivor" free="0" total="1048576" percent="0" />
+    </mem>
+    <mem type="tenure" free="6062624" total="6291456" percent="96">
+      <mem type="soa" free="5748256" total="5977088" percent="96" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="3161" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="1272328" >
+  <allocated-bytes non-tlh="344784" tlh="927544" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="1179376" />
+</allocation-stats>
+<gc-op id="7" type="scavenge" timems="2.929" contextid="4" timestamp="2019-08-02T21:32:46.289">
+  <scavenger-info tenureage="2" tenuremask="fffc" tiltratio="50" />
+  <memory-copied type="nursery" objects="10594" bytes="471064" bytesdiscarded="143928" />
+  <finalization candidates="11" enqueued="0" />
+  <references type="soft" candidates="62" cleared="0" enqueued="0" dynamicThreshold="32" maxThreshold="32" />
+  <references type="weak" candidates="307" cleared="176" enqueued="140" />
+  <references type="phantom" candidates="22" cleared="5" enqueued="5" />
+</gc-op>
+<gc-end id="8" type="scavenge" contextid="4" durationms="3.361" usertimems="0.000" systemtimems="4.000" timestamp="2019-08-02T21:32:46.289" activeThreads="8">
+  <mem-info id="9" free="6494088" total="8388608" percent="77">
+    <mem type="nursery" free="431464" total="2097152" percent="20">
+      <mem type="allocate" free="431464" total="1048576" percent="41" />
+      <mem type="survivor" free="0" total="1048576" percent="0" />
+    </mem>
+    <mem type="tenure" free="6062624" total="6291456" percent="96">
+      <mem type="soa" free="5748256" total="5977088" percent="96" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="145" classloader="0" />
+    <remembered-set count="3161" />
+  </mem-info>
+</gc-end>
+<cycle-end id="10" type="scavenge" contextid="4" timestamp="2019-08-02T21:32:46.289" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="10" />
+  <attribute name="Current GC Util" value="0" />
+  <attribute name= "Current Time Running" value="0" />
+<allocation-satisfied id="11" threadId="0000000000748A00" bytesRequested="7184" />
+<af-end id="12" timestamp="2019-08-02T21:32:46.289" threadId="0000000000749388" success="true" from="nursery"/>
+<exclusive-end id="13" timestamp="2019-08-02T21:32:46.289" durationms="5.055" />
+
+<exclusive-start id="14" timestamp="2019-08-02T21:32:46.308" intervalms="23.541">
+  <response-info timems="0.036" idlems="0.036" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<af-start id="15" threadId="0000000000749388" totalBytesRequested="15200" timestamp="2019-08-02T21:32:46.308" intervalms="23.096" type="nursery" />
+<cycle-start id="16" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.308" intervalms="22.826" />
+<gc-start id="17" type="scavenge" contextid="16" timestamp="2019-08-02T21:32:46.308">
+  <mem-info id="18" free="6054888" total="8388608" percent="72">
+    <mem type="nursery" free="0" total="2097152" percent="0">
+      <mem type="allocate" free="0" total="1048576" percent="0" />
+      <mem type="survivor" free="0" total="1048576" percent="0" />
+    </mem>
+    <mem type="tenure" free="6054888" total="6291456" percent="96">
+      <mem type="soa" free="5740520" total="5977088" percent="96" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="3262" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="431320" >
+  <allocated-bytes non-tlh="14920" tlh="416400" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="419344" />
+</allocation-stats>
+<gc-op id="19" type="scavenge" timems="0.861" contextid="16" timestamp="2019-08-02T21:32:46.309">
+  <scavenger-info tenureage="5" tenuremask="7fe0" tiltratio="50" />
+  <memory-copied type="nursery" objects="10917" bytes="487712" bytesdiscarded="84112" />
+  <finalization candidates="11" enqueued="0" />
+  <references type="soft" candidates="62" cleared="0" enqueued="0" dynamicThreshold="32" maxThreshold="32" />
+  <references type="weak" candidates="241" cleared="96" enqueued="93" />
+  <references type="phantom" candidates="37" cleared="12" enqueued="12" />
+</gc-op>
+<gc-end id="20" type="scavenge" contextid="16" durationms="1.058" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.309" activeThreads="8">
+  <mem-info id="21" free="6530144" total="8388608" percent="77">
+    <mem type="nursery" free="475256" total="2097152" percent="22">
+      <mem type="allocate" free="475256" total="1048576" percent="45" />
+      <mem type="survivor" free="0" total="1048576" percent="0" />
+    </mem>
+    <mem type="tenure" free="6054888" total="6291456" percent="96">
+      <mem type="soa" free="5740520" total="5977088" percent="96" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="105" classloader="0" />
+    <remembered-set count="3262" />
+  </mem-info>
+</gc-end>
+<cycle-end id="22" type="scavenge" contextid="16" timestamp="2019-08-02T21:32:46.309" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="21" />
+  <attribute name= "Current Time Running" value="22" />
+<allocation-satisfied id="23" threadId="0000000000748A00" bytesRequested="15200" />
+<af-end id="24" timestamp="2019-08-02T21:32:46.309" threadId="0000000000749388" success="true" from="nursery"/>
+<exclusive-end id="25" timestamp="2019-08-02T21:32:46.309" durationms="1.531" />
+
+<exclusive-start id="26" timestamp="2019-08-02T21:32:46.319" intervalms="11.580">
+  <response-info timems="0.079" idlems="0.079" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<af-start id="27" threadId="0000000000749388" totalBytesRequested="20232" timestamp="2019-08-02T21:32:46.319" intervalms="11.663" type="nursery" />
+<cycle-start id="28" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.320" intervalms="11.745" />
+<gc-start id="29" type="scavenge" contextid="28" timestamp="2019-08-02T21:32:46.320">
+  <mem-info id="30" free="6052200" total="8388608" percent="72">
+    <mem type="nursery" free="0" total="2097152" percent="0">
+      <mem type="allocate" free="0" total="1048576" percent="0" />
+      <mem type="survivor" free="0" total="1048576" percent="0" />
+    </mem>
+    <mem type="tenure" free="6052200" total="6291456" percent="96">
+      <mem type="soa" free="5737832" total="5977088" percent="95" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="3295" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="434432" >
+  <allocated-bytes non-tlh="17888" tlh="416544" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="426240" />
+</allocation-stats>
+<gc-op id="31" type="scavenge" timems="0.869" contextid="28" timestamp="2019-08-02T21:32:46.321">
+  <scavenger-info tenureage="4" tenuremask="7ff0" tiltratio="50" />
+  <memory-copied type="nursery" objects="10962" bytes="541360" bytesdiscarded="62224" />
+  <finalization candidates="11" enqueued="0" />
+  <references type="soft" candidates="62" cleared="0" enqueued="0" dynamicThreshold="32" maxThreshold="32" />
+  <references type="weak" candidates="224" cleared="77" enqueued="77" />
+  <references type="phantom" candidates="39" cleared="11" enqueued="11" />
+</gc-op>
+<heap-resize id="32" type="expand" space="nursery" amount="131072" count="1" timems="0.067" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:46.321" />
+<gc-end id="33" type="scavenge" contextid="28" durationms="1.323" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.321" activeThreads="8">
+  <mem-info id="34" free="6561240" total="8519680" percent="77">
+    <mem type="nursery" free="509040" total="2228224" percent="22">
+      <mem type="allocate" free="509040" total="1114112" percent="45" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="6052200" total="6291456" percent="96">
+      <mem type="soa" free="5737832" total="5977088" percent="95" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="88" classloader="0" />
+    <remembered-set count="1025" />
+  </mem-info>
+</gc-end>
+<cycle-end id="35" type="scavenge" contextid="28" timestamp="2019-08-02T21:32:46.321" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="14" />
+  <attribute name= "Current Time Running" value="34" />
+<allocation-satisfied id="36" threadId="0000000000748A00" bytesRequested="20232" />
+<af-end id="37" timestamp="2019-08-02T21:32:46.321" threadId="0000000000749388" success="true" from="nursery"/>
+<exclusive-end id="38" timestamp="2019-08-02T21:32:46.321" durationms="2.022" />
+
+<exclusive-start id="39" timestamp="2019-08-02T21:32:46.385" intervalms="65.605">
+  <response-info timems="0.030" idlems="0.030" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<af-start id="40" threadId="0000000000749388" totalBytesRequested="41272" timestamp="2019-08-02T21:32:46.385" intervalms="65.511" type="nursery" />
+<cycle-start id="41" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.385" intervalms="65.423" />
+<gc-start id="42" type="scavenge" contextid="41" timestamp="2019-08-02T21:32:46.385">
+  <mem-info id="43" free="6047304" total="8519680" percent="70">
+    <mem type="nursery" free="0" total="2228224" percent="0">
+      <mem type="allocate" free="0" total="1114112" percent="0" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="6047304" total="6291456" percent="96">
+      <mem type="soa" free="5732936" total="5977088" percent="95" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="1106" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="465568" >
+  <allocated-bytes non-tlh="25128" tlh="440440" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="465568" />
+</allocation-stats>
+<gc-op id="44" type="scavenge" timems="1.239" contextid="41" timestamp="2019-08-02T21:32:46.386">
+  <scavenger-info tenureage="3" tenuremask="fff8" tiltratio="50" />
+  <memory-copied type="nursery" objects="868" bytes="190688" bytesdiscarded="91592" />
+  <memory-copied type="tenure" objects="10312" bytes="461768" bytesdiscarded="280" />
+  <finalization candidates="14" enqueued="1" />
+  <references type="soft" candidates="2" cleared="0" enqueued="0" dynamicThreshold="32" maxThreshold="32" />
+  <references type="weak" candidates="69" cleared="54" enqueued="54" />
+  <references type="phantom" candidates="29" cleared="11" enqueued="11" />
+</gc-op>
+<gc-end id="45" type="scavenge" contextid="41" durationms="1.417" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.386" activeThreads="8">
+  <mem-info id="46" free="6383568" total="8519680" percent="74">
+    <mem type="nursery" free="831752" total="2228224" percent="37">
+      <mem type="allocate" free="831752" total="1114112" percent="74" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="5551816" total="6291456" percent="88">
+      <mem type="soa" free="5237448" total="5977088" percent="87" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="1" default="0" reference="65" classloader="0" />
+    <remembered-set count="233" />
+  </mem-info>
+</gc-end>
+<cycle-end id="47" type="scavenge" contextid="41" timestamp="2019-08-02T21:32:46.387" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="2" />
+  <attribute name= "Current Time Running" value="99" />
+<allocation-satisfied id="48" threadId="0000000000748A00" bytesRequested="41272" />
+<af-end id="49" timestamp="2019-08-02T21:32:46.387" threadId="0000000000749388" success="true" from="nursery"/>
+<exclusive-end id="50" timestamp="2019-08-02T21:32:46.387" durationms="1.919" />
+
+<exclusive-start id="51" timestamp="2019-08-02T21:32:46.460" intervalms="75.181">
+  <response-info timems="0.076" idlems="0.076" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<af-start id="52" threadId="0000000000749388" totalBytesRequested="32" timestamp="2019-08-02T21:32:46.460" intervalms="75.261" type="nursery" />
+<cycle-start id="53" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.460" intervalms="75.340" />
+<gc-start id="54" type="scavenge" contextid="53" timestamp="2019-08-02T21:32:46.460">
+  <mem-info id="55" free="5462136" total="8519680" percent="64">
+    <mem type="nursery" free="0" total="2228224" percent="0">
+      <mem type="allocate" free="0" total="1114112" percent="0" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="5462136" total="6291456" percent="86">
+      <mem type="soa" free="5147768" total="5977088" percent="86" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="1730" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="920776" >
+  <allocated-bytes non-tlh="130952" tlh="789824" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="916680" />
+</allocation-stats>
+<gc-op id="56" type="scavenge" timems="0.875" contextid="53" timestamp="2019-08-02T21:32:46.462">
+  <scavenger-info tenureage="3" tenuremask="7ff8" tiltratio="50" />
+  <memory-copied type="nursery" objects="6407" bytes="329904" bytesdiscarded="17864" />
+  <memory-copied type="tenure" objects="301" bytes="15088" bytesdiscarded="0" />
+  <finalization candidates="46" enqueued="0" />
+  <ownableSynchronizers candidates="1" cleared="0" />
+  <references type="soft" candidates="49" cleared="0" enqueued="0" dynamicThreshold="32" maxThreshold="32" />
+  <references type="weak" candidates="737" cleared="286" enqueued="195" />
+  <references type="phantom" candidates="12" cleared="2" enqueued="2" />
+</gc-op>
+<gc-end id="57" type="scavenge" contextid="53" durationms="1.271" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.462" activeThreads="8">
+  <mem-info id="58" free="6204376" total="8519680" percent="72">
+    <mem type="nursery" free="766048" total="2228224" percent="34">
+      <mem type="allocate" free="766048" total="1114112" percent="68" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="5438328" total="6291456" percent="86">
+      <mem type="soa" free="5123960" total="5977088" percent="85" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="197" classloader="0" />
+    <remembered-set count="1679" />
+  </mem-info>
+</gc-end>
+<cycle-end id="59" type="scavenge" contextid="53" timestamp="2019-08-02T21:32:46.462" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="8" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="2" />
+  <attribute name= "Current Time Running" value="175" />
+<allocation-satisfied id="60" threadId="0000000000748A00" bytesRequested="32" />
+<af-end id="61" timestamp="2019-08-02T21:32:46.462" threadId="0000000000749388" success="true" from="nursery"/>
+<exclusive-end id="62" timestamp="2019-08-02T21:32:46.462" durationms="1.986" />
+
+<exclusive-start id="63" timestamp="2019-08-02T21:32:46.542" intervalms="81.799">
+  <response-info timems="0.057" idlems="0.057" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<sys-start reason="explicit" id="64" timestamp="2019-08-02T21:32:46.542" intervalms="452.200" />
+<cycle-start id="65" type="global" contextid="0" timestamp="2019-08-02T21:32:46.543" intervalms="452.780" />
+<gc-start id="66" type="global" contextid="65" timestamp="2019-08-02T21:32:46.543">
+  <mem-info id="67" free="5512048" total="8519680" percent="64">
+    <mem type="nursery" free="139328" total="2228224" percent="6">
+      <mem type="allocate" free="139328" total="1114112" percent="12" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="5372720" total="6291456" percent="85">
+      <mem type="soa" free="5058352" total="5977088" percent="84" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="2563" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="688824" >
+  <allocated-bytes non-tlh="65640" tlh="623184" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="665096" />
+</allocation-stats>
+<gc-op id="68" type="mark" timems="2.123" contextid="65" timestamp="2019-08-02T21:32:46.545">
+  <trace-info objectcount="29309" scancount="23489" scanbytes="761988" />
+  <finalization candidates="124" enqueued="0" />
+  <ownableSynchronizers candidates="3" cleared="0" />
+  <references type="soft" candidates="131" cleared="0" enqueued="0" dynamicThreshold="32" maxThreshold="32" />
+  <references type="weak" candidates="749" cleared="70" enqueued="36" />
+  <references type="phantom" candidates="39" cleared="1" enqueued="1" />
+  <stringconstants candidates="3958" cleared="0"  />
+</gc-op>
+<gc-op id="69" type="classunload" timems="0.043" contextid="65" timestamp="2019-08-02T21:32:46.545">
+  <classunload-info classloadercandidates="7" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.042" scanms="0.001" postms="0.000" />
+</gc-op>
+<gc-op id="70" type="sweep" timems="0.411" contextid="65" timestamp="2019-08-02T21:32:46.546" />
+<gc-end id="71" type="global" contextid="65" durationms="3.899" usertimems="4.000" systemtimems="4.000" timestamp="2019-08-02T21:32:46.547" activeThreads="6">
+  <mem-info id="72" free="5916056" total="8519680" percent="69">
+    <mem type="nursery" free="499864" total="2228224" percent="22">
+      <mem type="allocate" free="499864" total="1114112" percent="44" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="5416192" total="6291456" percent="86" micro-fragmented="2591" macro-fragmented="0">
+      <mem type="soa" free="5101824" total="5977088" percent="85" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="37" classloader="0" />
+    <remembered-set count="2506" />
+  </mem-info>
+</gc-end>
+<cycle-end id="73" type="global" contextid="65" timestamp="2019-08-02T21:32:46.547" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="6" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="40" />
+  <attribute name= "Current Time Running" value="260" />
+<sys-end id="74" timestamp="2019-08-02T21:32:46.547" />
+<exclusive-end id="75" timestamp="2019-08-02T21:32:46.547" durationms="4.945" />
+
+<exclusive-start id="76" timestamp="2019-08-02T21:32:46.557" intervalms="15.110">
+  <response-info timems="0.073" idlems="0.073" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<af-start id="77" threadId="0000000000749388" totalBytesRequested="41272" timestamp="2019-08-02T21:32:46.557" intervalms="96.871" type="nursery" />
+<cycle-start id="78" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.557" intervalms="96.867" />
+<gc-start id="79" type="scavenge" contextid="78" timestamp="2019-08-02T21:32:46.557">
+  <mem-info id="80" free="5413056" total="8519680" percent="63">
+    <mem type="nursery" free="0" total="2228224" percent="0">
+      <mem type="allocate" free="0" total="1114112" percent="0" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="5413056" total="6291456" percent="86">
+      <mem type="soa" free="5098688" total="5977088" percent="85" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="2526" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="468528" >
+  <allocated-bytes non-tlh="168480" tlh="300048" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="463528" />
+</allocation-stats>
+<gc-op id="81" type="scavenge" timems="1.310" contextid="78" timestamp="2019-08-02T21:32:46.559">
+  <scavenger-info tenureage="3" tenuremask="7ff8" tiltratio="50" />
+  <memory-copied type="nursery" objects="13040" bytes="683312" bytesdiscarded="62560" />
+  <memory-copied type="tenure" objects="28" bytes="1776" bytesdiscarded="0" />
+  <finalization candidates="113" enqueued="0" />
+  <ownableSynchronizers candidates="6" cleared="3" />
+  <references type="soft" candidates="70" cleared="0" enqueued="0" dynamicThreshold="27" maxThreshold="32" />
+  <references type="weak" candidates="558" cleared="7" enqueued="7" />
+  <references type="phantom" candidates="15" cleared="2" enqueued="2" />
+</gc-op>
+<gc-end id="82" type="scavenge" contextid="78" durationms="1.719" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.559" activeThreads="5">
+  <mem-info id="83" free="5762960" total="8519680" percent="67">
+    <mem type="nursery" free="367608" total="2228224" percent="16">
+      <mem type="allocate" free="367608" total="1114112" percent="32" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="5395352" total="6291456" percent="85">
+      <mem type="soa" free="5080984" total="5977088" percent="85" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="9" classloader="0" />
+    <remembered-set count="2433" />
+  </mem-info>
+</gc-end>
+<cycle-end id="84" type="scavenge" contextid="78" timestamp="2019-08-02T21:32:46.559" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="5" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="28" />
+  <attribute name= "Current Time Running" value="271" />
+<allocation-satisfied id="85" threadId="0000000000748A00" bytesRequested="41272" />
+<af-end id="86" timestamp="2019-08-02T21:32:46.559" threadId="0000000000749388" success="true" from="nursery"/>
+<exclusive-end id="87" timestamp="2019-08-02T21:32:46.559" durationms="2.377" />
+
+<exclusive-start id="88" timestamp="2019-08-02T21:32:46.564" intervalms="7.116">
+  <response-info timems="0.059" idlems="0.059" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<af-start id="89" threadId="0000000000749388" totalBytesRequested="48" timestamp="2019-08-02T21:32:46.564" intervalms="7.137" type="nursery" />
+<cycle-start id="90" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.564" intervalms="7.133" />
+<gc-start id="91" type="scavenge" contextid="90" timestamp="2019-08-02T21:32:46.564">
+  <mem-info id="92" free="5394136" total="8519680" percent="63">
+    <mem type="nursery" free="0" total="2228224" percent="0">
+      <mem type="allocate" free="0" total="1114112" percent="0" />
+      <mem type="survivor" free="0" total="1114112" percent="0" />
+    </mem>
+    <mem type="tenure" free="5394136" total="6291456" percent="85">
+      <mem type="soa" free="5079768" total="5977088" percent="84" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="2450" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="368744" >
+  <allocated-bytes non-tlh="166568" tlh="202176" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="368744" />
+</allocation-stats>
+<gc-op id="93" type="scavenge" timems="1.421" contextid="90" timestamp="2019-08-02T21:32:46.566">
+  <scavenger-info tenureage="2" tenuremask="7ffc" tiltratio="50" />
+  <memory-copied type="nursery" objects="8798" bytes="478864" bytesdiscarded="88008" />
+  <memory-copied type="tenure" objects="6074" bytes="315864" bytesdiscarded="96" />
+  <finalization candidates="113" enqueued="0" />
+  <ownableSynchronizers candidates="3" cleared="0" />
+  <references type="soft" candidates="23" cleared="0" enqueued="0" dynamicThreshold="27" maxThreshold="32" />
+  <references type="weak" candidates="151" cleared="4" enqueued="2" />
+  <references type="phantom" candidates="5" cleared="0" enqueued="0" />
+</gc-op>
+<heap-resize id="94" type="expand" space="nursery" amount="262144" count="1" timems="0.019" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:46.566" />
+<gc-end id="95" type="scavenge" contextid="90" durationms="1.876" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.566" activeThreads="4">
+  <mem-info id="96" free="5703456" total="8781824" percent="64">
+    <mem type="nursery" free="678048" total="2490368" percent="27">
+      <mem type="allocate" free="678048" total="1245184" percent="54" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="5025408" total="6291456" percent="79">
+      <mem type="soa" free="4711040" total="5977088" percent="78" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="2" classloader="0" />
+    <remembered-set count="1052" />
+  </mem-info>
+</gc-end>
+<cycle-end id="97" type="scavenge" contextid="90" timestamp="2019-08-02T21:32:46.566" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="36" />
+  <attribute name= "Current Time Running" value="279" />
+<allocation-satisfied id="98" threadId="0000000000748A00" bytesRequested="48" />
+<af-end id="99" timestamp="2019-08-02T21:32:46.567" threadId="0000000000749388" success="true" from="nursery"/>
+<exclusive-end id="100" timestamp="2019-08-02T21:32:46.567" durationms="2.562" />
+
+<exclusive-start id="101" timestamp="2019-08-02T21:32:46.598" intervalms="33.907">
+  <response-info timems="0.078" idlems="0.078" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<af-start id="102" threadId="0000000000749388" totalBytesRequested="27424" timestamp="2019-08-02T21:32:46.598" intervalms="33.920" type="nursery" />
+<cycle-start id="103" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.598" intervalms="33.911" />
+<gc-start id="104" type="scavenge" contextid="103" timestamp="2019-08-02T21:32:46.598">
+  <mem-info id="105" free="5001768" total="8781824" percent="56">
+    <mem type="nursery" free="0" total="2490368" percent="0">
+      <mem type="allocate" free="0" total="1245184" percent="0" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="5001768" total="6291456" percent="79">
+      <mem type="soa" free="4687400" total="5977088" percent="78" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="1412" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="676480" >
+  <allocated-bytes non-tlh="208008" tlh="468472" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="672384" />
+</allocation-stats>
+<gc-op id="106" type="scavenge" timems="1.077" contextid="103" timestamp="2019-08-02T21:32:46.600">
+  <scavenger-info tenureage="1" tenuremask="7ffe" tiltratio="50" />
+  <memory-copied type="nursery" objects="5851" bytes="360016" bytesdiscarded="160040" />
+  <memory-copied type="tenure" objects="8790" bytes="476592" bytesdiscarded="360" />
+  <finalization candidates="67" enqueued="0" />
+  <ownableSynchronizers candidates="2" cleared="0" />
+  <references type="soft" candidates="9" cleared="0" enqueued="0" dynamicThreshold="27" maxThreshold="32" />
+  <references type="weak" candidates="4" cleared="0" enqueued="0" />
+</gc-op>
+<gc-end id="107" type="scavenge" contextid="103" durationms="1.318" usertimems="0.000" systemtimems="4.000" timestamp="2019-08-02T21:32:46.600" activeThreads="4">
+  <mem-info id="108" free="5462912" total="8781824" percent="62">
+    <mem type="nursery" free="921640" total="2490368" percent="37">
+      <mem type="allocate" free="921640" total="1441792" percent="63" />
+      <mem type="survivor" free="0" total="1048576" percent="0" />
+    </mem>
+    <mem type="tenure" free="4541272" total="6291456" percent="72">
+      <mem type="soa" free="4226904" total="5977088" percent="70" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="469" />
+  </mem-info>
+</gc-end>
+<cycle-end id="109" type="scavenge" contextid="103" timestamp="2019-08-02T21:32:46.600" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="8" />
+  <attribute name= "Current Time Running" value="312" />
+<allocation-satisfied id="110" threadId="0000000000748A00" bytesRequested="27424" />
+<af-end id="111" timestamp="2019-08-02T21:32:46.600" threadId="0000000000749388" success="true" from="nursery"/>
+<exclusive-end id="112" timestamp="2019-08-02T21:32:46.600" durationms="2.050" />
+
+<exclusive-start id="113" timestamp="2019-08-02T21:32:46.676" intervalms="77.692">
+  <response-info timems="0.051" idlems="0.051" threads="0" lastid="0000000000748A00" lastname="main" />
+</exclusive-start>
+<af-start id="114" threadId="0000000000749388" totalBytesRequested="8896" timestamp="2019-08-02T21:32:46.676" intervalms="77.677" type="nursery" />
+<cycle-start id="115" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.676" intervalms="77.647" />
+<gc-start id="116" type="scavenge" contextid="115" timestamp="2019-08-02T21:32:46.676">
+  <mem-info id="117" free="4520440" total="8781824" percent="51">
+    <mem type="nursery" free="0" total="2490368" percent="0">
+      <mem type="allocate" free="0" total="1441792" percent="0" />
+      <mem type="survivor" free="0" total="1048576" percent="0" />
+    </mem>
+    <mem type="tenure" free="4520440" total="6291456" percent="71">
+      <mem type="soa" free="4206072" total="5977088" percent="70" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="749" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="919384" >
+  <allocated-bytes non-tlh="74768" tlh="844616" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="919384" />
+</allocation-stats>
+<gc-op id="118" type="scavenge" timems="0.561" contextid="115" timestamp="2019-08-02T21:32:46.677">
+  <scavenger-info tenureage="1" tenuremask="7ffe" tiltratio="57" />
+  <memory-copied type="nursery" objects="1702" bytes="128888" bytesdiscarded="42800" />
+  <memory-copied type="tenure" objects="2912" bytes="132264" bytesdiscarded="128" />
+  <references type="soft" candidates="1" cleared="0" enqueued="0" dynamicThreshold="27" maxThreshold="32" />
+  <references type="weak" candidates="16" cleared="13" enqueued="13" />
+  <references type="phantom" candidates="1" cleared="0" enqueued="0" />
+</gc-op>
+<gc-end id="119" type="scavenge" contextid="115" durationms="0.761" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.677" activeThreads="4">
+  <mem-info id="120" free="5787200" total="8781824" percent="65">
+    <mem type="nursery" free="1401160" total="2490368" percent="56">
+      <mem type="allocate" free="1401160" total="1572864" percent="89" />
+      <mem type="survivor" free="0" total="917504" percent="0" />
+    </mem>
+    <mem type="tenure" free="4386040" total="6291456" percent="69">
+      <mem type="soa" free="4071672" total="5977088" percent="68" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="13" classloader="0" />
+    <remembered-set count="746" />
+  </mem-info>
+</gc-end>
+<cycle-end id="121" type="scavenge" contextid="115" timestamp="2019-08-02T21:32:46.677" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="3" />
+  <attribute name= "Current Time Running" value="390" />
+<allocation-satisfied id="122" threadId="0000000000748A00" bytesRequested="8896" />
+<af-end id="123" timestamp="2019-08-02T21:32:46.677" threadId="0000000000749388" success="true" from="nursery"/>
+<exclusive-end id="124" timestamp="2019-08-02T21:32:46.677" durationms="1.323" />
+
+<exclusive-start id="125" timestamp="2019-08-02T21:32:46.699" intervalms="23.686">
+  <response-info timems="0.074" idlems="0.074" threads="0" lastid="0000000000AA8F00" lastname="Thread-3" />
+</exclusive-start>
+<af-start id="126" threadId="0000000000AA9888" totalBytesRequested="1616" timestamp="2019-08-02T21:32:46.699" intervalms="23.710" type="nursery" />
+<cycle-start id="127" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.700" intervalms="23.751" />
+<gc-start id="128" type="scavenge" contextid="127" timestamp="2019-08-02T21:32:46.700">
+  <mem-info id="129" free="4372112" total="8781824" percent="49">
+    <mem type="nursery" free="0" total="2490368" percent="0">
+      <mem type="allocate" free="0" total="1572864" percent="0" />
+      <mem type="survivor" free="0" total="917504" percent="0" />
+    </mem>
+    <mem type="tenure" free="4372112" total="6291456" percent="69">
+      <mem type="soa" free="4057744" total="5977088" percent="67" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="941" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="1403640" >
+  <allocated-bytes non-tlh="402784" tlh="1000856" />
+  <largest-consumer threadName="main" threadId="0000000000748A00" bytes="636848" />
+</allocation-stats>
+<gc-op id="130" type="scavenge" timems="0.497" contextid="127" timestamp="2019-08-02T21:32:46.700">
+  <scavenger-info tenureage="2" tenuremask="7ffc" tiltratio="63" />
+  <memory-copied type="nursery" objects="2767" bytes="854912" bytesdiscarded="62480" />
+  <memory-copied type="tenure" objects="1282" bytes="44216" bytesdiscarded="16" />
+  <copy-failed type="nursery" objects="1282" bytes="44216" />
+  <references type="soft" candidates="2" cleared="0" enqueued="0" dynamicThreshold="27" maxThreshold="32" />
+  <references type="weak" candidates="10" cleared="7" enqueued="7" />
+</gc-op>
+<gc-end id="131" type="scavenge" contextid="127" durationms="0.788" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.700" activeThreads="4">
+  <mem-info id="132" free="4652176" total="8781824" percent="52">
+    <mem type="nursery" free="327680" total="2490368" percent="13">
+      <mem type="allocate" free="327680" total="1245184" percent="26" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="4324496" total="6291456" percent="68">
+      <mem type="soa" free="4010128" total="5977088" percent="67" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="7" classloader="0" />
+    <remembered-set count="655" />
+  </mem-info>
+</gc-end>
+<cycle-end id="133" type="scavenge" contextid="127" timestamp="2019-08-02T21:32:46.701" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="4" />
+  <attribute name= "Current Time Running" value="414" />
+<allocation-satisfied id="134" threadId="0000000000AA8F00" bytesRequested="1616" />
+<af-end id="135" timestamp="2019-08-02T21:32:46.701" threadId="0000000000AA9888" success="true" from="nursery"/>
+<exclusive-end id="136" timestamp="2019-08-02T21:32:46.701" durationms="1.501" />
+
+<exclusive-start id="137" timestamp="2019-08-02T21:32:46.706" intervalms="7.068">
+  <response-info timems="0.045" idlems="0.045" threads="0" lastid="0000000000AA8F00" lastname="Thread-3" />
+</exclusive-start>
+<af-start id="138" threadId="0000000000AA9888" totalBytesRequested="2176" timestamp="2019-08-02T21:32:46.706" intervalms="6.985" type="nursery" />
+<cycle-start id="139" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.707" intervalms="6.918" />
+<gc-start id="140" type="scavenge" contextid="139" timestamp="2019-08-02T21:32:46.707">
+  <mem-info id="141" free="4324496" total="8781824" percent="49">
+    <mem type="nursery" free="0" total="2490368" percent="0">
+      <mem type="allocate" free="0" total="1245184" percent="0" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="4324496" total="6291456" percent="68">
+      <mem type="soa" free="4010128" total="5977088" percent="67" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="655" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="321640" >
+  <allocated-bytes non-tlh="55896" tlh="265744" />
+  <largest-consumer threadName="Thread-3" threadId="0000000000AA8F00" bytes="263264" />
+</allocation-stats>
+<gc-op id="142" type="scavenge" timems="0.661" contextid="139" timestamp="2019-08-02T21:32:46.707">
+  <scavenger-info tenureage="1" tenuremask="7ffe" tiltratio="50" />
+  <memory-copied type="nursery" objects="270" bytes="321176" bytesdiscarded="720" />
+  <memory-copied type="tenure" objects="2740" bytes="854128" bytesdiscarded="1152" />
+</gc-op>
+<gc-end id="143" type="scavenge" contextid="139" durationms="0.861" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.707" activeThreads="4">
+  <mem-info id="144" free="4335392" total="8781824" percent="49">
+    <mem type="nursery" free="923288" total="2490368" percent="37">
+      <mem type="allocate" free="923288" total="1245184" percent="74" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="3412104" total="6291456" percent="54">
+      <mem type="soa" free="3097736" total="5977088" percent="51" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="303" />
+  </mem-info>
+</gc-end>
+<cycle-end id="145" type="scavenge" contextid="139" timestamp="2019-08-02T21:32:46.708" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="16" />
+  <attribute name= "Current Time Running" value="421" />
+<allocation-satisfied id="146" threadId="0000000000AA8F00" bytesRequested="2176" />
+<af-end id="147" timestamp="2019-08-02T21:32:46.708" threadId="0000000000AA9888" success="true" from="nursery"/>
+<exclusive-end id="148" timestamp="2019-08-02T21:32:46.708" durationms="1.367" />
+
+<exclusive-start id="149" timestamp="2019-08-02T21:32:46.719" intervalms="12.484">
+  <response-info timems="0.074" idlems="0.030" threads="2" lastid="0000000000AC3300" lastname="Thread-10" />
+</exclusive-start>
+<af-start id="150" threadId="0000000000AB4C88" totalBytesRequested="15368" timestamp="2019-08-02T21:32:46.719" intervalms="12.504" type="nursery" />
+<cycle-start id="151" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.719" intervalms="12.529" />
+<gc-start id="152" type="scavenge" contextid="151" timestamp="2019-08-02T21:32:46.719">
+  <mem-info id="153" free="3419544" total="8781824" percent="38">
+    <mem type="nursery" free="8016" total="2490368" percent="0">
+      <mem type="allocate" free="8016" total="1245184" percent="0" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="3411528" total="6291456" percent="54">
+      <mem type="soa" free="3097160" total="5977088" percent="51" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="319" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="899088" >
+  <allocated-bytes non-tlh="153992" tlh="745096" />
+  <largest-consumer threadName="Thread-3" threadId="0000000000AA8F00" bytes="649336" />
+</allocation-stats>
+<gc-op id="154" type="scavenge" timems="1.275" contextid="151" timestamp="2019-08-02T21:32:46.721">
+  <scavenger-info tenureage="1" tenuremask="7ffe" tiltratio="50" />
+  <memory-copied type="nursery" objects="361" bytes="782048" bytesdiscarded="21656" />
+  <memory-copied type="tenure" objects="270" bytes="321176" bytesdiscarded="528" />
+  <references type="weak" candidates="1" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="1" cleared="0" enqueued="0" />
+</gc-op>
+<gc-end id="155" type="scavenge" contextid="151" durationms="1.676" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.721" activeThreads="4">
+  <mem-info id="156" free="3504280" total="8781824" percent="39">
+    <mem type="nursery" free="441472" total="2490368" percent="17">
+      <mem type="allocate" free="441472" total="1245184" percent="35" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="3062808" total="6291456" percent="48">
+      <mem type="soa" free="2748440" total="5977088" percent="45" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="131" />
+  </mem-info>
+</gc-end>
+<cycle-end id="157" type="scavenge" contextid="151" timestamp="2019-08-02T21:32:46.721" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="13" />
+  <attribute name= "Current Time Running" value="433" />
+<allocation-satisfied id="158" threadId="0000000000AB4300" bytesRequested="15368" />
+<af-end id="159" timestamp="2019-08-02T21:32:46.721" threadId="0000000000AB4C88" success="true" from="nursery"/>
+<exclusive-end id="160" timestamp="2019-08-02T21:32:46.721" durationms="2.473" />
+
+<exclusive-start id="161" timestamp="2019-08-02T21:32:46.732" intervalms="13.382">
+  <response-info timems="0.070" idlems="0.070" threads="0" lastid="0000000000AACB00" lastname="Thread-4" />
+</exclusive-start>
+<af-start id="162" threadId="0000000000AAD488" totalBytesRequested="24" timestamp="2019-08-02T21:32:46.732" intervalms="13.402" type="nursery" />
+<cycle-start id="163" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.732" intervalms="13.421" />
+<gc-start id="164" type="scavenge" contextid="163" timestamp="2019-08-02T21:32:46.733">
+  <mem-info id="165" free="3061192" total="8781824" percent="34">
+    <mem type="nursery" free="0" total="2490368" percent="0">
+      <mem type="allocate" free="0" total="1245184" percent="0" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="3061192" total="6291456" percent="48">
+      <mem type="soa" free="2746824" total="5977088" percent="45" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="156" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="441080" >
+  <allocated-bytes non-tlh="36096" tlh="404984" />
+  <largest-consumer threadName="Thread-4" threadId="0000000000AACB00" bytes="312720" />
+</allocation-stats>
+<gc-op id="166" type="scavenge" timems="0.820" contextid="163" timestamp="2019-08-02T21:32:46.734">
+  <scavenger-info tenureage="1" tenuremask="7ffe" tiltratio="50" />
+  <memory-copied type="nursery" objects="1344" bytes="80264" bytesdiscarded="221560" />
+  <memory-copied type="tenure" objects="332" bytes="754160" bytesdiscarded="256" />
+</gc-op>
+<heap-resize id="167" type="expand" space="nursery" amount="131072" count="1" timems="0.026" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:46.734" />
+<gc-end id="168" type="scavenge" contextid="163" durationms="1.247" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.734" activeThreads="4">
+  <mem-info id="169" free="3164008" total="8912896" percent="35">
+    <mem type="nursery" free="1008896" total="2621440" percent="38">
+      <mem type="allocate" free="1008896" total="1310720" percent="76" />
+      <mem type="survivor" free="0" total="1310720" percent="0" />
+    </mem>
+    <mem type="tenure" free="2155112" total="6291456" percent="34">
+      <mem type="soa" free="1840744" total="5977088" percent="30" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="165" />
+  </mem-info>
+</gc-end>
+<cycle-end id="170" type="scavenge" contextid="163" timestamp="2019-08-02T21:32:46.734" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="12" />
+  <attribute name= "Current Time Running" value="447" />
+<allocation-satisfied id="171" threadId="0000000000AACB00" bytesRequested="24" />
+<af-end id="172" timestamp="2019-08-02T21:32:46.734" threadId="0000000000AAD488" success="true" from="nursery"/>
+<exclusive-end id="173" timestamp="2019-08-02T21:32:46.734" durationms="1.844" />
+
+<exclusive-start id="174" timestamp="2019-08-02T21:32:46.759" intervalms="26.560">
+  <response-info timems="0.065" idlems="0.065" threads="0" lastid="0000000000AACB00" lastname="Thread-4" />
+</exclusive-start>
+<af-start id="175" threadId="0000000000AAD488" totalBytesRequested="98264" timestamp="2019-08-02T21:32:46.759" intervalms="26.557" type="nursery" />
+<cycle-start id="176" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.759" intervalms="26.539" />
+<gc-start id="177" type="scavenge" contextid="176" timestamp="2019-08-02T21:32:46.759">
+  <mem-info id="178" free="2213464" total="8912896" percent="24">
+    <mem type="nursery" free="58584" total="2621440" percent="2">
+      <mem type="allocate" free="58584" total="1310720" percent="4" />
+      <mem type="survivor" free="0" total="1310720" percent="0" />
+    </mem>
+    <mem type="tenure" free="2154880" total="6291456" percent="34">
+      <mem type="soa" free="1840512" total="5977088" percent="30" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="168" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="950480" >
+  <allocated-bytes non-tlh="487720" tlh="462760" />
+  <largest-consumer threadName="Thread-4" threadId="0000000000AACB00" bytes="950480" />
+</allocation-stats>
+<gc-op id="179" type="scavenge" timems="0.624" contextid="176" timestamp="2019-08-02T21:32:46.760">
+  <scavenger-info tenureage="2" tenuremask="7ffc" tiltratio="50" />
+  <memory-copied type="nursery" objects="4133" bytes="510024" bytesdiscarded="67576" />
+</gc-op>
+<gc-end id="180" type="scavenge" contextid="176" durationms="0.960" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.760" activeThreads="4">
+  <mem-info id="181" free="2888000" total="8912896" percent="32">
+    <mem type="nursery" free="733120" total="2621440" percent="27">
+      <mem type="allocate" free="733120" total="1310720" percent="55" />
+      <mem type="survivor" free="0" total="1310720" percent="0" />
+    </mem>
+    <mem type="tenure" free="2154880" total="6291456" percent="34">
+      <mem type="soa" free="1840512" total="5977088" percent="30" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="161" />
+  </mem-info>
+</gc-end>
+<cycle-end id="182" type="scavenge" contextid="176" timestamp="2019-08-02T21:32:46.760" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="8" />
+  <attribute name= "Current Time Running" value="473" />
+<allocation-satisfied id="183" threadId="0000000000AACB00" bytesRequested="98264" />
+<af-end id="184" timestamp="2019-08-02T21:32:46.760" threadId="0000000000AAD488" success="true" from="nursery"/>
+<exclusive-end id="185" timestamp="2019-08-02T21:32:46.760" durationms="1.575" />
+
+<exclusive-start id="186" timestamp="2019-08-02T21:32:46.793" intervalms="34.109">
+  <response-info timems="0.093" idlems="0.093" threads="0" lastid="0000000000AACB00" lastname="Thread-4" />
+</exclusive-start>
+<af-start id="187" threadId="0000000000AAD488" totalBytesRequested="440" timestamp="2019-08-02T21:32:46.793" intervalms="34.131" type="nursery" />
+<cycle-start id="188" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.793" intervalms="34.152" />
+<gc-start id="189" type="scavenge" contextid="188" timestamp="2019-08-02T21:32:46.793">
+  <mem-info id="190" free="2154880" total="8912896" percent="24">
+    <mem type="nursery" free="0" total="2621440" percent="0">
+      <mem type="allocate" free="0" total="1310720" percent="0" />
+      <mem type="survivor" free="0" total="1310720" percent="0" />
+    </mem>
+    <mem type="tenure" free="2154880" total="6291456" percent="34">
+      <mem type="soa" free="1840512" total="5977088" percent="30" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="161" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="731760" >
+  <allocated-bytes non-tlh="227312" tlh="504448" />
+  <largest-consumer threadName="Thread-4" threadId="0000000000AACB00" bytes="731760" />
+</allocation-stats>
+<gc-op id="191" type="scavenge" timems="0.704" contextid="188" timestamp="2019-08-02T21:32:46.794">
+  <scavenger-info tenureage="1" tenuremask="7ffe" tiltratio="50" />
+  <memory-copied type="nursery" objects="20" bytes="187304" bytesdiscarded="9616" />
+  <memory-copied type="tenure" objects="4127" bytes="214904" bytesdiscarded="72" />
+</gc-op>
+<gc-end id="192" type="scavenge" contextid="188" durationms="1.034" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.794" activeThreads="4">
+  <mem-info id="193" free="3232072" total="8912896" percent="36">
+    <mem type="nursery" free="1179336" total="2621440" percent="44">
+      <mem type="allocate" free="1179336" total="1376256" percent="85" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="2052736" total="6291456" percent="32">
+      <mem type="soa" free="1738368" total="5977088" percent="29" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="150" />
+  </mem-info>
+</gc-end>
+<cycle-end id="194" type="scavenge" contextid="188" timestamp="2019-08-02T21:32:46.794" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="4" />
+  <attribute name= "Current Time Running" value="507" />
+<allocation-satisfied id="195" threadId="0000000000AACB00" bytesRequested="440" />
+<af-end id="196" timestamp="2019-08-02T21:32:46.795" threadId="0000000000AAD488" success="true" from="nursery"/>
+<exclusive-end id="197" timestamp="2019-08-02T21:32:46.795" durationms="1.746" />
+
+<exclusive-start id="198" timestamp="2019-08-02T21:32:46.807" intervalms="14.091">
+  <response-info timems="0.057" idlems="0.057" threads="0" lastid="0000000000AACB00" lastname="Thread-4" />
+</exclusive-start>
+<af-start id="199" threadId="0000000000AAD488" totalBytesRequested="3224" timestamp="2019-08-02T21:32:46.807" intervalms="14.075" type="nursery" />
+<cycle-start id="200" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.807" intervalms="14.068" />
+<gc-start id="201" type="scavenge" contextid="200" timestamp="2019-08-02T21:32:46.807">
+  <mem-info id="202" free="2052736" total="8912896" percent="23">
+    <mem type="nursery" free="0" total="2621440" percent="0">
+      <mem type="allocate" free="0" total="1376256" percent="0" />
+      <mem type="survivor" free="0" total="1245184" percent="0" />
+    </mem>
+    <mem type="tenure" free="2052736" total="6291456" percent="32">
+      <mem type="soa" free="1738368" total="5977088" percent="29" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="150" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="1162504" >
+  <allocated-bytes non-tlh="440" tlh="1162064" />
+  <largest-consumer threadName="Thread-4" threadId="0000000000AACB00" bytes="1162504" />
+</allocation-stats>
+<gc-op id="203" type="scavenge" timems="0.392" contextid="200" timestamp="2019-08-02T21:32:46.808">
+  <scavenger-info tenureage="1" tenuremask="7ffe" tiltratio="52" />
+  <memory-copied type="nursery" objects="18" bytes="74136" bytesdiscarded="16592" />
+  <memory-copied type="tenure" objects="1" bytes="98264" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="204" type="scavenge" contextid="200" durationms="0.830" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.808" activeThreads="4">
+  <mem-info id="205" free="3436608" total="8912896" percent="38">
+    <mem type="nursery" free="1482136" total="2621440" percent="56">
+      <mem type="allocate" free="1482136" total="1572864" percent="94" />
+      <mem type="survivor" free="0" total="1048576" percent="0" />
+    </mem>
+    <mem type="tenure" free="1954472" total="6291456" percent="31">
+      <mem type="soa" free="1640104" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="148" />
+  </mem-info>
+</gc-end>
+<cycle-end id="206" type="scavenge" contextid="200" timestamp="2019-08-02T21:32:46.808" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="9" />
+  <attribute name= "Current Time Running" value="522" />
+<allocation-satisfied id="207" threadId="0000000000AACB00" bytesRequested="3224" />
+<af-end id="208" timestamp="2019-08-02T21:32:46.808" threadId="0000000000AAD488" success="true" from="nursery"/>
+<exclusive-end id="209" timestamp="2019-08-02T21:32:46.808" durationms="1.466" />
+
+<exclusive-start id="210" timestamp="2019-08-02T21:32:46.812" intervalms="5.412">
+  <response-info timems="0.058" idlems="0.058" threads="0" lastid="0000000000AACB00" lastname="Thread-4" />
+</exclusive-start>
+<af-start id="211" threadId="0000000000AAD488" totalBytesRequested="5048" timestamp="2019-08-02T21:32:46.812" intervalms="5.362" type="nursery" />
+<cycle-start id="212" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.813" intervalms="5.359" />
+<gc-start id="213" type="scavenge" contextid="212" timestamp="2019-08-02T21:32:46.813">
+  <mem-info id="214" free="1954472" total="8912896" percent="21">
+    <mem type="nursery" free="0" total="2621440" percent="0">
+      <mem type="allocate" free="0" total="1572864" percent="0" />
+      <mem type="survivor" free="0" total="1048576" percent="0" />
+    </mem>
+    <mem type="tenure" free="1954472" total="6291456" percent="31">
+      <mem type="soa" free="1640104" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="148" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="1455648" >
+  <allocated-bytes non-tlh="3224" tlh="1452424" />
+  <largest-consumer threadName="Thread-4" threadId="0000000000AACB00" bytes="1455648" />
+</allocation-stats>
+<gc-op id="215" type="scavenge" timems="0.361" contextid="212" timestamp="2019-08-02T21:32:46.813">
+  <scavenger-info tenureage="2" tenuremask="7ffc" tiltratio="60" />
+  <memory-copied type="nursery" objects="24" bytes="140448" bytesdiscarded="9880" />
+</gc-op>
+<gc-end id="216" type="scavenge" contextid="212" durationms="0.552" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.813" activeThreads="4">
+  <mem-info id="217" free="3508080" total="8912896" percent="39">
+    <mem type="nursery" free="1553608" total="2621440" percent="59">
+      <mem type="allocate" free="1553608" total="1703936" percent="91" />
+      <mem type="survivor" free="0" total="917504" percent="0" />
+    </mem>
+    <mem type="tenure" free="1954472" total="6291456" percent="31">
+      <mem type="soa" free="1640104" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="148" />
+  </mem-info>
+</gc-end>
+<cycle-end id="218" type="scavenge" contextid="212" timestamp="2019-08-02T21:32:46.813" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="13" />
+  <attribute name= "Current Time Running" value="527" />
+<allocation-satisfied id="219" threadId="0000000000AACB00" bytesRequested="5048" />
+<af-end id="220" timestamp="2019-08-02T21:32:46.813" threadId="0000000000AAD488" success="true" from="nursery"/>
+<exclusive-end id="221" timestamp="2019-08-02T21:32:46.813" durationms="1.024" />
+
+<exclusive-start id="222" timestamp="2019-08-02T21:32:46.818" intervalms="5.450">
+  <response-info timems="0.022" idlems="0.022" threads="0" lastid="0000000000AACB00" lastname="Thread-4" />
+</exclusive-start>
+<af-start id="223" threadId="0000000000AAD488" totalBytesRequested="69736" timestamp="2019-08-02T21:32:46.818" intervalms="5.448" type="nursery" />
+<cycle-start id="224" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.818" intervalms="5.406" />
+<gc-start id="225" type="scavenge" contextid="224" timestamp="2019-08-02T21:32:46.818">
+  <mem-info id="226" free="1994264" total="8912896" percent="22">
+    <mem type="nursery" free="39792" total="2621440" percent="1">
+      <mem type="allocate" free="39792" total="1703936" percent="2" />
+      <mem type="survivor" free="0" total="917504" percent="0" />
+    </mem>
+    <mem type="tenure" free="1954472" total="6291456" percent="31">
+      <mem type="soa" free="1640104" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="148" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="1510856" >
+  <allocated-bytes non-tlh="51544" tlh="1459312" />
+  <largest-consumer threadName="Thread-4" threadId="0000000000AACB00" bytes="1510856" />
+</allocation-stats>
+<gc-op id="227" type="scavenge" timems="0.352" contextid="224" timestamp="2019-08-02T21:32:46.819">
+  <scavenger-info tenureage="3" tenuremask="7ff8" tiltratio="65" />
+  <memory-copied type="nursery" objects="44" bytes="110720" bytesdiscarded="21440" />
+</gc-op>
+<gc-end id="228" type="scavenge" contextid="224" durationms="0.545" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.819" activeThreads="4">
+  <mem-info id="229" free="3657320" total="8912896" percent="41">
+    <mem type="nursery" free="1702848" total="2621440" percent="64">
+      <mem type="allocate" free="1702848" total="1835008" percent="92" />
+      <mem type="survivor" free="0" total="786432" percent="0" />
+    </mem>
+    <mem type="tenure" free="1954472" total="6291456" percent="31">
+      <mem type="soa" free="1640104" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="147" />
+  </mem-info>
+</gc-end>
+<cycle-end id="230" type="scavenge" contextid="224" timestamp="2019-08-02T21:32:46.819" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="11" />
+  <attribute name= "Current Time Running" value="532" />
+<allocation-satisfied id="231" threadId="0000000000AACB00" bytesRequested="69736" />
+<af-end id="232" timestamp="2019-08-02T21:32:46.819" threadId="0000000000AAD488" success="true" from="nursery"/>
+<exclusive-end id="233" timestamp="2019-08-02T21:32:46.819" durationms="0.969" />
+
+<exclusive-start id="234" timestamp="2019-08-02T21:32:46.834" intervalms="16.147">
+  <response-info timems="0.165" idlems="0.165" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="235" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:46.834" intervalms="16.167" type="nursery" />
+<cycle-start id="236" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.834" intervalms="16.177" />
+<gc-start id="237" type="scavenge" contextid="236" timestamp="2019-08-02T21:32:46.834">
+  <mem-info id="238" free="1948648" total="8912896" percent="21">
+    <mem type="nursery" free="0" total="2621440" percent="0">
+      <mem type="allocate" free="0" total="1835008" percent="0" />
+      <mem type="survivor" free="0" total="786432" percent="0" />
+    </mem>
+    <mem type="tenure" free="1948648" total="6291456" percent="30">
+      <mem type="soa" free="1634280" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="236" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="1701176" >
+  <allocated-bytes non-tlh="648144" tlh="1053032" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="352312" />
+</allocation-stats>
+<gc-op id="239" type="scavenge" timems="0.948" contextid="236" timestamp="2019-08-02T21:32:46.835">
+  <scavenger-info tenureage="4" tenuremask="7ff0" tiltratio="70" />
+  <memory-copied type="nursery" objects="5504" bytes="427992" bytesdiscarded="36544" />
+</gc-op>
+<gc-end id="240" type="scavenge" contextid="236" durationms="1.305" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.836" activeThreads="4">
+  <mem-info id="241" free="3253512" total="8912896" percent="36">
+    <mem type="nursery" free="1304864" total="2621440" percent="49">
+      <mem type="allocate" free="1304864" total="1769472" percent="73" />
+      <mem type="survivor" free="0" total="851968" percent="0" />
+    </mem>
+    <mem type="tenure" free="1948648" total="6291456" percent="30">
+      <mem type="soa" free="1634280" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="230" />
+  </mem-info>
+</gc-end>
+<cycle-end id="242" type="scavenge" contextid="236" timestamp="2019-08-02T21:32:46.836" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="4" />
+  <attribute name= "Current Time Running" value="548" />
+<allocation-satisfied id="243" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="244" timestamp="2019-08-02T21:32:46.836" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="245" timestamp="2019-08-02T21:32:46.836" durationms="1.869" />
+
+<exclusive-start id="246" timestamp="2019-08-02T21:32:46.902" intervalms="68.284">
+  <response-info timems="0.102" idlems="0.102" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="247" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:46.902" intervalms="68.407" type="nursery" />
+<cycle-start id="248" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.903" intervalms="68.498" />
+<gc-start id="249" type="scavenge" contextid="248" timestamp="2019-08-02T21:32:46.903">
+  <mem-info id="250" free="1948648" total="8912896" percent="21">
+    <mem type="nursery" free="0" total="2621440" percent="0">
+      <mem type="allocate" free="0" total="1769472" percent="0" />
+      <mem type="survivor" free="0" total="851968" percent="0" />
+    </mem>
+    <mem type="tenure" free="1948648" total="6291456" percent="30">
+      <mem type="soa" free="1634280" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="230" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="1304560" >
+  <allocated-bytes non-tlh="40" tlh="1304520" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="1304560" />
+</allocation-stats>
+<gc-op id="251" type="scavenge" timems="1.097" contextid="248" timestamp="2019-08-02T21:32:46.904">
+  <scavenger-info tenureage="4" tenuremask="7ff0" tiltratio="67" />
+  <memory-copied type="nursery" objects="5552" bytes="429112" bytesdiscarded="53592" />
+</gc-op>
+<gc-end id="252" type="scavenge" contextid="248" durationms="1.721" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.904" activeThreads="4">
+  <mem-info id="253" free="3497488" total="8912896" percent="39">
+    <mem type="nursery" free="1548840" total="2621440" percent="59">
+      <mem type="allocate" free="1548840" total="2031616" percent="76" />
+      <mem type="survivor" free="0" total="589824" percent="0" />
+    </mem>
+    <mem type="tenure" free="1948648" total="6291456" percent="30">
+      <mem type="soa" free="1634280" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="162" />
+  </mem-info>
+</gc-end>
+<cycle-end id="254" type="scavenge" contextid="248" timestamp="2019-08-02T21:32:46.905" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="2" />
+  <attribute name= "Current Time Running" value="617" />
+<allocation-satisfied id="255" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="256" timestamp="2019-08-02T21:32:46.905" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="257" timestamp="2019-08-02T21:32:46.905" durationms="2.557" />
+
+<exclusive-start id="258" timestamp="2019-08-02T21:32:46.920" intervalms="18.004">
+  <response-info timems="0.067" idlems="0.067" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="259" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:46.920" intervalms="17.928" type="nursery" />
+<cycle-start id="260" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.921" intervalms="17.865" />
+<gc-start id="261" type="scavenge" contextid="260" timestamp="2019-08-02T21:32:46.921">
+  <mem-info id="262" free="1948648" total="8912896" percent="21">
+    <mem type="nursery" free="0" total="2621440" percent="0">
+      <mem type="allocate" free="0" total="2031616" percent="0" />
+      <mem type="survivor" free="0" total="589824" percent="0" />
+    </mem>
+    <mem type="tenure" free="1948648" total="6291456" percent="30">
+      <mem type="soa" free="1634280" total="5977088" percent="27" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="162" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="1548592" >
+  <allocated-bytes non-tlh="40" tlh="1548552" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="1548592" />
+</allocation-stats>
+<gc-op id="263" type="scavenge" timems="0.959" contextid="260" timestamp="2019-08-02T21:32:46.922">
+  <scavenger-info tenureage="2" tenuremask="7ff4" tiltratio="77" />
+  <memory-copied type="nursery" objects="269" bytes="6848" bytesdiscarded="102208" />
+  <memory-copied type="tenure" objects="5428" bytes="425776" bytesdiscarded="24" />
+</gc-op>
+<gc-end id="264" type="scavenge" contextid="260" durationms="1.426" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.922" activeThreads="4">
+  <mem-info id="265" free="3370504" total="8912896" percent="37">
+    <mem type="nursery" free="1922560" total="2621440" percent="73">
+      <mem type="allocate" free="1922560" total="2031616" percent="94" />
+      <mem type="survivor" free="0" total="589824" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="277" />
+  </mem-info>
+</gc-end>
+<cycle-end id="266" type="scavenge" contextid="260" timestamp="2019-08-02T21:32:46.922" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="10" />
+  <attribute name= "Current Time Running" value="635" />
+<allocation-satisfied id="267" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="268" timestamp="2019-08-02T21:32:46.922" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="269" timestamp="2019-08-02T21:32:46.922" durationms="2.001" />
+
+<exclusive-start id="270" timestamp="2019-08-02T21:32:46.940" intervalms="20.061">
+  <response-info timems="0.139" idlems="0.139" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="271" threadId="0000000000AB8888" totalBytesRequested="24" timestamp="2019-08-02T21:32:46.940" intervalms="20.043" type="nursery" />
+<cycle-start id="272" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.941" intervalms="20.043" />
+<gc-start id="273" type="scavenge" contextid="272" timestamp="2019-08-02T21:32:46.941">
+  <mem-info id="274" free="1447944" total="8912896" percent="16">
+    <mem type="nursery" free="0" total="2621440" percent="0">
+      <mem type="allocate" free="0" total="2031616" percent="0" />
+      <mem type="survivor" free="0" total="589824" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="376" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="1922320" >
+  <allocated-bytes non-tlh="40" tlh="1922280" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="1922320" />
+</allocation-stats>
+<gc-op id="275" type="scavenge" timems="0.894" contextid="272" timestamp="2019-08-02T21:32:46.942">
+  <scavenger-info tenureage="5" tenuremask="7fe0" tiltratio="77" />
+  <memory-copied type="nursery" objects="368" bytes="9208" bytesdiscarded="84488" />
+</gc-op>
+<heap-resize id="276" type="expand" space="nursery" amount="131072" count="1" timems="0.013" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:46.942" />
+<gc-end id="277" type="scavenge" contextid="272" durationms="1.420" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.942" activeThreads="4">
+  <mem-info id="278" free="3582472" total="9043968" percent="39">
+    <mem type="nursery" free="2134528" total="2752512" percent="77">
+      <mem type="allocate" free="2134528" total="2228224" percent="95" />
+      <mem type="survivor" free="0" total="524288" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="376" />
+  </mem-info>
+</gc-end>
+<cycle-end id="279" type="scavenge" contextid="272" timestamp="2019-08-02T21:32:46.942" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="6" />
+  <attribute name= "Current Time Running" value="655" />
+<allocation-satisfied id="280" threadId="0000000000AB7F00" bytesRequested="24" />
+<af-end id="281" timestamp="2019-08-02T21:32:46.943" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="282" timestamp="2019-08-02T21:32:46.943" durationms="2.268" />
+
+<exclusive-start id="283" timestamp="2019-08-02T21:32:46.958" intervalms="17.504">
+  <response-info timems="0.066" idlems="0.066" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="284" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:46.958" intervalms="17.547" type="nursery" />
+<cycle-start id="285" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.958" intervalms="17.569" />
+<gc-start id="286" type="scavenge" contextid="285" timestamp="2019-08-02T21:32:46.958">
+  <mem-info id="287" free="1447944" total="9043968" percent="16">
+    <mem type="nursery" free="0" total="2752512" percent="0">
+      <mem type="allocate" free="0" total="2228224" percent="0" />
+      <mem type="survivor" free="0" total="524288" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="533" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="2134248" >
+  <allocated-bytes non-tlh="24" tlh="2134224" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="2134248" />
+</allocation-stats>
+<gc-op id="288" type="scavenge" timems="0.704" contextid="285" timestamp="2019-08-02T21:32:46.959">
+  <scavenger-info tenureage="6" tenuremask="7fc0" tiltratio="80" />
+  <memory-copied type="nursery" objects="526" bytes="13016" bytesdiscarded="96040" />
+</gc-op>
+<gc-end id="289" type="scavenge" contextid="285" durationms="1.296" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.960" activeThreads="4">
+  <mem-info id="290" free="3698184" total="9043968" percent="40">
+    <mem type="nursery" free="2250240" total="2752512" percent="81">
+      <mem type="allocate" free="2250240" total="2359296" percent="95" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="531" />
+  </mem-info>
+</gc-end>
+<cycle-end id="291" type="scavenge" contextid="285" timestamp="2019-08-02T21:32:46.960" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="7" />
+  <attribute name= "Current Time Running" value="672" />
+<allocation-satisfied id="292" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="293" timestamp="2019-08-02T21:32:46.960" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="294" timestamp="2019-08-02T21:32:46.960" durationms="2.275" />
+
+<exclusive-start id="295" timestamp="2019-08-02T21:32:46.975" intervalms="16.662">
+  <response-info timems="0.043" idlems="0.043" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="296" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:46.975" intervalms="16.612" type="nursery" />
+<cycle-start id="297" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.975" intervalms="16.560" />
+<gc-start id="298" type="scavenge" contextid="297" timestamp="2019-08-02T21:32:46.975">
+  <mem-info id="299" free="1447944" total="9043968" percent="16">
+    <mem type="nursery" free="0" total="2752512" percent="0">
+      <mem type="allocate" free="0" total="2359296" percent="0" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="625" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="2249992" >
+  <allocated-bytes non-tlh="40" tlh="2249952" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="2249992" />
+</allocation-stats>
+<gc-op id="300" type="scavenge" timems="1.144" contextid="297" timestamp="2019-08-02T21:32:46.976">
+  <scavenger-info tenureage="3" tenuremask="ffe8" tiltratio="85" />
+  <memory-copied type="nursery" objects="477" bytes="11824" bytesdiscarded="35792" />
+  <memory-copied type="tenure" objects="142" bytes="3408" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="301" type="scavenge" contextid="297" durationms="1.601" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.976" activeThreads="4">
+  <mem-info id="302" free="3825160" total="9043968" percent="42">
+    <mem type="nursery" free="2377216" total="2752512" percent="86">
+      <mem type="allocate" free="2377216" total="2424832" percent="98" />
+      <mem type="survivor" free="0" total="327680" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="483" />
+  </mem-info>
+</gc-end>
+<cycle-end id="303" type="scavenge" contextid="297" timestamp="2019-08-02T21:32:46.977" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="7" />
+  <attribute name= "Current Time Running" value="689" />
+<allocation-satisfied id="304" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="305" timestamp="2019-08-02T21:32:46.977" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="306" timestamp="2019-08-02T21:32:46.977" durationms="2.350" />
+
+<exclusive-start id="307" timestamp="2019-08-02T21:32:46.986" intervalms="11.505">
+  <response-info timems="0.061" idlems="0.061" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="308" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:46.986" intervalms="11.519" type="nursery" />
+<cycle-start id="309" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:46.986" intervalms="11.548" />
+<gc-start id="310" type="scavenge" contextid="309" timestamp="2019-08-02T21:32:46.986">
+  <mem-info id="311" free="1447944" total="9043968" percent="16">
+    <mem type="nursery" free="0" total="2752512" percent="0">
+      <mem type="allocate" free="0" total="2424832" percent="0" />
+      <mem type="survivor" free="0" total="327680" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="598" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="2376944" >
+  <allocated-bytes non-tlh="40" tlh="2376904" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="2376944" />
+</allocation-stats>
+<gc-op id="312" type="scavenge" timems="0.934" contextid="309" timestamp="2019-08-02T21:32:46.988">
+  <scavenger-info tenureage="3" tenuremask="ffe8" tiltratio="88" />
+  <memory-copied type="nursery" objects="445" bytes="11072" bytesdiscarded="97984" />
+  <memory-copied type="tenure" objects="148" bytes="3552" bytesdiscarded="0" />
+</gc-op>
+<heap-resize id="313" type="expand" space="nursery" amount="262144" count="1" timems="0.017" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:46.988" />
+<gc-end id="314" type="scavenge" contextid="309" durationms="1.579" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:46.988" activeThreads="4">
+  <mem-info id="315" free="3960328" total="9306112" percent="42">
+    <mem type="nursery" free="2512384" total="3014656" percent="83">
+      <mem type="allocate" free="2512384" total="2621440" percent="95" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="450" />
+  </mem-info>
+</gc-end>
+<cycle-end id="316" type="scavenge" contextid="309" timestamp="2019-08-02T21:32:46.988" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="20" />
+  <attribute name= "Current Time Running" value="701" />
+<allocation-satisfied id="317" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="318" timestamp="2019-08-02T21:32:46.988" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="319" timestamp="2019-08-02T21:32:46.988" durationms="2.363" />
+
+<exclusive-start id="320" timestamp="2019-08-02T21:32:46.999" intervalms="13.464">
+  <response-info timems="0.232" idlems="0.232" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="321" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.000" intervalms="13.490" type="nursery" />
+<cycle-start id="322" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.000" intervalms="13.519" />
+<gc-start id="323" type="scavenge" contextid="322" timestamp="2019-08-02T21:32:47.000">
+  <mem-info id="324" free="1447944" total="9306112" percent="15">
+    <mem type="nursery" free="0" total="3014656" percent="0">
+      <mem type="allocate" free="0" total="2621440" percent="0" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="536" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="2512080" >
+  <allocated-bytes non-tlh="40" tlh="2512040" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="2512080" />
+</allocation-stats>
+<gc-op id="325" type="scavenge" timems="0.863" contextid="322" timestamp="2019-08-02T21:32:47.001">
+  <scavenger-info tenureage="3" tenuremask="ffa8" tiltratio="86" />
+  <memory-copied type="nursery" objects="382" bytes="9560" bytesdiscarded="99496" />
+  <memory-copied type="tenure" objects="149" bytes="3576" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="326" type="scavenge" contextid="322" durationms="1.399" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.001" activeThreads="4">
+  <mem-info id="327" free="4025864" total="9306112" percent="43">
+    <mem type="nursery" free="2577920" total="3014656" percent="85">
+      <mem type="allocate" free="2577920" total="2686976" percent="95" />
+      <mem type="survivor" free="0" total="327680" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="387" />
+  </mem-info>
+</gc-end>
+<cycle-end id="328" type="scavenge" contextid="322" timestamp="2019-08-02T21:32:47.001" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="11" />
+  <attribute name= "Current Time Running" value="714" />
+<allocation-satisfied id="329" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="330" timestamp="2019-08-02T21:32:47.002" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="331" timestamp="2019-08-02T21:32:47.002" durationms="2.179" />
+
+<exclusive-start id="332" timestamp="2019-08-02T21:32:47.014" intervalms="14.046">
+  <response-info timems="0.122" idlems="0.122" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="333" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.014" intervalms="14.020" type="nursery" />
+<cycle-start id="334" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.014" intervalms="14.006" />
+<gc-start id="335" type="scavenge" contextid="334" timestamp="2019-08-02T21:32:47.014">
+  <mem-info id="336" free="1447944" total="9306112" percent="15">
+    <mem type="nursery" free="0" total="3014656" percent="0">
+      <mem type="allocate" free="0" total="2686976" percent="0" />
+      <mem type="survivor" free="0" total="327680" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="522" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="2577648" >
+  <allocated-bytes non-tlh="40" tlh="2577608" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="2577648" />
+</allocation-stats>
+<gc-op id="337" type="scavenge" timems="0.923" contextid="334" timestamp="2019-08-02T21:32:47.015">
+  <scavenger-info tenureage="3" tenuremask="ffe8" tiltratio="89" />
+  <memory-copied type="nursery" objects="357" bytes="8704" bytesdiscarded="100352" />
+  <memory-copied type="tenure" objects="96" bytes="2304" bytesdiscarded="0" />
+</gc-op>
+<heap-resize id="338" type="expand" space="nursery" amount="262144" count="1" timems="0.019" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:47.015" />
+<gc-end id="339" type="scavenge" contextid="334" durationms="1.634" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.016" activeThreads="4">
+  <mem-info id="340" free="4222472" total="9568256" percent="44">
+    <mem type="nursery" free="2774528" total="3276800" percent="84">
+      <mem type="allocate" free="2774528" total="2883584" percent="96" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="426" />
+  </mem-info>
+</gc-end>
+<cycle-end id="341" type="scavenge" contextid="334" timestamp="2019-08-02T21:32:47.016" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="10" />
+  <attribute name= "Current Time Running" value="728" />
+<allocation-satisfied id="342" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="343" timestamp="2019-08-02T21:32:47.016" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="344" timestamp="2019-08-02T21:32:47.016" durationms="2.575" />
+
+<exclusive-start id="345" timestamp="2019-08-02T21:32:47.026" intervalms="12.606">
+  <response-info timems="0.094" idlems="0.094" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="346" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.026" intervalms="12.639" type="nursery" />
+<cycle-start id="347" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.026" intervalms="12.686" />
+<gc-start id="348" type="scavenge" contextid="347" timestamp="2019-08-02T21:32:47.027">
+  <mem-info id="349" free="1447944" total="9568256" percent="15">
+    <mem type="nursery" free="0" total="3276800" percent="0">
+      <mem type="allocate" free="0" total="2883584" percent="0" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="528" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="2774072" >
+  <allocated-bytes non-tlh="40" tlh="2774032" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="2774072" />
+</allocation-stats>
+<gc-op id="350" type="scavenge" timems="0.814" contextid="347" timestamp="2019-08-02T21:32:47.028">
+  <scavenger-info tenureage="3" tenuremask="ffe8" tiltratio="88" />
+  <memory-copied type="nursery" objects="407" bytes="10144" bytesdiscarded="98912" />
+  <memory-copied type="tenure" objects="115" bytes="2760" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="351" type="scavenge" contextid="347" durationms="1.335" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.028" activeThreads="4">
+  <mem-info id="352" free="4288008" total="9568256" percent="44">
+    <mem type="nursery" free="2840064" total="3276800" percent="86">
+      <mem type="allocate" free="2840064" total="2949120" percent="96" />
+      <mem type="survivor" free="0" total="327680" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="413" />
+  </mem-info>
+</gc-end>
+<cycle-end id="353" type="scavenge" contextid="347" timestamp="2019-08-02T21:32:47.028" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="13" />
+  <attribute name= "Current Time Running" value="741" />
+<allocation-satisfied id="354" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="355" timestamp="2019-08-02T21:32:47.028" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="356" timestamp="2019-08-02T21:32:47.028" durationms="2.303" />
+
+<exclusive-start id="357" timestamp="2019-08-02T21:32:47.041" intervalms="14.824">
+  <response-info timems="0.063" idlems="0.063" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="358" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.041" intervalms="14.838" type="nursery" />
+<cycle-start id="359" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.041" intervalms="14.822" />
+<gc-start id="360" type="scavenge" contextid="359" timestamp="2019-08-02T21:32:47.041">
+  <mem-info id="361" free="1447944" total="9568256" percent="15">
+    <mem type="nursery" free="0" total="3276800" percent="0">
+      <mem type="allocate" free="0" total="2949120" percent="0" />
+      <mem type="survivor" free="0" total="327680" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="579" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="2839592" >
+  <allocated-bytes non-tlh="40" tlh="2839552" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="2839592" />
+</allocation-stats>
+<gc-op id="362" type="scavenge" timems="0.409" contextid="359" timestamp="2019-08-02T21:32:47.042">
+  <scavenger-info tenureage="3" tenuremask="ffe8" tiltratio="90" />
+  <memory-copied type="nursery" objects="415" bytes="10096" bytesdiscarded="68240" />
+  <memory-copied type="tenure" objects="95" bytes="2280" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="363" type="scavenge" contextid="359" durationms="0.977" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.042" activeThreads="4">
+  <mem-info id="364" free="4318728" total="9568256" percent="45">
+    <mem type="nursery" free="2870784" total="3276800" percent="87">
+      <mem type="allocate" free="2870784" total="2949120" percent="97" />
+      <mem type="survivor" free="0" total="327680" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="484" />
+  </mem-info>
+</gc-end>
+<cycle-end id="365" type="scavenge" contextid="359" timestamp="2019-08-02T21:32:47.043" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="10" />
+  <attribute name= "Current Time Running" value="756" />
+<allocation-satisfied id="366" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="367" timestamp="2019-08-02T21:32:47.043" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="368" timestamp="2019-08-02T21:32:47.043" durationms="1.753" />
+
+<exclusive-start id="369" timestamp="2019-08-02T21:32:47.054" intervalms="12.920">
+  <response-info timems="0.041" idlems="0.041" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="370" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.054" intervalms="12.878" type="nursery" />
+<cycle-start id="371" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.054" intervalms="12.833" />
+<gc-start id="372" type="scavenge" contextid="371" timestamp="2019-08-02T21:32:47.054">
+  <mem-info id="373" free="1447944" total="9568256" percent="15">
+    <mem type="nursery" free="0" total="3276800" percent="0">
+      <mem type="allocate" free="0" total="2949120" percent="0" />
+      <mem type="survivor" free="0" total="327680" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="609" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="2870408" >
+  <allocated-bytes non-tlh="40" tlh="2870368" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="2870408" />
+</allocation-stats>
+<gc-op id="374" type="scavenge" timems="0.764" contextid="371" timestamp="2019-08-02T21:32:47.055">
+  <scavenger-info tenureage="3" tenuremask="ffe8" tiltratio="90" />
+  <memory-copied type="nursery" objects="404" bytes="9816" bytesdiscarded="83880" />
+  <memory-copied type="tenure" objects="135" bytes="3240" bytesdiscarded="0" />
+</gc-op>
+<heap-resize id="375" type="expand" space="nursery" amount="262144" count="1" timems="0.014" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:47.055" />
+<gc-end id="376" type="scavenge" contextid="371" durationms="1.260" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.055" activeThreads="4">
+  <mem-info id="377" free="4499976" total="9830400" percent="45">
+    <mem type="nursery" free="3052032" total="3538944" percent="86">
+      <mem type="allocate" free="3052032" total="3145728" percent="97" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="474" />
+  </mem-info>
+</gc-end>
+<cycle-end id="378" type="scavenge" contextid="371" timestamp="2019-08-02T21:32:47.056" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="8" />
+  <attribute name= "Current Time Running" value="768" />
+<allocation-satisfied id="379" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="380" timestamp="2019-08-02T21:32:47.056" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="381" timestamp="2019-08-02T21:32:47.056" durationms="1.981" />
+
+<exclusive-start id="382" timestamp="2019-08-02T21:32:47.069" intervalms="15.148">
+  <response-info timems="0.041" idlems="0.041" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="383" threadId="0000000000AB8888" totalBytesRequested="24" timestamp="2019-08-02T21:32:47.069" intervalms="15.161" type="nursery" />
+<cycle-start id="384" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.069" intervalms="15.207" />
+<gc-start id="385" type="scavenge" contextid="384" timestamp="2019-08-02T21:32:47.069">
+  <mem-info id="386" free="1447944" total="9830400" percent="14">
+    <mem type="nursery" free="0" total="3538944" percent="0">
+      <mem type="allocate" free="0" total="3145728" percent="0" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1447944" total="6291456" percent="23">
+      <mem type="soa" free="1133576" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="668" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3051592" >
+  <allocated-bytes non-tlh="40" tlh="3051552" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3051592" />
+</allocation-stats>
+<gc-op id="387" type="scavenge" timems="0.718" contextid="384" timestamp="2019-08-02T21:32:47.070">
+  <scavenger-info tenureage="3" tenuremask="ffe8" tiltratio="88" />
+  <memory-copied type="nursery" objects="553" bytes="13616" bytesdiscarded="110800" />
+  <memory-copied type="tenure" objects="102" bytes="2448" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="388" type="scavenge" contextid="384" durationms="1.215" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.071" activeThreads="4">
+  <mem-info id="389" free="4414728" total="9830400" percent="44">
+    <mem type="nursery" free="3021312" total="3538944" percent="85">
+      <mem type="allocate" free="3021312" total="3145728" percent="96" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="566" />
+  </mem-info>
+</gc-end>
+<cycle-end id="390" type="scavenge" contextid="384" timestamp="2019-08-02T21:32:47.071" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="9" />
+  <attribute name= "Current Time Running" value="784" />
+<allocation-satisfied id="391" threadId="0000000000AB7F00" bytesRequested="24" />
+<af-end id="392" timestamp="2019-08-02T21:32:47.071" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="393" timestamp="2019-08-02T21:32:47.071" durationms="2.065" />
+
+<exclusive-start id="394" timestamp="2019-08-02T21:32:47.087" intervalms="17.488">
+  <response-info timems="0.045" idlems="0.045" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="395" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.087" intervalms="17.487" type="nursery" />
+<cycle-start id="396" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.087" intervalms="17.417" />
+<gc-start id="397" type="scavenge" contextid="396" timestamp="2019-08-02T21:32:47.087">
+  <mem-info id="398" free="1393416" total="9830400" percent="14">
+    <mem type="nursery" free="0" total="3538944" percent="0">
+      <mem type="allocate" free="0" total="3145728" percent="0" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="722" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3020856" >
+  <allocated-bytes non-tlh="24" tlh="3020832" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3020856" />
+</allocation-stats>
+<gc-op id="399" type="scavenge" timems="0.900" contextid="396" timestamp="2019-08-02T21:32:47.088">
+  <scavenger-info tenureage="3" tenuremask="ffe8" tiltratio="88" />
+  <memory-copied type="nursery" objects="561" bytes="13960" bytesdiscarded="79736" />
+  <memory-copied type="tenure" objects="166" bytes="3984" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="400" type="scavenge" contextid="396" durationms="1.552" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.088" activeThreads="4">
+  <mem-info id="401" free="4445448" total="9830400" percent="45">
+    <mem type="nursery" free="3052032" total="3538944" percent="86">
+      <mem type="allocate" free="3052032" total="3145728" percent="97" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="555" />
+  </mem-info>
+</gc-end>
+<cycle-end id="402" type="scavenge" contextid="396" timestamp="2019-08-02T21:32:47.089" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="7" />
+  <attribute name= "Current Time Running" value="801" />
+<allocation-satisfied id="403" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="404" timestamp="2019-08-02T21:32:47.089" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="405" timestamp="2019-08-02T21:32:47.089" durationms="2.267" />
+
+<exclusive-start id="406" timestamp="2019-08-02T21:32:47.102" intervalms="15.394">
+  <response-info timems="0.053" idlems="0.053" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="407" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.102" intervalms="15.425" type="nursery" />
+<cycle-start id="408" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.102" intervalms="15.443" />
+<gc-start id="409" type="scavenge" contextid="408" timestamp="2019-08-02T21:32:47.102">
+  <mem-info id="410" free="1393416" total="9830400" percent="14">
+    <mem type="nursery" free="0" total="3538944" percent="0">
+      <mem type="allocate" free="0" total="3145728" percent="0" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="729" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3051624" >
+  <allocated-bytes non-tlh="40" tlh="3051584" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3051624" />
+</allocation-stats>
+<gc-op id="411" type="scavenge" timems="0.719" contextid="408" timestamp="2019-08-02T21:32:47.103">
+  <scavenger-info tenureage="3" tenuremask="ffe8" tiltratio="88" />
+  <memory-copied type="nursery" objects="599" bytes="14768" bytesdiscarded="94288" />
+  <memory-copied type="tenure" objects="125" bytes="3000" bytesdiscarded="0" />
+</gc-op>
+<heap-resize id="412" type="expand" space="nursery" amount="262144" count="1" timems="0.015" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:47.103" />
+<gc-end id="413" type="scavenge" contextid="408" durationms="1.244" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.104" activeThreads="4">
+  <mem-info id="414" free="4626696" total="10092544" percent="45">
+    <mem type="nursery" free="3233280" total="3801088" percent="85">
+      <mem type="allocate" free="3233280" total="3342336" percent="96" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="603" />
+  </mem-info>
+</gc-end>
+<cycle-end id="415" type="scavenge" contextid="408" timestamp="2019-08-02T21:32:47.104" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="9" />
+  <attribute name= "Current Time Running" value="816" />
+<allocation-satisfied id="416" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="417" timestamp="2019-08-02T21:32:47.104" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="418" timestamp="2019-08-02T21:32:47.104" durationms="2.137" />
+
+<exclusive-start id="419" timestamp="2019-08-02T21:32:47.120" intervalms="18.160">
+  <response-info timems="0.042" idlems="0.042" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="420" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.120" intervalms="18.114" type="nursery" />
+<cycle-start id="421" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.120" intervalms="18.188" />
+<gc-start id="422" type="scavenge" contextid="421" timestamp="2019-08-02T21:32:47.121">
+  <mem-info id="423" free="1393416" total="10092544" percent="13">
+    <mem type="nursery" free="0" total="3801088" percent="0">
+      <mem type="allocate" free="0" total="3342336" percent="0" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="793" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3232848" >
+  <allocated-bytes non-tlh="40" tlh="3232808" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3232848" />
+</allocation-stats>
+<gc-op id="424" type="scavenge" timems="0.925" contextid="421" timestamp="2019-08-02T21:32:47.122">
+  <scavenger-info tenureage="5" tenuremask="ffe0" tiltratio="87" />
+  <memory-copied type="nursery" objects="787" bytes="19280" bytesdiscarded="74416" />
+</gc-op>
+<gc-end id="425" type="scavenge" contextid="421" durationms="1.476" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.122" activeThreads="4">
+  <mem-info id="426" free="4707592" total="10092544" percent="46">
+    <mem type="nursery" free="3314176" total="3801088" percent="87">
+      <mem type="allocate" free="3314176" total="3407872" percent="97" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="791" />
+  </mem-info>
+</gc-end>
+<cycle-end id="427" type="scavenge" contextid="421" timestamp="2019-08-02T21:32:47.122" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="7" />
+  <attribute name= "Current Time Running" value="835" />
+<allocation-satisfied id="428" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="429" timestamp="2019-08-02T21:32:47.122" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="430" timestamp="2019-08-02T21:32:47.122" durationms="2.282" />
+
+<exclusive-start id="431" timestamp="2019-08-02T21:32:47.140" intervalms="20.274">
+  <response-info timems="0.042" idlems="0.042" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="432" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.141" intervalms="20.343" type="nursery" />
+<cycle-start id="433" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.141" intervalms="20.321" />
+<gc-start id="434" type="scavenge" contextid="433" timestamp="2019-08-02T21:32:47.141">
+  <mem-info id="435" free="1393416" total="10092544" percent="13">
+    <mem type="nursery" free="0" total="3801088" percent="0">
+      <mem type="allocate" free="0" total="3407872" percent="0" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="977" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3313696" >
+  <allocated-bytes non-tlh="40" tlh="3313656" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3313696" />
+</allocation-stats>
+<gc-op id="436" type="scavenge" timems="0.916" contextid="433" timestamp="2019-08-02T21:32:47.142">
+  <scavenger-info tenureage="4" tenuremask="4010" tiltratio="89" />
+  <memory-copied type="nursery" objects="783" bytes="19184" bytesdiscarded="89872" />
+  <memory-copied type="tenure" objects="190" bytes="4560" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="437" type="scavenge" contextid="433" durationms="1.351" usertimems="0.000" systemtimems="4.000" timestamp="2019-08-02T21:32:47.142" activeThreads="4">
+  <mem-info id="438" free="4692232" total="10092544" percent="46">
+    <mem type="nursery" free="3298816" total="3801088" percent="86">
+      <mem type="allocate" free="3298816" total="3407872" percent="96" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="787" />
+  </mem-info>
+</gc-end>
+<cycle-end id="439" type="scavenge" contextid="433" timestamp="2019-08-02T21:32:47.142" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="7" />
+  <attribute name= "Current Time Running" value="855" />
+<allocation-satisfied id="440" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="441" timestamp="2019-08-02T21:32:47.143" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="442" timestamp="2019-08-02T21:32:47.143" durationms="2.241" />
+
+<exclusive-start id="443" timestamp="2019-08-02T21:32:47.159" intervalms="18.625">
+  <response-info timems="0.062" idlems="0.062" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="444" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.159" intervalms="18.618" type="nursery" />
+<cycle-start id="445" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.159" intervalms="18.635" />
+<gc-start id="446" type="scavenge" contextid="445" timestamp="2019-08-02T21:32:47.159">
+  <mem-info id="447" free="1393416" total="10092544" percent="13">
+    <mem type="nursery" free="0" total="3801088" percent="0">
+      <mem type="allocate" free="0" total="3407872" percent="0" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1393416" total="6291456" percent="22">
+      <mem type="soa" free="1079048" total="5977088" percent="18" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="992" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3298480" >
+  <allocated-bytes non-tlh="40" tlh="3298440" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3298480" />
+</allocation-stats>
+<gc-op id="448" type="scavenge" timems="0.601" contextid="445" timestamp="2019-08-02T21:32:47.160">
+  <scavenger-info tenureage="3" tenuremask="4018" tiltratio="89" />
+  <memory-copied type="nursery" objects="652" bytes="16024" bytesdiscarded="31592" />
+  <memory-copied type="tenure" objects="333" bytes="7992" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="449" type="scavenge" contextid="445" durationms="1.193" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.161" activeThreads="4">
+  <mem-info id="450" free="4729864" total="10092544" percent="46">
+    <mem type="nursery" free="3360256" total="3801088" percent="88">
+      <mem type="allocate" free="3360256" total="3407872" percent="98" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1369608" total="6291456" percent="21">
+      <mem type="soa" free="1055240" total="5977088" percent="17" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="657" />
+  </mem-info>
+</gc-end>
+<cycle-end id="451" type="scavenge" contextid="445" timestamp="2019-08-02T21:32:47.161" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="6" />
+  <attribute name= "Current Time Running" value="874" />
+<allocation-satisfied id="452" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="453" timestamp="2019-08-02T21:32:47.161" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="454" timestamp="2019-08-02T21:32:47.161" durationms="2.049" />
+
+<exclusive-start id="455" timestamp="2019-08-02T21:32:47.178" intervalms="18.550">
+  <response-info timems="0.036" idlems="0.036" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="456" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.178" intervalms="18.491" type="nursery" />
+<cycle-start id="457" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.178" intervalms="18.429" />
+<gc-start id="458" type="scavenge" contextid="457" timestamp="2019-08-02T21:32:47.178">
+  <mem-info id="459" free="1369608" total="10092544" percent="13">
+    <mem type="nursery" free="0" total="3801088" percent="0">
+      <mem type="allocate" free="0" total="3407872" percent="0" />
+      <mem type="survivor" free="0" total="393216" percent="0" />
+    </mem>
+    <mem type="tenure" free="1369608" total="6291456" percent="21">
+      <mem type="soa" free="1055240" total="5977088" percent="17" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="901" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3359816" >
+  <allocated-bytes non-tlh="40" tlh="3359776" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3359816" />
+</allocation-stats>
+<gc-op id="460" type="scavenge" timems="0.910" contextid="457" timestamp="2019-08-02T21:32:47.179">
+  <scavenger-info tenureage="3" tenuremask="4008" tiltratio="89" />
+  <memory-copied type="nursery" objects="702" bytes="17192" bytesdiscarded="91864" />
+  <memory-copied type="tenure" objects="188" bytes="4512" bytesdiscarded="0" />
+</gc-op>
+<heap-resize id="461" type="expand" space="nursery" amount="262144" count="1" timems="0.014" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:47.179" />
+<gc-end id="462" type="scavenge" contextid="457" durationms="1.497" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.179" activeThreads="4">
+  <mem-info id="463" free="4865032" total="10354688" percent="46">
+    <mem type="nursery" free="3495424" total="4063232" percent="86">
+      <mem type="allocate" free="3495424" total="3604480" percent="96" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1369608" total="6291456" percent="21">
+      <mem type="soa" free="1055240" total="5977088" percent="17" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="712" />
+  </mem-info>
+</gc-end>
+<cycle-end id="464" type="scavenge" contextid="457" timestamp="2019-08-02T21:32:47.179" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="8" />
+  <attribute name= "Current Time Running" value="892" />
+<allocation-satisfied id="465" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="466" timestamp="2019-08-02T21:32:47.180" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="467" timestamp="2019-08-02T21:32:47.180" durationms="2.255" />
+
+<exclusive-start id="468" timestamp="2019-08-02T21:32:47.198" intervalms="20.681">
+  <response-info timems="0.039" idlems="0.039" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="469" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.198" intervalms="20.650" type="nursery" />
+<cycle-start id="470" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.198" intervalms="20.613" />
+<gc-start id="471" type="scavenge" contextid="470" timestamp="2019-08-02T21:32:47.198">
+  <mem-info id="472" free="1369608" total="10354688" percent="13">
+    <mem type="nursery" free="0" total="4063232" percent="0">
+      <mem type="allocate" free="0" total="3604480" percent="0" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1369608" total="6291456" percent="21">
+      <mem type="soa" free="1055240" total="5977088" percent="17" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="978" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3494856" >
+  <allocated-bytes non-tlh="40" tlh="3494816" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3494856" />
+</allocation-stats>
+<gc-op id="473" type="scavenge" timems="0.814" contextid="470" timestamp="2019-08-02T21:32:47.199">
+  <scavenger-info tenureage="3" tenuremask="4008" tiltratio="88" />
+  <memory-copied type="nursery" objects="775" bytes="18912" bytesdiscarded="59424" />
+  <memory-copied type="tenure" objects="185" bytes="4440" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="474" type="scavenge" contextid="470" durationms="1.213" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.200" activeThreads="4">
+  <mem-info id="475" free="4895752" total="10354688" percent="47">
+    <mem type="nursery" free="3526144" total="4063232" percent="86">
+      <mem type="allocate" free="3526144" total="3604480" percent="97" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1369608" total="6291456" percent="21">
+      <mem type="soa" free="1055240" total="5977088" percent="17" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="793" />
+  </mem-info>
+</gc-end>
+<cycle-end id="476" type="scavenge" contextid="470" timestamp="2019-08-02T21:32:47.200" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="6" />
+  <attribute name= "Current Time Running" value="912" />
+<allocation-satisfied id="477" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="478" timestamp="2019-08-02T21:32:47.200" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="479" timestamp="2019-08-02T21:32:47.200" durationms="1.796" />
+
+<exclusive-start id="480" timestamp="2019-08-02T21:32:47.215" intervalms="16.743">
+  <response-info timems="0.048" idlems="0.048" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="481" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.215" intervalms="16.769" type="nursery" />
+<cycle-start id="482" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.215" intervalms="16.810" />
+<gc-start id="483" type="scavenge" contextid="482" timestamp="2019-08-02T21:32:47.215">
+  <mem-info id="484" free="1369608" total="10354688" percent="13">
+    <mem type="nursery" free="0" total="4063232" percent="0">
+      <mem type="allocate" free="0" total="3604480" percent="0" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1369608" total="6291456" percent="21">
+      <mem type="soa" free="1055240" total="5977088" percent="17" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="1029" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3525704" >
+  <allocated-bytes non-tlh="40" tlh="3525664" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3525704" />
+</allocation-stats>
+<gc-op id="485" type="scavenge" timems="0.747" contextid="482" timestamp="2019-08-02T21:32:47.216">
+  <scavenger-info tenureage="3" tenuremask="4008" tiltratio="88" />
+  <memory-copied type="nursery" objects="821" bytes="20080" bytesdiscarded="88976" />
+  <memory-copied type="tenure" objects="203" bytes="4872" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="486" type="scavenge" contextid="482" durationms="1.115" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.216" activeThreads="4">
+  <mem-info id="487" free="4865032" total="10354688" percent="46">
+    <mem type="nursery" free="3495424" total="4063232" percent="86">
+      <mem type="allocate" free="3495424" total="3604480" percent="96" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1369608" total="6291456" percent="21">
+      <mem type="soa" free="1055240" total="5977088" percent="17" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="826" />
+  </mem-info>
+</gc-end>
+<cycle-end id="488" type="scavenge" contextid="482" timestamp="2019-08-02T21:32:47.216" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="7" />
+  <attribute name= "Current Time Running" value="929" />
+<allocation-satisfied id="489" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="490" timestamp="2019-08-02T21:32:47.217" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="491" timestamp="2019-08-02T21:32:47.217" durationms="1.785" />
+
+<exclusive-start id="492" timestamp="2019-08-02T21:32:47.231" intervalms="15.665">
+  <response-info timems="0.065" idlems="0.065" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="493" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.231" intervalms="15.668" type="nursery" />
+<cycle-start id="494" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.231" intervalms="15.667" />
+<gc-start id="495" type="scavenge" contextid="494" timestamp="2019-08-02T21:32:47.231">
+  <mem-info id="496" free="1369608" total="10354688" percent="13">
+    <mem type="nursery" free="0" total="4063232" percent="0">
+      <mem type="allocate" free="0" total="3604480" percent="0" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1369608" total="6291456" percent="21">
+      <mem type="soa" free="1055240" total="5977088" percent="17" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="951" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3494896" >
+  <allocated-bytes non-tlh="40" tlh="3494856" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3494896" />
+</allocation-stats>
+<gc-op id="497" type="scavenge" timems="0.647" contextid="494" timestamp="2019-08-02T21:32:47.232">
+  <scavenger-info tenureage="3" tenuremask="4008" tiltratio="88" />
+  <memory-copied type="nursery" objects="703" bytes="17248" bytesdiscarded="91808" />
+  <memory-copied type="tenure" objects="243" bytes="5832" bytesdiscarded="0" />
+</gc-op>
+<heap-resize id="498" type="expand" space="nursery" amount="262144" count="1" timems="0.013" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:47.232" />
+<gc-end id="499" type="scavenge" contextid="494" durationms="1.187" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.232" activeThreads="4">
+  <mem-info id="500" free="5007112" total="10616832" percent="47">
+    <mem type="nursery" free="3692032" total="4325376" percent="85">
+      <mem type="allocate" free="3692032" total="3801088" percent="97" />
+      <mem type="survivor" free="0" total="524288" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="708" />
+  </mem-info>
+</gc-end>
+<cycle-end id="501" type="scavenge" contextid="494" timestamp="2019-08-02T21:32:47.232" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="8" />
+  <attribute name= "Current Time Running" value="945" />
+<allocation-satisfied id="502" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="503" timestamp="2019-08-02T21:32:47.232" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="504" timestamp="2019-08-02T21:32:47.232" durationms="1.752" />
+
+<exclusive-start id="505" timestamp="2019-08-02T21:32:47.244" intervalms="13.076">
+  <response-info timems="0.036" idlems="0.036" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="506" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.244" intervalms="13.060" type="nursery" />
+<cycle-start id="507" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.244" intervalms="13.057" />
+<gc-start id="508" type="scavenge" contextid="507" timestamp="2019-08-02T21:32:47.244">
+  <mem-info id="509" free="1315080" total="10616832" percent="12">
+    <mem type="nursery" free="0" total="4325376" percent="0">
+      <mem type="allocate" free="0" total="3801088" percent="0" />
+      <mem type="survivor" free="0" total="524288" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="877" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3691520" >
+  <allocated-bytes non-tlh="40" tlh="3691480" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3691520" />
+</allocation-stats>
+<gc-op id="510" type="scavenge" timems="0.878" contextid="507" timestamp="2019-08-02T21:32:47.245">
+  <scavenger-info tenureage="3" tenuremask="4008" tiltratio="87" />
+  <memory-copied type="nursery" objects="608" bytes="14984" bytesdiscarded="78712" />
+  <memory-copied type="tenure" objects="265" bytes="6360" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="511" type="scavenge" contextid="507" durationms="1.425" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.245" activeThreads="4">
+  <mem-info id="512" free="5088008" total="10616832" percent="47">
+    <mem type="nursery" free="3772928" total="4325376" percent="87">
+      <mem type="allocate" free="3772928" total="3866624" percent="97" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="612" />
+  </mem-info>
+</gc-end>
+<cycle-end id="513" type="scavenge" contextid="507" timestamp="2019-08-02T21:32:47.246" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="6" />
+  <attribute name= "Current Time Running" value="958" />
+<allocation-satisfied id="514" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="515" timestamp="2019-08-02T21:32:47.246" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="516" timestamp="2019-08-02T21:32:47.246" durationms="2.081" />
+
+<exclusive-start id="517" timestamp="2019-08-02T21:32:47.259" intervalms="15.785">
+  <response-info timems="0.039" idlems="0.039" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="518" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.260" intervalms="15.792" type="nursery" />
+<cycle-start id="519" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.260" intervalms="15.790" />
+<gc-start id="520" type="scavenge" contextid="519" timestamp="2019-08-02T21:32:47.260">
+  <mem-info id="521" free="1315080" total="10616832" percent="12">
+    <mem type="nursery" free="0" total="4325376" percent="0">
+      <mem type="allocate" free="0" total="3866624" percent="0" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="771" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3772528" >
+  <allocated-bytes non-tlh="40" tlh="3772488" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3772528" />
+</allocation-stats>
+<gc-op id="522" type="scavenge" timems="0.717" contextid="519" timestamp="2019-08-02T21:32:47.261">
+  <scavenger-info tenureage="3" tenuremask="4008" tiltratio="89" />
+  <memory-copied type="nursery" objects="538" bytes="13304" bytesdiscarded="95752" />
+  <memory-copied type="tenure" objects="229" bytes="5496" bytesdiscarded="0" />
+</gc-op>
+<heap-resize id="523" type="expand" space="nursery" amount="262144" count="1" timems="0.012" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:47.261" />
+<gc-end id="524" type="scavenge" contextid="519" durationms="1.285" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.261" activeThreads="4">
+  <mem-info id="525" free="5269256" total="10878976" percent="48">
+    <mem type="nursery" free="3954176" total="4587520" percent="86">
+      <mem type="allocate" free="3954176" total="4063232" percent="97" />
+      <mem type="survivor" free="0" total="524288" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="542" />
+  </mem-info>
+</gc-end>
+<cycle-end id="526" type="scavenge" contextid="519" timestamp="2019-08-02T21:32:47.261" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="8" />
+  <attribute name= "Current Time Running" value="974" />
+<allocation-satisfied id="527" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="528" timestamp="2019-08-02T21:32:47.261" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="529" timestamp="2019-08-02T21:32:47.261" durationms="1.946" />
+
+<exclusive-start id="530" timestamp="2019-08-02T21:32:47.275" intervalms="15.220">
+  <response-info timems="0.044" idlems="0.044" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="531" threadId="0000000000AB8888" totalBytesRequested="24" timestamp="2019-08-02T21:32:47.275" intervalms="15.272" type="nursery" />
+<cycle-start id="532" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.275" intervalms="15.338" />
+<gc-start id="533" type="scavenge" contextid="532" timestamp="2019-08-02T21:32:47.275">
+  <mem-info id="534" free="1315080" total="10878976" percent="12">
+    <mem type="nursery" free="0" total="4587520" percent="0">
+      <mem type="allocate" free="0" total="4063232" percent="0" />
+      <mem type="survivor" free="0" total="524288" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="742" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3953712" >
+  <allocated-bytes non-tlh="40" tlh="3953672" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="3953712" />
+</allocation-stats>
+<gc-op id="535" type="scavenge" timems="0.740" contextid="532" timestamp="2019-08-02T21:32:47.276">
+  <scavenger-info tenureage="3" tenuremask="4008" tiltratio="88" />
+  <memory-copied type="nursery" objects="632" bytes="15784" bytesdiscarded="93272" />
+  <memory-copied type="tenure" objects="129" bytes="3096" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="536" type="scavenge" contextid="532" durationms="1.206" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.276" activeThreads="4">
+  <mem-info id="537" free="5334792" total="10878976" percent="49">
+    <mem type="nursery" free="4019712" total="4587520" percent="87">
+      <mem type="allocate" free="4019712" total="4128768" percent="97" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="613" />
+  </mem-info>
+</gc-end>
+<cycle-end id="538" type="scavenge" contextid="532" timestamp="2019-08-02T21:32:47.276" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="7" />
+  <attribute name= "Current Time Running" value="989" />
+<allocation-satisfied id="539" threadId="0000000000AB7F00" bytesRequested="24" />
+<af-end id="540" timestamp="2019-08-02T21:32:47.277" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="541" timestamp="2019-08-02T21:32:47.277" durationms="2.040" />
+
+<exclusive-start id="542" timestamp="2019-08-02T21:32:47.289" intervalms="14.066">
+  <response-info timems="0.066" idlems="0.066" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="543" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.289" intervalms="14.033" type="nursery" />
+<cycle-start id="544" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.289" intervalms="14.027" />
+<gc-start id="545" type="scavenge" contextid="544" timestamp="2019-08-02T21:32:47.289">
+  <mem-info id="546" free="1315080" total="10878976" percent="12">
+    <mem type="nursery" free="0" total="4587520" percent="0">
+      <mem type="allocate" free="0" total="4128768" percent="0" />
+      <mem type="survivor" free="0" total="458752" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="872" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="4019144" >
+  <allocated-bytes non-tlh="24" tlh="4019120" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="4019144" />
+</allocation-stats>
+<gc-op id="547" type="scavenge" timems="0.775" contextid="544" timestamp="2019-08-02T21:32:47.290">
+  <scavenger-info tenureage="3" tenuremask="4008" tiltratio="90" />
+  <memory-copied type="nursery" objects="693" bytes="17008" bytesdiscarded="92048" />
+  <memory-copied type="tenure" objects="174" bytes="4176" bytesdiscarded="0" />
+</gc-op>
+<heap-resize id="548" type="expand" space="nursery" amount="262144" count="1" timems="0.011" reason="excessive time being spent scavenging" timestamp="2019-08-02T21:32:47.290" />
+<gc-end id="549" type="scavenge" contextid="544" durationms="1.385" usertimems="0.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.291" activeThreads="4">
+  <mem-info id="550" free="5531400" total="11141120" percent="49">
+    <mem type="nursery" free="4216320" total="4849664" percent="86">
+      <mem type="allocate" free="4216320" total="4325376" percent="97" />
+      <mem type="survivor" free="0" total="524288" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="698" />
+  </mem-info>
+</gc-end>
+<cycle-end id="551" type="scavenge" contextid="544" timestamp="2019-08-02T21:32:47.291" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="7" />
+  <attribute name= "Current Time Running" value="1003" />
+<allocation-satisfied id="552" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="553" timestamp="2019-08-02T21:32:47.291" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="554" timestamp="2019-08-02T21:32:47.291" durationms="2.191" />
+
+<exclusive-start id="555" timestamp="2019-08-02T21:32:47.302" intervalms="12.934">
+  <response-info timems="0.063" idlems="0.063" threads="0" lastid="0000000000AB7F00" lastname="Thread-11" />
+</exclusive-start>
+<af-start id="556" threadId="0000000000AB8888" totalBytesRequested="40" timestamp="2019-08-02T21:32:47.302" intervalms="12.969" type="nursery" />
+<cycle-start id="557" type="scavenge" contextid="0" timestamp="2019-08-02T21:32:47.302" intervalms="12.968" />
+<gc-start id="558" type="scavenge" contextid="557" timestamp="2019-08-02T21:32:47.302">
+  <mem-info id="559" free="1315080" total="11141120" percent="11">
+    <mem type="nursery" free="0" total="4849664" percent="0">
+      <mem type="allocate" free="0" total="4325376" percent="0" />
+      <mem type="survivor" free="0" total="524288" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="1023" />
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="4215784" >
+  <allocated-bytes non-tlh="40" tlh="4215744" />
+  <largest-consumer threadName="Thread-11" threadId="0000000000AB7F00" bytes="4215784" />
+</allocation-stats>
+<gc-op id="560" type="scavenge" timems="0.959" contextid="557" timestamp="2019-08-02T21:32:47.303">
+  <scavenger-info tenureage="3" tenuremask="4008" tiltratio="89" />
+  <memory-copied type="nursery" objects="860" bytes="21032" bytesdiscarded="41944" />
+  <memory-copied type="tenure" objects="159" bytes="3816" bytesdiscarded="0" />
+</gc-op>
+<gc-end id="561" type="scavenge" contextid="557" durationms="1.488" usertimems="4.000" systemtimems="0.000" timestamp="2019-08-02T21:32:47.304" activeThreads="4">
+  <mem-info id="562" free="5577480" total="11141120" percent="50">
+    <mem type="nursery" free="4262400" total="4849664" percent="87">
+      <mem type="allocate" free="4262400" total="4325376" percent="98" />
+      <mem type="survivor" free="0" total="524288" percent="0" />
+    </mem>
+    <mem type="tenure" free="1315080" total="6291456" percent="20">
+      <mem type="soa" free="1000712" total="5977088" percent="16" />
+      <mem type="loa" free="314368" total="314368" percent="100" />
+    </mem>
+    <remembered-set count="864" />
+  </mem-info>
+</gc-end>
+<cycle-end id="563" type="scavenge" contextid="557" timestamp="2019-08-02T21:32:47.304" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="4" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="1" />
+  <attribute name="GC Util Range Max" value="21" />
+  <attribute name="Current GC Util" value="7" />
+  <attribute name= "Current Time Running" value="1016" />
+<allocation-satisfied id="564" threadId="0000000000AB7F00" bytesRequested="40" />
+<af-end id="565" timestamp="2019-08-02T21:32:47.304" threadId="0000000000AB8888" success="true" from="nursery"/>
+<exclusive-end id="566" timestamp="2019-08-02T21:32:47.304" durationms="2.312" />
+
+</verbosegc>
+

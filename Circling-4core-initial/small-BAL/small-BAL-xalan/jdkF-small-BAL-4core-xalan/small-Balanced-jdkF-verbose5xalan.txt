@@ -1,0 +1,941 @@
+<?xml version="1.0" ?>
+
+<verbosegc xmlns="http://www.ibm.com/j9/verbosegc" version="25b0271_CMPRSS">
+
+<initialized id="1" timestamp="2019-07-02T19:16:56.955">
+  <attribute name="gcPolicy" value="-Xgcpolicy:balanced" />
+  <attribute name="GC Util" value="0" />
+  <attribute name="CPU Util" value="0" />
+  <attribute name="Time Running"value="0"/>
+  <attribute name="Number of cores"value="0"/>
+  <attribute name="maxHeapSize" value="0x7cb00000" />
+  <attribute name="initialHeapSize" value="0x800000" />
+  <attribute name="compressedRefs" value="true" />
+  <attribute name="compressedRefsDisplacement" value="0x0" />
+  <attribute name="compressedRefsShift" value="0x0" />
+  <attribute name="pageSize" value="0x1000" />
+  <attribute name="pageType" value="not used" />
+  <attribute name="requestedPageSize" value="0x1000" />
+  <attribute name="requestedPageType" value="not used" />
+  <attribute name="gcthreads" value="4" />
+  <attribute name="packetListSplit" value="4" />
+  <attribute name="cacheListSplit" value="4" />
+  <attribute name="splitFreeListSplitAmount" value="1" />
+  <attribute name="numaNodes" value="0" />
+  <region>
+    <attribute name="regionSize" value="1048576" />
+    <attribute name="regionCount" value="1995" />
+    <attribute name="arrayletLeafSize" value="1048576" />
+  </region>
+  <system>
+    <attribute name="physicalMemory" value="8370962432" />
+    <attribute name="numCPUs" value="4" />
+    <attribute name="architecture" value="amd64" />
+    <attribute name="os" value="Linux" />
+    <attribute name="osVersion" value="4.4.0-148-generic" />
+  </system>
+  <vmargs>
+    <vmarg name="-Xoptionsfile=/vagrant/jdk/lib/options.default" />
+    <vmarg name="-Xlockword:mode=default,noLockword=java/lang/String,noLockword=java/util/MapEntry,noLockword=java/util/HashMap$Entry,noLockword..." />
+    <vmarg name="-Xjcl:jclse11_29" />
+    <vmarg name="-Dcom.ibm.oti.vm.bootstrap.library.path=/vagrant/jdk/lib/compressedrefs:/vagrant/jdk/lib" />
+    <vmarg name="-Dsun.boot.library.path=/vagrant/jdk/lib/compressedrefs:/vagrant/jdk/lib" />
+    <vmarg name="-Djava.library.path=/vagrant/jdk/lib/compressedrefs:/vagrant/jdk/lib:/usr/lib64:/usr/lib" />
+    <vmarg name="-Djava.home=/vagrant/jdk" />
+    <vmarg name="-Duser.dir=/vagrant" />
+    <vmarg name="-Xgcpolicy:balanced" />
+    <vmarg name="-verbose:gc" />
+    <vmarg name="-Xloggc:small-Balanced-jdkF-verbose5xalan.txt" />
+    <vmarg name="-Djava.class.path=dacapo-9.12-MR1-bach.jar" />
+    <vmarg name="-Dsun.java.command=dacapo-9.12-MR1-bach.jar xalan --size=small" />
+    <vmarg name="-Dsun.java.launcher=SUN_STANDARD" />
+    <vmarg name="-Dsun.java.launcher.pid=10728" />
+  </vmargs>
+</initialized>
+
+<exclusive-start id="2" timestamp="2019-07-02T19:16:57.506" intervalms="550.701">
+  <response-info timems="0.019" idlems="0.019" threads="0" lastid="00000000009AF700" lastname="main" />
+</exclusive-start>
+<allocation-taxation id="3" taxation-threshold="8388608" timestamp="2019-07-02T19:16:57.506" intervalms="551.087" />
+<cycle-start id="4" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:57.507" intervalms="551.360" />
+  <attribute name="GC Util" value="0" />
+  <attribute name="CPU Util" value="76" />
+  <attribute name="Time Running"value="0"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="5" type="partial gc" contextid="4" timestamp="2019-07-02T19:16:57.507">
+  <mem-info id="6" free="0" total="8388608" percent="0">
+    <mem type="eden" free="0" total="8388608" percent="0" />
+    <remembered-set count="0" freebytes="334848" totalbytes="334848" percent="100" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="8302888" >
+  <allocated-bytes non-tlh="722376" tlh="7580512" arrayletleaf="0"/>
+  <largest-consumer threadName="main" threadId="00000000009AF700" bytes="8227200" />
+</allocation-stats>
+<gc-op id="7" type="mark" timems="3.519" contextid="4" timestamp="2019-07-02T19:16:57.511">
+  <trace-info objectcount="21730" scancount="17019" scanbytes="565728" />
+  <remembered-set-cleared processed="0" cleared="0" durationms="0.052" />
+  <finalization candidates="20" enqueued="1" />
+  <references type="soft" candidates="74" cleared="0" enqueued="0" dynamicThreshold="32" maxThreshold="32" />
+  <references type="weak" candidates="602" cleared="437" enqueued="397" />
+  <references type="phantom" candidates="127" cleared="44" enqueued="44" />
+  <stringconstants candidates="2958" cleared="0"  />
+  <warning details="Mark for calibration purposes" />
+</gc-op>
+<gc-op id="8" type="classunload" timems="0.072" contextid="4" timestamp="2019-07-02T19:16:57.512">
+  <classunload-info classloadercandidates="6" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.072" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="9" type="sweep" timems="0.640" contextid="4" timestamp="2019-07-02T19:16:57.512" />
+<gc-op id="10" type="compact" timems="5.654" contextid="4" timestamp="2019-07-02T19:16:57.519">
+  <compact-info movecount="21718" movebytes="1529064" />
+  <remembered-set-cleared processed="0" cleared="0" durationms="0.052" />
+</gc-op>
+<gc-end id="11" type="partial gc" contextid="4" durationms="12.622" usertimems="4.000" systemtimems="8.000" timestamp="2019-07-02T19:16:57.519" activeThreads="4">
+  <mem-info id="12" free="6291456" total="8388608" percent="75">
+    <mem type="eden" free="567024" total="2097152" percent="27" />
+    <pending-finalizers system="1" default="0" reference="441" classloader="0" />
+    <remembered-set count="2048" freebytes="326656" totalbytes="334848" percent="97" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="13" type="partial gc" contextid="4" timestamp="2019-07-02T19:16:57.520">
+  <attribute name="GC Util" value="19" />
+  <attribute name="CPU Util" value="14891117493763" />
+  <attribute name="Time Running"value="408"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="14" timestamp="2019-07-02T19:16:57.520" durationms="13.975" />
+
+<exclusive-start id="15" timestamp="2019-07-02T19:16:57.694" intervalms="188.458">
+  <response-info timems="0.137" idlems="0.137" threads="0" lastid="00000000009AF700" lastname="main" />
+</exclusive-start>
+<sys-start reason="explicit" id="16" timestamp="2019-07-02T19:16:57.694" intervalms="739.250" />
+<cycle-start id="17" type="global garbage collect" contextid="0" timestamp="2019-07-02T19:16:57.694" intervalms="739.368" />
+  <attribute name="GC Util" value="19" />
+  <attribute name="CPU Util" value="14891117493763" />
+  <attribute name="Time Running"value="408"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="18" type="global garbage collect" contextid="17" timestamp="2019-07-02T19:16:57.695">
+  <mem-info id="19" free="643512" total="8388608" percent="7">
+    <mem type="eden" free="643592" total="7340032" percent="8" />
+    <remembered-set count="2048" freebytes="326656" totalbytes="334848" percent="97" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="5640976" >
+  <allocated-bytes non-tlh="129784" tlh="5511192" arrayletleaf="0"/>
+  <largest-consumer threadName="main" threadId="00000000009AF700" bytes="5616664" />
+</allocation-stats>
+<gc-op id="20" type="global mark" timems="3.808" contextid="17" timestamp="2019-07-02T19:16:57.699">
+  <trace-info objectcount="29636" scancount="23203" scanbytes="869364" />
+  <finalization candidates="20" enqueued="0" />
+  <references type="soft" candidates="133" cleared="0" enqueued="0" dynamicThreshold="24" maxThreshold="32" />
+  <references type="weak" candidates="197" cleared="29" enqueued="29" />
+  <references type="phantom" candidates="86" cleared="2" enqueued="2" />
+  <stringconstants candidates="3521" cleared="22"  />
+</gc-op>
+<gc-op id="21" type="classunload" timems="0.002" contextid="17" timestamp="2019-07-02T19:16:57.699">
+  <classunload-info classloadercandidates="19" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.002" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="22" type="sweep" timems="0.382" contextid="17" timestamp="2019-07-02T19:16:57.699" />
+<gc-op id="23" type="compact" timems="5.122" contextid="17" timestamp="2019-07-02T19:16:57.705">
+  <compact-info movecount="22494" movebytes="1691344" />
+  <remembered-set-cleared processed="9149" cleared="9149" durationms="0.092" />
+</gc-op>
+<gc-end id="24" type="global garbage collect" contextid="17" durationms="10.350" usertimems="12.000" systemtimems="0.000" timestamp="2019-07-02T19:16:57.705" activeThreads="4">
+  <mem-info id="25" free="5242880" total="8388608" percent="62">
+    <pending-finalizers system="0" default="0" reference="31" classloader="0" />
+    <remembered-set count="3072" freebytes="322560" totalbytes="334848" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="26" type="global garbage collect" contextid="17" timestamp="2019-07-02T19:16:57.705">
+  <attribute name="GC Util" value="16" />
+  <attribute name="CPU Util" value="31714072654783" />
+  <attribute name="Time Running"value="595"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<sys-end id="27" timestamp="2019-07-02T19:16:57.705" />
+<exclusive-end id="28" timestamp="2019-07-02T19:16:57.706" durationms="11.245" />
+
+<exclusive-start id="29" timestamp="2019-07-02T19:16:57.816" intervalms="121.359">
+  <response-info timems="0.025" idlems="0.025" threads="0" lastid="0000000000CE4E00" lastname="Thread-4" />
+</exclusive-start>
+<allocation-taxation id="30" taxation-threshold="5242880" timestamp="2019-07-02T19:16:57.816" intervalms="309.519" />
+<cycle-start id="31" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:57.816" intervalms="309.327" />
+  <attribute name="GC Util" value="16" />
+  <attribute name="CPU Util" value="31714072654783" />
+  <attribute name="Time Running"value="595"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="32" type="partial gc" contextid="31" timestamp="2019-07-02T19:16:57.816">
+  <mem-info id="33" free="0" total="8388608" percent="0">
+    <mem type="eden" free="0" total="5242880" percent="0" />
+    <remembered-set count="3008" freebytes="322816" totalbytes="334848" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="5224288" >
+  <allocated-bytes non-tlh="363088" tlh="4861200" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-3" threadId="0000000000CE1200" bytes="1885312" />
+</allocation-stats>
+<gc-op id="34" type="mark" timems="2.395" contextid="31" timestamp="2019-07-02T19:16:57.819">
+  <trace-info objectcount="9967" scancount="7793" scanbytes="741344" />
+  <cardclean-info objects="1465" bytes="65232" />
+  <remembered-set-cleared processed="2287" cleared="241" durationms="0.077" />
+  <finalization candidates="8" enqueued="3" />
+  <references type="soft" candidates="31" cleared="0" enqueued="0" dynamicThreshold="20" maxThreshold="32" />
+  <references type="weak" candidates="141" cleared="27" enqueued="26" />
+  <references type="phantom" candidates="15" cleared="0" enqueued="0" />
+  <stringconstants candidates="3926" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="35" type="classunload" timems="0.516" contextid="31" timestamp="2019-07-02T19:16:57.820">
+  <classunload-info classloadercandidates="19" classloadersunloaded="0" classesunloaded="2" anonymousclassesunloaded="2" quiescems="0.000" setupms="0.511" scanms="0.002" postms="0.003" />
+</gc-op>
+<gc-op id="36" type="sweep" timems="0.352" contextid="31" timestamp="2019-07-02T19:16:57.820" />
+<gc-op id="37" type="compact" timems="2.991" contextid="31" timestamp="2019-07-02T19:16:57.823">
+  <compact-info movecount="9955" movebytes="1300368" />
+  <remembered-set-cleared processed="6011" cleared="1888" durationms="0.077" />
+</gc-op>
+<heap-resize id="38" type="expand" space="default" amount="3145728" count="1" timems="0.076" reason="insufficient free space following gc" timestamp="2019-07-02T19:16:57.824" />
+<gc-end id="39" type="partial gc" contextid="31" durationms="7.799" usertimems="8.000" systemtimems="0.000" timestamp="2019-07-02T19:16:57.824" activeThreads="4">
+  <mem-info id="40" free="6291456" total="11534336" percent="54">
+    <mem type="eden" free="795920" total="2097152" percent="37" />
+    <pending-finalizers system="3" default="0" reference="26" classloader="0" />
+    <remembered-set count="4288" freebytes="443264" totalbytes="460416" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="41" type="partial gc" contextid="31" timestamp="2019-07-02T19:16:57.824">
+  <attribute name="GC Util" value="15" />
+  <attribute name="CPU Util" value="29964887090603" />
+  <attribute name="Time Running"value="716"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="42" timestamp="2019-07-02T19:16:57.824" durationms="8.635" />
+
+<exclusive-start id="43" timestamp="2019-07-02T19:16:57.891" intervalms="74.921">
+  <response-info timems="0.043" idlems="0.043" threads="0" lastid="0000000000CE1200" lastname="Thread-3" />
+</exclusive-start>
+<allocation-taxation id="44" taxation-threshold="3145728" timestamp="2019-07-02T19:16:57.891" intervalms="74.912" />
+<cycle-start id="45" type="global mark phase" contextid="0" timestamp="2019-07-02T19:16:57.891" intervalms="935.593" />
+  <attribute name="GC Util" value="15" />
+  <attribute name="CPU Util" value="29964887090603" />
+  <attribute name="Time Running"value="716"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="46" type="global mark phase" contextid="45" timestamp="2019-07-02T19:16:57.891">
+  <mem-info id="47" free="3145728" total="11534336" percent="27">
+    <remembered-set count="4096" freebytes="444032" totalbytes="460416" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<gc-op id="48" type="mark increment" timems="0.811" contextid="45" timestamp="2019-07-02T19:16:57.892">
+  <trace-info objectcount="227" scancount="0" scanbytes="0" />
+</gc-op>
+<gc-end id="49" type="global mark phase" contextid="45" durationms="0.921" usertimems="0.000" systemtimems="0.000" timestamp="2019-07-02T19:16:57.892" activeThreads="4">
+  <mem-info id="50" free="3145728" total="11534336" percent="27">
+    <remembered-set count="4096" freebytes="444032" totalbytes="460416" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<concurrent-start id="51" type="GMP work packet processing" contextid="45" timestamp="2019-07-02T19:16:57.892">
+  <concurrent-mark-start scanTarget="18446744073709551615" />
+</concurrent-start>
+<exclusive-end id="52" timestamp="2019-07-02T19:16:57.892" durationms="1.294" />
+
+<concurrent-end id="53" type="GMP work packet processing" contextid="45" timestamp="2019-07-02T19:16:57.895">
+  <concurrent-mark-end bytesScanned="1722724" reasonForTermination="Completed all work in GC phase" />
+</concurrent-end>
+
+<exclusive-start id="54" timestamp="2019-07-02T19:16:57.942" intervalms="51.775">
+  <response-info timems="0.028" idlems="0.028" threads="0" lastid="0000000000CE1200" lastname="Thread-3" />
+</exclusive-start>
+<allocation-taxation id="55" taxation-threshold="3145728" timestamp="2019-07-02T19:16:57.942" intervalms="51.784" />
+<cycle-start id="56" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:57.942" intervalms="126.691" />
+  <attribute name="GC Util" value="135" />
+  <attribute name="CPU Util" value="30913619427273" />
+  <attribute name="Time Running"value="787"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="57" type="partial gc" contextid="56" timestamp="2019-07-02T19:16:57.943">
+  <mem-info id="58" free="0" total="11534336" percent="0">
+    <mem type="eden" free="0" total="6291456" percent="0" />
+    <remembered-set count="4096" freebytes="444032" totalbytes="460416" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="6248256" >
+  <allocated-bytes non-tlh="33936" tlh="6214320" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-3" threadId="0000000000CE1200" bytes="1687128" />
+</allocation-stats>
+<gc-op id="59" type="mark" timems="2.415" contextid="56" timestamp="2019-07-02T19:16:57.946">
+  <trace-info objectcount="10543" scancount="8091" scanbytes="758228" />
+  <cardclean-info objects="959" bytes="52876" />
+  <remembered-set-cleared processed="3033" cleared="1021" durationms="0.077" />
+  <finalization candidates="5" enqueued="0" />
+  <references type="soft" candidates="31" cleared="0" enqueued="0" dynamicThreshold="8" maxThreshold="32" />
+  <references type="weak" candidates="114" cleared="1" enqueued="1" />
+  <references type="phantom" candidates="14" cleared="0" enqueued="0" />
+  <stringconstants candidates="3946" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="60" type="classunload" timems="0.002" contextid="56" timestamp="2019-07-02T19:16:57.946">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.002" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="61" type="sweep" timems="0.312" contextid="56" timestamp="2019-07-02T19:16:57.946" />
+<gc-op id="62" type="compact" timems="2.951" contextid="56" timestamp="2019-07-02T19:16:57.950">
+  <compact-info movecount="10511" movebytes="1458384" />
+  <remembered-set-cleared processed="6806" cleared="2777" durationms="0.077" />
+</gc-op>
+<gc-end id="63" type="partial gc" contextid="56" durationms="7.084" usertimems="8.000" systemtimems="0.000" timestamp="2019-07-02T19:16:57.950" activeThreads="4">
+  <mem-info id="64" free="6291456" total="11534336" percent="54">
+    <mem type="eden" free="3976" total="1048576" percent="0" />
+    <pending-finalizers system="0" default="0" reference="1" classloader="0" />
+    <remembered-set count="4224" freebytes="443520" totalbytes="460416" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="65" type="partial gc" contextid="56" timestamp="2019-07-02T19:16:57.950">
+  <attribute name="GC Util" value="13" />
+  <attribute name="CPU Util" value="32796718808141" />
+  <attribute name="Time Running"value="842"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="66" timestamp="2019-07-02T19:16:57.950" durationms="7.859" />
+
+<exclusive-start id="67" timestamp="2019-07-02T19:16:58.059" intervalms="116.293">
+  <response-info timems="0.047" idlems="0.047" threads="0" lastid="0000000000CEC500" lastname="Thread-6" />
+</exclusive-start>
+<allocation-taxation id="68" taxation-threshold="3145728" timestamp="2019-07-02T19:16:58.059" intervalms="116.287" />
+<gc-start id="69" type="global mark phase" contextid="45" timestamp="2019-07-02T19:16:58.059">
+  <mem-info id="70" free="3145728" total="11534336" percent="27">
+    <remembered-set count="3872" freebytes="444928" totalbytes="460416" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<gc-op id="71" type="mark increment" timems="1.616" contextid="45" timestamp="2019-07-02T19:16:58.060">
+  <trace-info objectcount="10393" scancount="8021" scanbytes="756016" />
+  <cardclean-info objects="1798" bytes="87608" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="164" cleared="0" enqueued="0" dynamicThreshold="17" maxThreshold="32" />
+  <references type="weak" candidates="281" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="98" cleared="2" enqueued="2" />
+  <stringconstants candidates="3947" cleared="0"  />
+</gc-op>
+<gc-op id="72" type="classunload" timems="0.005" contextid="45" timestamp="2019-07-02T19:16:58.061">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.004" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-end id="73" type="global mark phase" contextid="45" durationms="1.923" usertimems="0.000" systemtimems="0.000" timestamp="2019-07-02T19:16:58.061" activeThreads="4">
+  <mem-info id="74" free="3145728" total="11534336" percent="27">
+    <pending-finalizers system="0" default="0" reference="2" classloader="0" />
+    <remembered-set count="3872" freebytes="444928" totalbytes="460416" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="75" type="global mark phase" contextid="45" timestamp="2019-07-02T19:16:58.061">
+  <attribute name="GC Util" value="66" />
+  <attribute name="CPU Util" value="37781117719888" />
+  <attribute name="Time Running"value="955"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="76" timestamp="2019-07-02T19:16:58.061" durationms="2.328" />
+
+<exclusive-start id="77" timestamp="2019-07-02T19:16:58.148" intervalms="89.158">
+  <response-info timems="0.059" idlems="0.059" threads="0" lastid="0000000000CE4E00" lastname="Thread-4" />
+</exclusive-start>
+<allocation-taxation id="78" taxation-threshold="3145728" timestamp="2019-07-02T19:16:58.148" intervalms="89.164" />
+<cycle-start id="79" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.148" intervalms="205.608" />
+  <attribute name="GC Util" value="66" />
+  <attribute name="CPU Util" value="37781117719888" />
+  <attribute name="Time Running"value="955"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="80" type="partial gc" contextid="79" timestamp="2019-07-02T19:16:58.148">
+  <mem-info id="81" free="0" total="11534336" percent="0">
+    <mem type="eden" free="0" total="6291456" percent="0" />
+    <remembered-set count="3872" freebytes="444928" totalbytes="460416" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="6250296" >
+  <allocated-bytes non-tlh="32808" tlh="6217488" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-5" threadId="0000000000CE8A00" bytes="947528" />
+</allocation-stats>
+<gc-op id="82" type="sweep" timems="0.369" contextid="79" timestamp="2019-07-02T19:16:58.149" />
+<gc-op id="83" type="mark" timems="1.068" contextid="79" timestamp="2019-07-02T19:16:58.150">
+  <trace-info objectcount="2581" scancount="1992" scanbytes="419656" />
+  <cardclean-info objects="1199" bytes="58280" />
+  <remembered-set-cleared processed="3398" cleared="792" durationms="0.062" />
+  <references type="phantom" candidates="2" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="84" type="classunload" timems="0.001" contextid="79" timestamp="2019-07-02T19:16:58.151">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.001" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="85" type="sweep" timems="0.278" contextid="79" timestamp="2019-07-02T19:16:58.151" />
+<gc-op id="86" type="compact" timems="1.160" contextid="79" timestamp="2019-07-02T19:16:58.152">
+  <compact-info movecount="2581" movebytes="910808" />
+  <remembered-set-cleared processed="6946" cleared="1632" durationms="0.062" />
+</gc-op>
+<heap-resize id="87" type="contract" space="default" amount="1048576" count="1" timems="0.224" reason="insufficient time being spent in gc" timestamp="2019-07-02T19:16:58.153" />
+<gc-end id="88" type="partial gc" contextid="79" durationms="4.655" usertimems="4.000" systemtimems="4.000" timestamp="2019-07-02T19:16:58.153" activeThreads="4">
+  <mem-info id="89" free="4194304" total="10485760" percent="40">
+    <mem type="eden" free="158400" total="1048576" percent="15" />
+    <remembered-set count="5088" freebytes="440064" totalbytes="460416" percent="95" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="90" type="partial gc" contextid="79" timestamp="2019-07-02T19:16:58.153">
+  <attribute name="GC Util" value="21" />
+  <attribute name="CPU Util" value="35741192106008" />
+  <attribute name="Time Running"value="1046"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="91" timestamp="2019-07-02T19:16:58.153" durationms="5.575" />
+
+<exclusive-start id="92" timestamp="2019-07-02T19:16:58.222" intervalms="74.710">
+  <response-info timems="0.046" idlems="0.046" threads="0" lastid="0000000000CE1200" lastname="Thread-3" />
+</exclusive-start>
+<allocation-taxation id="93" taxation-threshold="4194304" timestamp="2019-07-02T19:16:58.223" intervalms="74.709" />
+<cycle-start id="94" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.223" intervalms="74.549" />
+  <attribute name="GC Util" value="21" />
+  <attribute name="CPU Util" value="35741192106008" />
+  <attribute name="Time Running"value="1046"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="95" type="partial gc" contextid="94" timestamp="2019-07-02T19:16:58.223">
+  <mem-info id="96" free="0" total="10485760" percent="0">
+    <mem type="eden" free="0" total="4194304" percent="0" />
+    <remembered-set count="5088" freebytes="440064" totalbytes="460416" percent="95" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="4154440" >
+  <allocated-bytes non-tlh="32776" tlh="4121664" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-4" threadId="0000000000CE4E00" bytes="1737328" />
+</allocation-stats>
+<gc-op id="97" type="mark" timems="1.279" contextid="94" timestamp="2019-07-02T19:16:58.225">
+  <trace-info objectcount="1756" scancount="1430" scanbytes="343812" />
+  <cardclean-info objects="3722" bytes="182244" />
+  <remembered-set-cleared processed="2512" cleared="883" durationms="0.061" />
+  <references type="phantom" candidates="1" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="98" type="classunload" timems="0.015" contextid="94" timestamp="2019-07-02T19:16:58.225">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.015" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="99" type="sweep" timems="0.331" contextid="94" timestamp="2019-07-02T19:16:58.225" />
+<gc-op id="100" type="compact" timems="2.107" contextid="94" timestamp="2019-07-02T19:16:58.227">
+  <compact-info movecount="8497" movebytes="1036592" />
+  <remembered-set-cleared processed="4377" cleared="2334" durationms="0.061" />
+</gc-op>
+<heap-resize id="101" type="expand" space="default" amount="3145728" count="1" timems="0.059" reason="insufficient free space following gc" timestamp="2019-07-02T19:16:58.228" />
+<gc-end id="102" type="partial gc" contextid="94" durationms="5.050" usertimems="4.000" systemtimems="0.000" timestamp="2019-07-02T19:16:58.228" activeThreads="4">
+  <mem-info id="103" free="6291456" total="13631488" percent="46">
+    <mem type="eden" free="334432" total="1048576" percent="31" />
+    <remembered-set count="5152" freebytes="523520" totalbytes="544128" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="104" type="partial gc" contextid="94" timestamp="2019-07-02T19:16:58.228">
+  <attribute name="GC Util" value="27" />
+  <attribute name="CPU Util" value="33820986773868" />
+  <attribute name="Time Running"value="1121"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="105" timestamp="2019-07-02T19:16:58.228" durationms="5.724" />
+
+<exclusive-start id="106" timestamp="2019-07-02T19:16:58.255" intervalms="32.733">
+  <response-info timems="0.031" idlems="0.031" threads="0" lastid="0000000000CE1200" lastname="Thread-3" />
+</exclusive-start>
+<allocation-taxation id="107" taxation-threshold="3145728" timestamp="2019-07-02T19:16:58.255" intervalms="32.723" />
+<cycle-start id="108" type="global mark phase" contextid="0" timestamp="2019-07-02T19:16:58.255" intervalms="364.663" />
+  <attribute name="GC Util" value="27" />
+  <attribute name="CPU Util" value="33820986773868" />
+  <attribute name="Time Running"value="1121"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="109" type="global mark phase" contextid="108" timestamp="2019-07-02T19:16:58.255">
+  <mem-info id="110" free="3145728" total="13631488" percent="23">
+    <remembered-set count="4768" freebytes="525056" totalbytes="544128" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<gc-op id="111" type="mark increment" timems="0.432" contextid="108" timestamp="2019-07-02T19:16:58.256">
+  <trace-info objectcount="204" scancount="0" scanbytes="0" />
+</gc-op>
+<gc-end id="112" type="global mark phase" contextid="108" durationms="0.560" usertimems="0.000" systemtimems="0.000" timestamp="2019-07-02T19:16:58.256" activeThreads="4">
+  <mem-info id="113" free="3145728" total="13631488" percent="23">
+    <remembered-set count="4768" freebytes="525056" totalbytes="544128" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<concurrent-start id="114" type="GMP work packet processing" contextid="108" timestamp="2019-07-02T19:16:58.256">
+  <concurrent-mark-start scanTarget="18446744073709551615" />
+</concurrent-start>
+<exclusive-end id="115" timestamp="2019-07-02T19:16:58.257" durationms="2.163" />
+
+<concurrent-end id="116" type="GMP work packet processing" contextid="108" timestamp="2019-07-02T19:16:58.258">
+  <concurrent-mark-end bytesScanned="1616504" reasonForTermination="Completed all work in GC phase" />
+</concurrent-end>
+
+<exclusive-start id="117" timestamp="2019-07-02T19:16:58.284" intervalms="28.506">
+  <response-info timems="0.029" idlems="0.029" threads="0" lastid="0000000000CE8A00" lastname="Thread-5" />
+</exclusive-start>
+<allocation-taxation id="118" taxation-threshold="3145728" timestamp="2019-07-02T19:16:58.284" intervalms="28.505" />
+<cycle-start id="119" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.284" intervalms="61.229" />
+  <attribute name="GC Util" value="150" />
+  <attribute name="CPU Util" value="43902317519858" />
+  <attribute name="Time Running"value="1151"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="120" type="partial gc" contextid="119" timestamp="2019-07-02T19:16:58.284">
+  <mem-info id="121" free="0" total="13631488" percent="0">
+    <mem type="eden" free="0" total="6291456" percent="0" />
+    <remembered-set count="4768" freebytes="525056" totalbytes="544128" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="6172648" >
+  <allocated-bytes non-tlh="32776" tlh="6139872" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-6" threadId="0000000000CEC500" bytes="1414704" />
+</allocation-stats>
+<gc-op id="122" type="mark" timems="1.142" contextid="119" timestamp="2019-07-02T19:16:58.286">
+  <trace-info objectcount="2656" scancount="2115" scanbytes="419420" />
+  <cardclean-info objects="1136" bytes="57092" />
+  <remembered-set-cleared processed="3246" cleared="523" durationms="0.068" />
+  <references type="weak" candidates="1" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="2" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="123" type="classunload" timems="0.002" contextid="119" timestamp="2019-07-02T19:16:58.286">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.001" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="124" type="sweep" timems="0.302" contextid="119" timestamp="2019-07-02T19:16:58.286" />
+<gc-op id="125" type="compact" timems="1.030" contextid="119" timestamp="2019-07-02T19:16:58.287">
+  <compact-info movecount="2656" movebytes="975592" />
+  <remembered-set-cleared processed="6887" cleared="1248" durationms="0.068" />
+</gc-op>
+<heap-resize id="126" type="expand" space="default" amount="2097152" count="1" timems="0.075" reason="insufficient free space following gc" timestamp="2019-07-02T19:16:58.288" />
+<gc-end id="127" type="partial gc" contextid="119" durationms="3.714" usertimems="4.000" systemtimems="0.000" timestamp="2019-07-02T19:16:58.288" activeThreads="4">
+  <mem-info id="128" free="7340032" total="15728640" percent="46">
+    <mem type="eden" free="73360" total="1048576" percent="6" />
+    <remembered-set count="4960" freebytes="608000" totalbytes="627840" percent="96" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="129" type="partial gc" contextid="119" timestamp="2019-07-02T19:16:58.288">
+  <attribute name="GC Util" value="30" />
+  <attribute name="CPU Util" value="35626950061666" />
+  <attribute name="Time Running"value="1182"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="130" timestamp="2019-07-02T19:16:58.288" durationms="4.340" />
+
+<exclusive-start id="131" timestamp="2019-07-02T19:16:58.319" intervalms="34.861">
+  <response-info timems="0.036" idlems="0.019" threads="1" lastid="0000000000CEC500" lastname="Thread-6" />
+</exclusive-start>
+<allocation-taxation id="132" taxation-threshold="3145728" timestamp="2019-07-02T19:16:58.319" intervalms="34.861" />
+<gc-start id="133" type="global mark phase" contextid="108" timestamp="2019-07-02T19:16:58.319">
+  <mem-info id="134" free="4194304" total="15728640" percent="26">
+    <remembered-set count="4672" freebytes="609152" totalbytes="627840" percent="97" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<gc-op id="135" type="mark increment" timems="1.175" contextid="108" timestamp="2019-07-02T19:16:58.320">
+  <trace-info objectcount="2729" scancount="2167" scanbytes="455260" />
+  <cardclean-info objects="1273" bytes="113828" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="164" cleared="0" enqueued="0" dynamicThreshold="14" maxThreshold="32" />
+  <references type="weak" candidates="282" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="97" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+</gc-op>
+<gc-op id="136" type="classunload" timems="0.016" contextid="108" timestamp="2019-07-02T19:16:58.320">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.015" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-end id="137" type="global mark phase" contextid="108" durationms="1.453" usertimems="0.000" systemtimems="4.000" timestamp="2019-07-02T19:16:58.320" activeThreads="4">
+  <mem-info id="138" free="4194304" total="15728640" percent="26">
+    <remembered-set count="4672" freebytes="609152" totalbytes="627840" percent="97" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="139" type="global mark phase" contextid="108" timestamp="2019-07-02T19:16:58.320">
+  <attribute name="GC Util" value="73" />
+  <attribute name="CPU Util" value="74747027086765" />
+  <attribute name="Time Running"value="1215"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="140" timestamp="2019-07-02T19:16:58.320" durationms="1.805" />
+
+<exclusive-start id="141" timestamp="2019-07-02T19:16:58.341" intervalms="21.940">
+  <response-info timems="0.027" idlems="0.027" threads="0" lastid="0000000000CEC500" lastname="Thread-6" />
+</exclusive-start>
+<allocation-taxation id="142" taxation-threshold="3145728" timestamp="2019-07-02T19:16:58.341" intervalms="21.938" />
+<cycle-start id="143" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.341" intervalms="56.793" />
+  <attribute name="GC Util" value="73" />
+  <attribute name="CPU Util" value="74747027086765" />
+  <attribute name="Time Running"value="1215"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="144" type="partial gc" contextid="143" timestamp="2019-07-02T19:16:58.341">
+  <mem-info id="145" free="1048576" total="15728640" percent="6">
+    <mem type="eden" free="0" total="6291456" percent="0" />
+    <remembered-set count="4672" freebytes="609152" totalbytes="627840" percent="97" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="6185608" >
+  <allocated-bytes non-tlh="16392" tlh="6169216" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-6" threadId="0000000000CEC500" bytes="949112" />
+</allocation-stats>
+<gc-op id="146" type="sweep" timems="0.349" contextid="143" timestamp="2019-07-02T19:16:58.341" />
+<gc-op id="147" type="copy forward" timems="2.875" contextid="143" timestamp="2019-07-02T19:16:58.345">
+  <memory-copied type="eden" objects="2327" bytes="938016" bytesdiscarded="172971" />
+  <memory-copied type="other" objects="53" bytes="2232" bytesdiscarded="93" />
+  <memory-cardclean objects="1131" bytes="56496" />
+  <remembered-set-cleared processed="3489" cleared="722" durationms="0.075" />
+  <references type="phantom" candidates="1" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <heap-resize type="expand" space="default" amount="2097152" count="2" timems="0.262" reason="continue current collection" />
+</gc-op>
+<gc-op id="148" type="classunload" timems="0.002" contextid="143" timestamp="2019-07-02T19:16:58.345">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.002" scanms="0.000" postms="0.000" />
+</gc-op>
+<heap-resize id="149" type="expand" space="default" amount="1048576" count="1" timems="0.076" reason="insufficient free space following gc" timestamp="2019-07-02T19:16:58.345" />
+<gc-end id="150" type="partial gc" contextid="143" durationms="4.412" usertimems="4.000" systemtimems="4.000" timestamp="2019-07-02T19:16:58.345" activeThreads="4">
+  <mem-info id="151" free="8388608" total="18874368" percent="44">
+    <mem type="eden" free="985552" total="2097152" percent="46" />
+    <remembered-set count="5344" freebytes="732032" totalbytes="753408" percent="97" regionsoverflowed="0" regionsstable="0" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="152" type="partial gc" contextid="143" timestamp="2019-07-02T19:16:58.345">
+  <attribute name="GC Util" value="39" />
+  <attribute name="CPU Util" value="74246711910234" />
+  <attribute name="Time Running"value="1237"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="153" timestamp="2019-07-02T19:16:58.345" durationms="4.929" />
+
+<exclusive-start id="154" timestamp="2019-07-02T19:16:58.416" intervalms="75.624">
+  <response-info timems="0.054" idlems="0.054" threads="0" lastid="0000000000CE4E00" lastname="Thread-4" />
+</exclusive-start>
+<allocation-taxation id="155" taxation-threshold="8388608" timestamp="2019-07-02T19:16:58.416" intervalms="75.616" />
+<cycle-start id="156" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.416" intervalms="75.616" />
+  <attribute name="GC Util" value="39" />
+  <attribute name="CPU Util" value="74246711910234" />
+  <attribute name="Time Running"value="1237"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="157" type="partial gc" contextid="156" timestamp="2019-07-02T19:16:58.417">
+  <mem-info id="158" free="0" total="18874368" percent="0">
+    <mem type="eden" free="0" total="8388608" percent="0" />
+    <remembered-set count="3904" freebytes="737792" totalbytes="753408" percent="97" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="8355216" >
+  <allocated-bytes non-tlh="49168" tlh="8306048" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-6" threadId="0000000000CEC500" bytes="2448584" />
+</allocation-stats>
+<gc-op id="159" type="mark" timems="1.068" contextid="156" timestamp="2019-07-02T19:16:58.418">
+  <trace-info objectcount="1604" scancount="1250" scanbytes="318796" />
+  <cardclean-info objects="1159" bytes="57268" />
+  <remembered-set-cleared processed="2179" cleared="472" durationms="0.065" />
+  <references type="phantom" candidates="1" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="160" type="classunload" timems="0.001" contextid="156" timestamp="2019-07-02T19:16:58.418">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.001" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="161" type="sweep" timems="0.304" contextid="156" timestamp="2019-07-02T19:16:58.419" />
+<gc-op id="162" type="compact" timems="1.688" contextid="156" timestamp="2019-07-02T19:16:58.420">
+  <compact-info movecount="1604" movebytes="751744" />
+  <remembered-set-cleared processed="2935" cleared="1038" durationms="0.065" />
+</gc-op>
+<gc-end id="163" type="partial gc" contextid="156" durationms="4.218" usertimems="0.000" systemtimems="4.000" timestamp="2019-07-02T19:16:58.421" activeThreads="4">
+  <mem-info id="164" free="8388608" total="18874368" percent="44">
+    <mem type="eden" free="298240" total="1048576" percent="28" />
+    <remembered-set count="4064" freebytes="737152" totalbytes="753408" percent="97" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="165" type="partial gc" contextid="156" timestamp="2019-07-02T19:16:58.421">
+  <attribute name="GC Util" value="28" />
+  <attribute name="CPU Util" value="35414847423636" />
+  <attribute name="Time Running"value="1314"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="166" timestamp="2019-07-02T19:16:58.421" durationms="4.871" />
+
+<exclusive-start id="167" timestamp="2019-07-02T19:16:58.485" intervalms="68.596">
+  <response-info timems="0.033" idlems="0.033" threads="0" lastid="0000000000CE8A00" lastname="Thread-5" />
+</exclusive-start>
+<allocation-taxation id="168" taxation-threshold="8388608" timestamp="2019-07-02T19:16:58.485" intervalms="68.607" />
+<cycle-start id="169" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.485" intervalms="68.611" />
+  <attribute name="GC Util" value="28" />
+  <attribute name="CPU Util" value="35414847423636" />
+  <attribute name="Time Running"value="1314"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="170" type="partial gc" contextid="169" timestamp="2019-07-02T19:16:58.485">
+  <mem-info id="171" free="0" total="18874368" percent="0">
+    <mem type="eden" free="0" total="8388608" percent="0" />
+    <remembered-set count="4032" freebytes="737280" totalbytes="753408" percent="97" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="8351440" >
+  <allocated-bytes non-tlh="0" tlh="8351440" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-4" threadId="0000000000CE4E00" bytes="2746448" />
+</allocation-stats>
+<gc-op id="172" type="mark" timems="0.915" contextid="169" timestamp="2019-07-02T19:16:58.486">
+  <trace-info objectcount="1978" scancount="1568" scanbytes="315272" />
+  <cardclean-info objects="1182" bytes="59084" />
+  <remembered-set-cleared processed="2169" cleared="488" durationms="0.075" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="173" type="classunload" timems="0.002" contextid="169" timestamp="2019-07-02T19:16:58.486">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.002" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="174" type="sweep" timems="0.275" contextid="169" timestamp="2019-07-02T19:16:58.487" />
+<gc-op id="175" type="compact" timems="0.924" contextid="169" timestamp="2019-07-02T19:16:58.488">
+  <compact-info movecount="1978" movebytes="810160" />
+  <remembered-set-cleared processed="4532" cleared="1002" durationms="0.075" />
+</gc-op>
+<heap-resize id="176" type="expand" space="default" amount="1048576" count="1" timems="0.054" reason="insufficient free space following gc" timestamp="2019-07-02T19:16:58.488" />
+<gc-end id="177" type="partial gc" contextid="169" durationms="3.302" usertimems="0.000" systemtimems="4.000" timestamp="2019-07-02T19:16:58.488" activeThreads="4">
+  <mem-info id="178" free="8388608" total="19922944" percent="42">
+    <mem type="eden" free="241472" total="1048576" percent="23" />
+    <remembered-set count="3904" freebytes="779648" totalbytes="795264" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="179" type="partial gc" contextid="169" timestamp="2019-07-02T19:16:58.489">
+  <attribute name="GC Util" value="25" />
+  <attribute name="CPU Util" value="37681098451807" />
+  <attribute name="Time Running"value="1382"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="180" timestamp="2019-07-02T19:16:58.489" durationms="3.973" />
+
+<exclusive-start id="181" timestamp="2019-07-02T19:16:58.556" intervalms="70.842">
+  <response-info timems="0.043" idlems="0.043" threads="0" lastid="0000000000CEC500" lastname="Thread-6" />
+</exclusive-start>
+<allocation-taxation id="182" taxation-threshold="8388608" timestamp="2019-07-02T19:16:58.556" intervalms="70.847" />
+<cycle-start id="183" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.556" intervalms="70.848" />
+  <attribute name="GC Util" value="25" />
+  <attribute name="CPU Util" value="37681098451807" />
+  <attribute name="Time Running"value="1382"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="184" type="partial gc" contextid="183" timestamp="2019-07-02T19:16:58.556">
+  <mem-info id="185" free="0" total="19922944" percent="0">
+    <mem type="eden" free="0" total="8388608" percent="0" />
+    <remembered-set count="3584" freebytes="780928" totalbytes="795264" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="8361904" >
+  <allocated-bytes non-tlh="0" tlh="8361904" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-6" threadId="0000000000CEC500" bytes="3675688" />
+</allocation-stats>
+<gc-op id="186" type="mark" timems="0.956" contextid="183" timestamp="2019-07-02T19:16:58.557">
+  <trace-info objectcount="2060" scancount="1665" scanbytes="353504" />
+  <cardclean-info objects="1178" bytes="59044" />
+  <remembered-set-cleared processed="2255" cleared="543" durationms="0.062" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="187" type="classunload" timems="0.002" contextid="183" timestamp="2019-07-02T19:16:58.557">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.002" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="188" type="sweep" timems="0.327" contextid="183" timestamp="2019-07-02T19:16:58.558" />
+<gc-op id="189" type="compact" timems="0.935" contextid="183" timestamp="2019-07-02T19:16:58.559">
+  <compact-info movecount="2060" movebytes="802200" />
+  <remembered-set-cleared processed="4675" cleared="1083" durationms="0.062" />
+</gc-op>
+<heap-resize id="190" type="expand" space="default" amount="2097152" count="1" timems="0.056" reason="insufficient free space following gc" timestamp="2019-07-02T19:16:58.559" />
+<gc-end id="191" type="partial gc" contextid="183" durationms="3.455" usertimems="8.000" systemtimems="0.000" timestamp="2019-07-02T19:16:58.559" activeThreads="4">
+  <mem-info id="192" free="9437184" total="22020096" percent="42">
+    <mem type="eden" free="248328" total="1048576" percent="23" />
+    <remembered-set count="4576" freebytes="860672" totalbytes="878976" percent="97" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="193" type="partial gc" contextid="183" timestamp="2019-07-02T19:16:58.560">
+  <attribute name="GC Util" value="34" />
+  <attribute name="CPU Util" value="34115339568498" />
+  <attribute name="Time Running"value="1453"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="194" timestamp="2019-07-02T19:16:58.560" durationms="4.115" />
+
+<exclusive-start id="195" timestamp="2019-07-02T19:16:58.633" intervalms="77.392">
+  <response-info timems="0.245" idlems="0.130" threads="1" lastid="0000000000CE1200" lastname="Thread-3" />
+</exclusive-start>
+<allocation-taxation id="196" taxation-threshold="9437184" timestamp="2019-07-02T19:16:58.633" intervalms="77.407" />
+<cycle-start id="197" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.633" intervalms="77.410" />
+  <attribute name="GC Util" value="34" />
+  <attribute name="CPU Util" value="34115339568498" />
+  <attribute name="Time Running"value="1453"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="198" type="partial gc" contextid="197" timestamp="2019-07-02T19:16:58.633">
+  <mem-info id="199" free="0" total="22020096" percent="0">
+    <mem type="eden" free="0" total="9437184" percent="0" />
+    <remembered-set count="4256" freebytes="861952" totalbytes="878976" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="9413448" >
+  <allocated-bytes non-tlh="32776" tlh="9380672" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-6" threadId="0000000000CEC500" bytes="3132192" />
+</allocation-stats>
+<gc-op id="200" type="mark" timems="0.938" contextid="197" timestamp="2019-07-02T19:16:58.635">
+  <trace-info objectcount="2445" scancount="1974" scanbytes="412880" />
+  <cardclean-info objects="1161" bytes="58500" />
+  <remembered-set-cleared processed="2315" cleared="568" durationms="0.065" />
+  <references type="phantom" candidates="1" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="201" type="classunload" timems="0.001" contextid="197" timestamp="2019-07-02T19:16:58.635">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.001" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="202" type="sweep" timems="0.297" contextid="197" timestamp="2019-07-02T19:16:58.635" />
+<gc-op id="203" type="compact" timems="1.008" contextid="197" timestamp="2019-07-02T19:16:58.637">
+  <compact-info movecount="2445" movebytes="977224" />
+  <remembered-set-cleared processed="4841" cleared="1179" durationms="0.065" />
+</gc-op>
+<heap-resize id="204" type="expand" space="default" amount="1048576" count="1" timems="0.050" reason="insufficient free space following gc" timestamp="2019-07-02T19:16:58.637" />
+<gc-end id="205" type="partial gc" contextid="197" durationms="3.501" usertimems="4.000" systemtimems="0.000" timestamp="2019-07-02T19:16:58.637" activeThreads="4">
+  <mem-info id="206" free="9437184" total="23068672" percent="40">
+    <mem type="eden" free="71848" total="1048576" percent="6" />
+    <remembered-set count="4256" freebytes="903808" totalbytes="920832" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="207" type="partial gc" contextid="197" timestamp="2019-07-02T19:16:58.637">
+  <attribute name="GC Util" value="27" />
+  <attribute name="CPU Util" value="36023027688797" />
+  <attribute name="Time Running"value="1531"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="208" timestamp="2019-07-02T19:16:58.637" durationms="4.126" />
+
+<exclusive-start id="209" timestamp="2019-07-02T19:16:58.714" intervalms="81.292">
+  <response-info timems="0.032" idlems="0.032" threads="0" lastid="0000000000CE1200" lastname="Thread-3" />
+</exclusive-start>
+<allocation-taxation id="210" taxation-threshold="9437184" timestamp="2019-07-02T19:16:58.714" intervalms="81.273" />
+<cycle-start id="211" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.714" intervalms="81.274" />
+  <attribute name="GC Util" value="27" />
+  <attribute name="CPU Util" value="36023027688797" />
+  <attribute name="Time Running"value="1531"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="212" type="partial gc" contextid="211" timestamp="2019-07-02T19:16:58.715">
+  <mem-info id="213" free="0" total="23068672" percent="0">
+    <mem type="eden" free="0" total="9437184" percent="0" />
+    <remembered-set count="3936" freebytes="905088" totalbytes="920832" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="9373872" >
+  <allocated-bytes non-tlh="16392" tlh="9357480" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-5" threadId="0000000000CE8A00" bytes="2554600" />
+</allocation-stats>
+<gc-op id="214" type="mark" timems="1.032" contextid="211" timestamp="2019-07-02T19:16:58.716">
+  <trace-info objectcount="1576" scancount="1290" scanbytes="388456" />
+  <cardclean-info objects="1157" bytes="57844" />
+  <remembered-set-cleared processed="2373" cleared="599" durationms="0.072" />
+  <references type="phantom" candidates="1" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="215" type="classunload" timems="0.002" contextid="211" timestamp="2019-07-02T19:16:58.716">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.002" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="216" type="sweep" timems="0.293" contextid="211" timestamp="2019-07-02T19:16:58.717" />
+<gc-op id="217" type="compact" timems="0.977" contextid="211" timestamp="2019-07-02T19:16:58.718">
+  <compact-info movecount="1576" movebytes="803752" />
+  <remembered-set-cleared processed="4728" cleared="997" durationms="0.072" />
+</gc-op>
+<gc-end id="218" type="partial gc" contextid="211" durationms="3.406" usertimems="0.000" systemtimems="4.000" timestamp="2019-07-02T19:16:58.718" activeThreads="4">
+  <mem-info id="219" free="8388608" total="23068672" percent="36">
+    <mem type="eden" free="245304" total="1048576" percent="23" />
+    <remembered-set count="3872" freebytes="905344" totalbytes="920832" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="220" type="partial gc" contextid="211" timestamp="2019-07-02T19:16:58.718">
+  <attribute name="GC Util" value="28" />
+  <attribute name="CPU Util" value="36164697151761" />
+  <attribute name="Time Running"value="1612"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="221" timestamp="2019-07-02T19:16:58.718" durationms="4.197" />
+
+<exclusive-start id="222" timestamp="2019-07-02T19:16:58.783" intervalms="68.603">
+  <response-info timems="0.049" idlems="0.049" threads="0" lastid="0000000000CE4E00" lastname="Thread-4" />
+</exclusive-start>
+<allocation-taxation id="223" taxation-threshold="8388608" timestamp="2019-07-02T19:16:58.783" intervalms="68.601" />
+<cycle-start id="224" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.783" intervalms="68.588" />
+  <attribute name="GC Util" value="28" />
+  <attribute name="CPU Util" value="36164697151761" />
+  <attribute name="Time Running"value="1612"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="225" type="partial gc" contextid="224" timestamp="2019-07-02T19:16:58.783">
+  <mem-info id="226" free="0" total="23068672" percent="0">
+    <mem type="eden" free="0" total="8388608" percent="0" />
+    <remembered-set count="3520" freebytes="906752" totalbytes="920832" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="8280024" >
+  <allocated-bytes non-tlh="32776" tlh="8247248" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-5" threadId="0000000000CE8A00" bytes="2310728" />
+</allocation-stats>
+<gc-op id="227" type="mark" timems="1.036" contextid="224" timestamp="2019-07-02T19:16:58.785">
+  <trace-info objectcount="1968" scancount="1681" scanbytes="403744" />
+  <cardclean-info objects="1140" bytes="56960" />
+  <remembered-set-cleared processed="2275" cleared="468" durationms="0.070" />
+  <references type="phantom" candidates="2" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="228" type="classunload" timems="0.002" contextid="224" timestamp="2019-07-02T19:16:58.785">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.001" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="229" type="sweep" timems="0.356" contextid="224" timestamp="2019-07-02T19:16:58.785" />
+<gc-op id="230" type="compact" timems="1.027" contextid="224" timestamp="2019-07-02T19:16:58.786">
+  <compact-info movecount="1968" movebytes="864424" />
+  <remembered-set-cleared processed="4700" cleared="915" durationms="0.070" />
+</gc-op>
+<heap-resize id="231" type="expand" space="default" amount="3145728" count="1" timems="0.064" reason="insufficient free space following gc" timestamp="2019-07-02T19:16:58.787" />
+<gc-end id="232" type="partial gc" contextid="224" durationms="3.593" usertimems="8.000" systemtimems="0.000" timestamp="2019-07-02T19:16:58.787" activeThreads="4">
+  <mem-info id="233" free="10485760" total="26214400" percent="40">
+    <mem type="eden" free="184792" total="1048576" percent="17" />
+    <remembered-set count="4352" freebytes="1028992" totalbytes="1046400" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="234" type="partial gc" contextid="224" timestamp="2019-07-02T19:16:58.787">
+  <attribute name="GC Util" value="26" />
+  <attribute name="CPU Util" value="33267827243385" />
+  <attribute name="Time Running"value="1681"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="235" timestamp="2019-07-02T19:16:58.787" durationms="4.187" />
+
+<exclusive-start id="236" timestamp="2019-07-02T19:16:58.865" intervalms="81.848">
+  <response-info timems="0.036" idlems="0.036" threads="0" lastid="0000000000CEC500" lastname="Thread-6" />
+</exclusive-start>
+<allocation-taxation id="237" taxation-threshold="10485760" timestamp="2019-07-02T19:16:58.865" intervalms="81.857" />
+<cycle-start id="238" type="partial gc" contextid="0" timestamp="2019-07-02T19:16:58.865" intervalms="81.867" />
+  <attribute name="GC Util" value="26" />
+  <attribute name="CPU Util" value="33267827243385" />
+  <attribute name="Time Running"value="1681"/>
+  <attribute name="Number of cores"value="4"/>
+<gc-start id="239" type="partial gc" contextid="238" timestamp="2019-07-02T19:16:58.865">
+  <mem-info id="240" free="0" total="26214400" percent="0">
+    <mem type="eden" free="0" total="10485760" percent="0" />
+    <remembered-set count="4000" freebytes="1030400" totalbytes="1046400" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="10469072" >
+  <allocated-bytes non-tlh="24592" tlh="10444480" arrayletleaf="0"/>
+  <largest-consumer threadName="Thread-4" threadId="0000000000CE4E00" bytes="3234744" />
+</allocation-stats>
+<gc-op id="241" type="mark" timems="1.111" contextid="238" timestamp="2019-07-02T19:16:58.867">
+  <trace-info objectcount="2377" scancount="1964" scanbytes="415420" />
+  <cardclean-info objects="1161" bytes="57652" />
+  <remembered-set-cleared processed="2326" cleared="498" durationms="0.074" />
+  <references type="phantom" candidates="1" cleared="0" enqueued="0" />
+  <stringconstants candidates="3947" cleared="0"  />
+  <warning details="Mark invoked due to insufficient free space for Copy-Forward" />
+</gc-op>
+<gc-op id="242" type="classunload" timems="0.002" contextid="238" timestamp="2019-07-02T19:16:58.867">
+  <classunload-info classloadercandidates="20" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.002" scanms="0.000" postms="0.000" />
+</gc-op>
+<gc-op id="243" type="sweep" timems="0.309" contextid="238" timestamp="2019-07-02T19:16:58.867" />
+<gc-op id="244" type="compact" timems="1.058" contextid="238" timestamp="2019-07-02T19:16:58.869">
+  <compact-info movecount="2377" movebytes="924488" />
+  <remembered-set-cleared processed="4915" cleared="1072" durationms="0.074" />
+</gc-op>
+<gc-end id="245" type="partial gc" contextid="238" durationms="3.693" usertimems="4.000" systemtimems="0.000" timestamp="2019-07-02T19:16:58.869" activeThreads="4">
+  <mem-info id="246" free="9437184" total="26214400" percent="36">
+    <mem type="eden" free="124336" total="1048576" percent="11" />
+    <remembered-set count="4960" freebytes="1026560" totalbytes="1046400" percent="98" regionsoverflowed="0" regionsstable="1" regionsrebuilding="0"/>
+  </mem-info>
+</gc-end>
+<cycle-end id="247" type="partial gc" contextid="238" timestamp="2019-07-02T19:16:58.869">
+  <attribute name="GC Util" value="29" />
+  <attribute name="CPU Util" value="35413283694691" />
+  <attribute name="Time Running"value="1763"/>
+  <attribute name="Number of cores"value="4"/>
+</cycle-end>
+<exclusive-end id="248" timestamp="2019-07-02T19:16:58.869" durationms="4.300" />
+
+</verbosegc>
+

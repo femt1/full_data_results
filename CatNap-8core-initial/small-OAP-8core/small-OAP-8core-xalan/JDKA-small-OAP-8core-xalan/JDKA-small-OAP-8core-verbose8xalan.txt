@@ -1,0 +1,2013 @@
+<?xml version="1.0" ?>
+
+<verbosegc xmlns="http://www.ibm.com/j9/verbosegc" version="08cc62e_CMPRSS">
+
+<initialized id="1" timestamp="2019-08-02T19:00:15.979">
+  <attribute name="gcPolicy" value="-Xgcpolicy:optavgpause" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="0" />
+  <attribute name= "numCores" value="0" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name="GC Util Range Max" value="0" />
+  <attribute name="Current GC Util" value="0" />
+  <attribute name= "Current Time Running" value="0" />
+  <attribute name="maxHeapSize" value="0x7cba0000" />
+  <attribute name="initialHeapSize" value="0x800000" />
+  <attribute name="compressedRefs" value="true" />
+  <attribute name="compressedRefsDisplacement" value="0x0" />
+  <attribute name="compressedRefsShift" value="0x0" />
+  <attribute name="pageSize" value="0x1000" />
+  <attribute name="pageType" value="not used" />
+  <attribute name="requestedPageSize" value="0x1000" />
+  <attribute name="requestedPageType" value="not used" />
+  <attribute name="gcthreads" value="8" />
+  <attribute name="packetListSplit" value="8" />
+  <attribute name="cacheListSplit" value="8" />
+  <attribute name="splitFreeListSplitAmount" value="1" />
+  <attribute name="numaNodes" value="0" />
+  <system>
+    <attribute name="physicalMemory" value="8370401280" />
+    <attribute name="numCPUs" value="8" />
+    <attribute name="architecture" value="amd64" />
+    <attribute name="os" value="Linux" />
+    <attribute name="osVersion" value="4.4.0-154-generic" />
+  </system>
+  <vmargs>
+    <vmarg name="-Xoptionsfile=/vagrant/jdk/lib/options.default" />
+    <vmarg name="-Xlockword:mode=default,noLockword=java/lang/String,noLockword=java/util/MapEntry,noLockword=java/util/HashMap$Entry,noLockword..." />
+    <vmarg name="-Xjcl:jclse29" />
+    <vmarg name="-Dcom.ibm.oti.vm.bootstrap.library.path=/vagrant/jdk/lib/compressedrefs:/vagrant/jdk/lib" />
+    <vmarg name="-Dsun.boot.library.path=/vagrant/jdk/lib/compressedrefs:/vagrant/jdk/lib" />
+    <vmarg name="-Djava.library.path=/vagrant/jdk/lib/compressedrefs:/vagrant/jdk/lib:/usr/lib64:/usr/lib" />
+    <vmarg name="-Djava.home=/vagrant/jdk" />
+    <vmarg name="-Duser.dir=/vagrant" />
+    <vmarg name="-Xgcpolicy:optavgpause" />
+    <vmarg name="-Xgcelastic" />
+    <vmarg name="-Xcheck:gc:::elasticGC" />
+    <vmarg name="-verbose:gc" />
+    <vmarg name="-Xloggc:jdkA-small-OAP-8core-verbose8xalan.txt" />
+    <vmarg name="-Djava.class.path=dacapo-9.12-MR1-bach.jar" />
+    <vmarg name="-Dsun.java.command=dacapo-9.12-MR1-bach.jar xalan --size=small" />
+    <vmarg name="-Dsun.java.launcher=SUN_STANDARD" />
+    <vmarg name="-Dsun.java.launcher.pid=6687" />
+  </vmargs>
+</initialized>
+
+<exclusive-start id="2" timestamp="2019-08-02T19:00:16.482" intervalms="502.674">
+  <response-info timems="0.022" idlems="0.022" threads="0" lastid="0000000001EB5A00" lastname="main" />
+</exclusive-start>
+<af-start id="3" threadId="0000000001EB6388" totalBytesRequested="88" timestamp="2019-08-02T19:00:16.482" intervalms="502.924" />
+<cycle-start id="4" type="global" contextid="0" timestamp="2019-08-02T19:00:16.482" intervalms="503.181" />
+<gc-start id="5" type="global" contextid="4" timestamp="2019-08-02T19:00:16.482">
+  <mem-info id="6" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="7884736" >
+  <allocated-bytes non-tlh="758040" tlh="7126696" />
+  <largest-consumer threadName="main" threadId="0000000001EB5A00" bytes="7791832" />
+</allocation-stats>
+<gc-op id="7" type="mark" timems="2.775" contextid="4" timestamp="2019-08-02T19:00:16.485">
+  <trace-info objectcount="21501" scancount="17520" scanbytes="561608" />
+  <finalization candidates="15" enqueued="1" />
+  <references type="soft" candidates="74" cleared="0" enqueued="0" dynamicThreshold="32" maxThreshold="32" />
+  <references type="weak" candidates="575" cleared="432" enqueued="393" />
+  <references type="phantom" candidates="127" cleared="44" enqueued="44" />
+  <stringconstants candidates="2930" cleared="0"  />
+</gc-op>
+<gc-op id="8" type="sweep" timems="0.560" contextid="4" timestamp="2019-08-02T19:00:16.486" />
+<mem-info id="9" free="6518264" total="8388608" percent="77">
+  <mem type="tenure" free="6518264" total="8388608" percent="77" micro-fragmented="205188">
+    <mem type="soa" free="6099448" total="7969792" percent="76" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+  <pending-finalizers system="1" default="0" reference="437" classloader="0" />
+</mem-info>
+<gc-op id="10" type="compact" timems="4.681" contextid="4" timestamp="2019-08-02T19:00:16.491">
+  <compact-info movecount="21500" movebytes="1539736" reason="no compaction" />
+</gc-op>
+<gc-end id="11" type="global" contextid="4" durationms="8.752" usertimems="16.000" systemtimems="0.000" timestamp="2019-08-02T19:00:16.491" activeThreads="8">
+  <mem-info id="12" free="6848696" total="8388608" percent="81">
+    <mem type="tenure" free="6848696" total="8388608" percent="81">
+      <mem type="soa" free="6429880" total="7969792" percent="80" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+    <pending-finalizers system="1" default="0" reference="437" classloader="0" />
+  </mem-info>
+</gc-end>
+<cycle-end id="13" type="global" contextid="4" timestamp="2019-08-02T19:00:16.491" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="41" />
+  <attribute name= "Current Time Running" value="8" />
+<allocation-satisfied id="14" threadId="0000000001EB5A00" bytesRequested="88" />
+<af-end id="15" timestamp="2019-08-02T19:00:16.491" threadId="0000000001EB6388" success="true" />
+<exclusive-end id="16" timestamp="2019-08-02T19:00:16.491" durationms="9.733" />
+
+<exclusive-start id="17" timestamp="2019-08-02T19:00:16.679" intervalms="196.890">
+  <response-info timems="0.059" idlems="0.059" threads="0" lastid="0000000001EB5A00" lastname="main" />
+</exclusive-start>
+<sys-start reason="explicit" id="18" timestamp="2019-08-02T19:00:16.679" intervalms="699.693" />
+<cycle-start id="19" type="global" contextid="0" timestamp="2019-08-02T19:00:16.679" intervalms="196.610" />
+<gc-start id="20" type="global" contextid="19" timestamp="2019-08-02T19:00:16.679">
+  <mem-info id="21" free="673312" total="8388608" percent="8">
+    <mem type="tenure" free="673312" total="8388608" percent="8">
+      <mem type="soa" free="254496" total="7969792" percent="3" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="6141736" >
+  <allocated-bytes non-tlh="137968" tlh="6003768" />
+  <largest-consumer threadName="main" threadId="0000000001EB5A00" bytes="6071904" />
+</allocation-stats>
+<gc-op id="22" type="mark" timems="1.522" contextid="19" timestamp="2019-08-02T19:00:16.681">
+  <trace-info objectcount="29655" scancount="24003" scanbytes="875376" />
+  <finalization candidates="15" enqueued="0" />
+  <references type="soft" candidates="133" cleared="0" enqueued="0" dynamicThreshold="26" maxThreshold="32" />
+  <references type="weak" candidates="186" cleared="34" enqueued="34" />
+  <references type="phantom" candidates="90" cleared="2" enqueued="2" />
+  <stringconstants candidates="3539" cleared="22"  />
+</gc-op>
+<gc-op id="23" type="classunload" timems="0.046" contextid="19" timestamp="2019-08-02T19:00:16.681">
+  <classunload-info classloadercandidates="19" classloadersunloaded="0" classesunloaded="0" anonymousclassesunloaded="0" quiescems="0.000" setupms="0.045" scanms="0.001" postms="0.000" />
+</gc-op>
+<gc-op id="24" type="sweep" timems="0.277" contextid="19" timestamp="2019-08-02T19:00:16.681" />
+<mem-info id="25" free="6051120" total="8388608" percent="72">
+  <mem type="tenure" free="6051120" total="8388608" percent="72" micro-fragmented="253748">
+    <mem type="soa" free="5632304" total="7969792" percent="70" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+  <pending-finalizers system="0" default="0" reference="36" classloader="0" />
+</mem-info>
+<gc-op id="26" type="compact" timems="5.972" contextid="19" timestamp="2019-08-02T19:00:16.687">
+  <compact-info movecount="28906" movebytes="1942112" reason="no compaction" />
+</gc-op>
+<gc-end id="27" type="global" contextid="19" durationms="8.331" usertimems="12.000" systemtimems="0.000" timestamp="2019-08-02T19:00:16.687" activeThreads="8">
+  <mem-info id="28" free="6425520" total="8388608" percent="76">
+    <mem type="tenure" free="6425520" total="8388608" percent="76">
+      <mem type="soa" free="6006704" total="7969792" percent="75" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="36" classloader="0" />
+  </mem-info>
+</gc-end>
+<cycle-end id="29" type="global" contextid="19" timestamp="2019-08-02T19:00:16.687" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="31" />
+  <attribute name= "Current Time Running" value="204" />
+<sys-end id="30" timestamp="2019-08-02T19:00:16.687" />
+<exclusive-end id="31" timestamp="2019-08-02T19:00:16.687" durationms="8.779" />
+
+<exclusive-start id="32" timestamp="2019-08-02T19:00:16.793" intervalms="114.357">
+  <response-info timems="0.055" idlems="0.034" threads="1" lastid="0000000001EBD200" lastname="JIT Compilation Thread-1" />
+</exclusive-start>
+<af-start id="33" threadId="00000000021FA188" totalBytesRequested="88" timestamp="2019-08-02T19:00:16.793" intervalms="311.144" />
+<cycle-start id="34" type="global" contextid="0" timestamp="2019-08-02T19:00:16.793" intervalms="114.391" />
+<gc-start id="35" type="global" contextid="34" timestamp="2019-08-02T19:00:16.793">
+  <mem-info id="36" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="5974816" >
+  <allocated-bytes non-tlh="540488" tlh="5434328" />
+  <largest-consumer threadName="Thread-3" threadId="00000000021F5C00" bytes="1365272" />
+</allocation-stats>
+<gc-op id="37" type="mark" timems="3.492" contextid="34" timestamp="2019-08-02T19:00:16.797">
+  <trace-info objectcount="42313" scancount="33851" scanbytes="1963780" />
+  <finalization candidates="28" enqueued="3" />
+  <references type="soft" candidates="164" cleared="0" enqueued="0" dynamicThreshold="24" maxThreshold="32" />
+  <references type="weak" candidates="270" cleared="20" enqueued="20" />
+  <references type="phantom" candidates="111" cleared="2" enqueued="2" />
+  <stringconstants candidates="3828" cleared="0"  />
+</gc-op>
+<gc-op id="38" type="classunload" timems="0.183" contextid="34" timestamp="2019-08-02T19:00:16.797">
+  <classunload-info classloadercandidates="19" classloadersunloaded="0" classesunloaded="2" anonymousclassesunloaded="2" quiescems="0.000" setupms="0.180" scanms="0.003" postms="0.000" />
+</gc-op>
+<gc-op id="39" type="sweep" timems="1.207" contextid="34" timestamp="2019-08-02T19:00:16.799" />
+<mem-info id="40" free="4441944" total="8388608" percent="52">
+  <mem type="tenure" free="4441944" total="8388608" percent="52" micro-fragmented="232442">
+    <mem type="soa" free="4023128" total="7969792" percent="50" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+  <pending-finalizers system="3" default="0" reference="22" classloader="0" />
+</mem-info>
+<gc-op id="41" type="compact" timems="12.863" contextid="34" timestamp="2019-08-02T19:00:16.812">
+  <compact-info movecount="41629" movebytes="3664312" reason="no compaction" />
+</gc-op>
+<gc-end id="42" type="global" contextid="34" durationms="19.201" usertimems="20.000" systemtimems="8.000" timestamp="2019-08-02T19:00:16.813" activeThreads="8">
+  <mem-info id="43" free="4705368" total="8388608" percent="56">
+    <mem type="tenure" free="4705368" total="8388608" percent="56">
+      <mem type="soa" free="4286552" total="7969792" percent="53" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+    <pending-finalizers system="3" default="0" reference="22" classloader="0" />
+  </mem-info>
+</gc-end>
+<cycle-end id="44" type="global" contextid="34" timestamp="2019-08-02T19:00:16.813" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="60" />
+  <attribute name= "Current Time Running" value="329" />
+<allocation-satisfied id="45" threadId="00000000021F9800" bytesRequested="88" />
+<af-end id="46" timestamp="2019-08-02T19:00:16.813" threadId="00000000021FA188" success="true" />
+<exclusive-end id="47" timestamp="2019-08-02T19:00:16.813" durationms="19.807" />
+
+<exclusive-start id="48" timestamp="2019-08-02T19:00:16.960" intervalms="167.206">
+  <response-info timems="0.042" idlems="0.042" threads="0" lastid="00000000021F5C00" lastname="Thread-3" />
+</exclusive-start>
+<af-start id="49" threadId="00000000021F6588" totalBytesRequested="2056" timestamp="2019-08-02T19:00:16.961" intervalms="167.393" />
+<cycle-start id="50" type="global" contextid="0" timestamp="2019-08-02T19:00:16.961" intervalms="167.381" />
+<gc-start id="51" type="global" contextid="50" timestamp="2019-08-02T19:00:16.961">
+  <mem-info id="52" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="4173800" >
+  <allocated-bytes non-tlh="46360" tlh="4127440" />
+  <largest-consumer threadName="Thread-4" threadId="00000000021F9800" bytes="906896" />
+</allocation-stats>
+<gc-op id="53" type="mark" timems="4.278" contextid="50" timestamp="2019-08-02T19:00:16.965">
+  <trace-info objectcount="44655" scancount="35996" scanbytes="2086884" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="17" maxThreshold="32" />
+  <references type="weak" candidates="285" cleared="8" enqueued="7" />
+  <references type="phantom" candidates="104" cleared="0" enqueued="0" />
+  <stringconstants candidates="3959" cleared="0"  />
+</gc-op>
+<gc-op id="54" type="sweep" timems="2.559" contextid="50" timestamp="2019-08-02T19:00:16.968" />
+<mem-info id="55" free="3999600" total="8388608" percent="47">
+  <mem type="tenure" free="3999600" total="8388608" percent="47" micro-fragmented="32215">
+    <mem type="soa" free="3580784" total="7969792" percent="44" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+  <pending-finalizers system="0" default="0" reference="7" classloader="0" />
+</mem-info>
+<gc-op id="56" type="compact" timems="11.869" contextid="50" timestamp="2019-08-02T19:00:16.980">
+  <compact-info movecount="30292" movebytes="3627744" reason="no compaction" />
+</gc-op>
+<gc-end id="57" type="global" contextid="50" durationms="20.379" usertimems="28.000" systemtimems="0.000" timestamp="2019-08-02T19:00:16.981" activeThreads="8">
+  <mem-info id="58" free="4068272" total="8388608" percent="48">
+    <mem type="tenure" free="4068272" total="8388608" percent="48">
+      <mem type="soa" free="3649456" total="7969792" percent="45" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="7" classloader="0" />
+  </mem-info>
+</gc-end>
+<cycle-end id="59" type="global" contextid="50" timestamp="2019-08-02T19:00:16.981" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="65" />
+  <attribute name= "Current Time Running" value="497" />
+<allocation-satisfied id="60" threadId="00000000021F5C00" bytesRequested="2056" />
+<af-end id="61" timestamp="2019-08-02T19:00:16.981" threadId="00000000021F6588" success="true" />
+<exclusive-end id="62" timestamp="2019-08-02T19:00:16.981" durationms="21.285" />
+
+<exclusive-start id="63" timestamp="2019-08-02T19:00:17.031" intervalms="70.429">
+  <response-info timems="0.049" idlems="0.049" threads="0" lastid="0000000002204B00" lastname="Thread-7" />
+</exclusive-start>
+<af-start id="64" threadId="0000000002205488" totalBytesRequested="2056" timestamp="2019-08-02T19:00:17.031" intervalms="70.178" />
+<cycle-start id="65" type="global" contextid="0" timestamp="2019-08-02T19:00:17.031" intervalms="70.133" />
+<gc-start id="66" type="global" contextid="65" timestamp="2019-08-02T19:00:17.031">
+  <mem-info id="67" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3576608" >
+  <allocated-bytes non-tlh="131432" tlh="3445176" />
+  <largest-consumer threadName="Thread-3" threadId="00000000021F5C00" bytes="864648" />
+</allocation-stats>
+<gc-op id="68" type="mark" timems="1.321" contextid="65" timestamp="2019-08-02T19:00:17.032">
+  <trace-info objectcount="43650" scancount="35302" scanbytes="2079596" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="104" cleared="0" enqueued="0" />
+  <stringconstants candidates="3962" cleared="0"  />
+</gc-op>
+<gc-op id="69" type="sweep" timems="0.313" contextid="65" timestamp="2019-08-02T19:00:17.033" />
+<mem-info id="70" free="3947856" total="8388608" percent="47">
+  <mem type="tenure" free="3947856" total="8388608" percent="47" micro-fragmented="34864">
+    <mem type="soa" free="3529040" total="7969792" percent="44" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="71" type="compact" timems="6.699" contextid="65" timestamp="2019-08-02T19:00:17.039">
+  <compact-info movecount="21800" movebytes="2759768" reason="no compaction" />
+</gc-op>
+<gc-end id="72" type="global" contextid="65" durationms="8.954" usertimems="16.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.040" activeThreads="8">
+  <mem-info id="73" free="3972512" total="8388608" percent="47">
+    <mem type="tenure" free="3972512" total="8388608" percent="47">
+      <mem type="soa" free="3553696" total="7969792" percent="44" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="74" type="global" contextid="65" timestamp="2019-08-02T19:00:17.040" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="23" />
+  <attribute name= "Current Time Running" value="557" />
+<allocation-satisfied id="75" threadId="0000000002204B00" bytesRequested="2056" />
+<af-end id="76" timestamp="2019-08-02T19:00:17.040" threadId="0000000002205488" success="true" />
+<exclusive-end id="77" timestamp="2019-08-02T19:00:17.040" durationms="9.716" />
+
+<exclusive-start id="78" timestamp="2019-08-02T19:00:17.107" intervalms="76.308">
+  <response-info timems="0.098" idlems="0.098" threads="0" lastid="00000000021FD300" lastname="Thread-5" />
+</exclusive-start>
+<af-start id="79" threadId="00000000021FDC88" totalBytesRequested="16392" timestamp="2019-08-02T19:00:17.107" intervalms="76.303" />
+<cycle-start id="80" type="global" contextid="0" timestamp="2019-08-02T19:00:17.107" intervalms="76.297" />
+<gc-start id="81" type="global" contextid="80" timestamp="2019-08-02T19:00:17.107">
+  <mem-info id="82" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3558360" >
+  <allocated-bytes non-tlh="131136" tlh="3427224" />
+  <largest-consumer threadName="Thread-8" threadId="0000000002208700" bytes="669824" />
+</allocation-stats>
+<gc-op id="83" type="mark" timems="3.450" contextid="80" timestamp="2019-08-02T19:00:17.111">
+  <trace-info objectcount="43822" scancount="35401" scanbytes="1994412" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="101" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="84" type="sweep" timems="2.236" contextid="80" timestamp="2019-08-02T19:00:17.113" />
+<mem-info id="85" free="4007848" total="8388608" percent="47">
+  <mem type="tenure" free="4007848" total="8388608" percent="47" micro-fragmented="33793">
+    <mem type="soa" free="3589032" total="7969792" percent="45" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="86" type="compact" timems="10.811" contextid="80" timestamp="2019-08-02T19:00:17.124">
+  <compact-info movecount="19823" movebytes="2621976" reason="no compaction" />
+</gc-op>
+<gc-end id="87" type="global" contextid="80" durationms="17.596" usertimems="24.000" systemtimems="4.000" timestamp="2019-08-02T19:00:17.125" activeThreads="8">
+  <mem-info id="88" free="4011232" total="8388608" percent="47">
+    <mem type="tenure" free="4011232" total="8388608" percent="47">
+      <mem type="soa" free="3592416" total="7969792" percent="45" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="89" type="global" contextid="80" timestamp="2019-08-02T19:00:17.125" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="78" />
+  <attribute name= "Current Time Running" value="641" />
+<allocation-satisfied id="90" threadId="00000000021FD300" bytesRequested="16392" />
+<af-end id="91" timestamp="2019-08-02T19:00:17.125" threadId="00000000021FDC88" success="true" />
+<exclusive-end id="92" timestamp="2019-08-02T19:00:17.125" durationms="18.117" />
+
+<exclusive-start id="93" timestamp="2019-08-02T19:00:17.176" intervalms="68.578">
+  <response-info timems="0.048" idlems="0.048" threads="0" lastid="000000000220FF00" lastname="Thread-10" />
+</exclusive-start>
+<af-start id="94" threadId="0000000002210888" totalBytesRequested="48" timestamp="2019-08-02T19:00:17.176" intervalms="68.698" />
+<cycle-start id="95" type="global" contextid="0" timestamp="2019-08-02T19:00:17.176" intervalms="68.721" />
+<gc-start id="96" type="global" contextid="95" timestamp="2019-08-02T19:00:17.176">
+  <mem-info id="97" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3555904" >
+  <allocated-bytes non-tlh="98328" tlh="3457576" />
+  <largest-consumer threadName="Thread-9" threadId="000000000220C300" bytes="839000" />
+</allocation-stats>
+<gc-op id="98" type="mark" timems="1.246" contextid="95" timestamp="2019-08-02T19:00:17.177">
+  <trace-info objectcount="43121" scancount="34866" scanbytes="2068764" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="99" type="sweep" timems="0.271" contextid="95" timestamp="2019-08-02T19:00:17.178" />
+<mem-info id="100" free="3921192" total="8388608" percent="46">
+  <mem type="tenure" free="3921192" total="8388608" percent="46" micro-fragmented="21109">
+    <mem type="soa" free="3502376" total="7969792" percent="43" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="101" type="compact" timems="5.092" contextid="95" timestamp="2019-08-02T19:00:17.183">
+  <compact-info movecount="13694" movebytes="2461168" reason="no compaction" />
+</gc-op>
+<gc-end id="102" type="global" contextid="95" durationms="7.220" usertimems="12.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.183" activeThreads="8">
+  <mem-info id="103" free="3946056" total="8388608" percent="47">
+    <mem type="tenure" free="3946056" total="8388608" percent="47">
+      <mem type="soa" free="3527240" total="7969792" percent="44" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="104" type="global" contextid="95" timestamp="2019-08-02T19:00:17.183" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="27" />
+  <attribute name= "Current Time Running" value="700" />
+<allocation-satisfied id="105" threadId="000000000220FF00" bytesRequested="48" />
+<af-end id="106" timestamp="2019-08-02T19:00:17.183" threadId="0000000002210888" success="true" />
+<exclusive-end id="107" timestamp="2019-08-02T19:00:17.183" durationms="7.868" />
+
+<exclusive-start id="108" timestamp="2019-08-02T19:00:17.220" intervalms="44.726">
+  <response-info timems="0.040" idlems="0.040" threads="0" lastid="000000000220C300" lastname="Thread-9" />
+</exclusive-start>
+<af-start id="109" threadId="000000000220CC88" totalBytesRequested="16392" timestamp="2019-08-02T19:00:17.220" intervalms="44.694" />
+<cycle-start id="110" type="global" contextid="0" timestamp="2019-08-02T19:00:17.220" intervalms="44.683" />
+<gc-start id="111" type="global" contextid="110" timestamp="2019-08-02T19:00:17.221">
+  <mem-info id="112" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3447480" >
+  <allocated-bytes non-tlh="180272" tlh="3267208" />
+  <largest-consumer threadName="Thread-10" threadId="000000000220FF00" bytes="787128" />
+</allocation-stats>
+<gc-op id="113" type="mark" timems="1.356" contextid="110" timestamp="2019-08-02T19:00:17.222">
+  <trace-info objectcount="43004" scancount="34811" scanbytes="2020204" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="101" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="114" type="sweep" timems="0.238" contextid="110" timestamp="2019-08-02T19:00:17.222" />
+<mem-info id="115" free="4085168" total="8388608" percent="48">
+  <mem type="tenure" free="4085168" total="8388608" percent="48" micro-fragmented="3333">
+    <mem type="soa" free="3666352" total="7969792" percent="46" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="116" type="compact" timems="6.260" contextid="110" timestamp="2019-08-02T19:00:17.229">
+  <compact-info movecount="19730" movebytes="2584968" reason="no compaction" />
+</gc-op>
+<gc-end id="117" type="global" contextid="110" durationms="8.444" usertimems="12.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.229" activeThreads="8">
+  <mem-info id="118" free="4064584" total="8388608" percent="48">
+    <mem type="tenure" free="4064584" total="8388608" percent="48">
+      <mem type="soa" free="3645768" total="7969792" percent="45" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="119" type="global" contextid="110" timestamp="2019-08-02T19:00:17.229" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="24" />
+  <attribute name= "Current Time Running" value="746" />
+<allocation-satisfied id="120" threadId="000000000220C300" bytesRequested="16392" />
+<af-end id="121" timestamp="2019-08-02T19:00:17.229" threadId="000000000220CC88" success="true" />
+<exclusive-end id="122" timestamp="2019-08-02T19:00:17.230" durationms="9.271" />
+
+<exclusive-start id="123" timestamp="2019-08-02T19:00:17.287" intervalms="66.861">
+  <response-info timems="0.045" idlems="0.045" threads="0" lastid="0000000002204B00" lastname="Thread-7" />
+</exclusive-start>
+<af-start id="124" threadId="0000000002205488" totalBytesRequested="2056" timestamp="2019-08-02T19:00:17.287" intervalms="66.872" />
+<cycle-start id="125" type="global" contextid="0" timestamp="2019-08-02T19:00:17.287" intervalms="66.869" />
+<gc-start id="126" type="global" contextid="125" timestamp="2019-08-02T19:00:17.287">
+  <mem-info id="127" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3658872" >
+  <allocated-bytes non-tlh="131104" tlh="3527768" />
+  <largest-consumer threadName="Thread-7" threadId="0000000002204B00" bytes="841304" />
+</allocation-stats>
+<gc-op id="128" type="mark" timems="1.300" contextid="125" timestamp="2019-08-02T19:00:17.289">
+  <trace-info objectcount="43760" scancount="35424" scanbytes="2087516" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="129" type="sweep" timems="0.280" contextid="125" timestamp="2019-08-02T19:00:17.289" />
+<mem-info id="130" free="3852128" total="8388608" percent="45">
+  <mem type="tenure" free="3852128" total="8388608" percent="45" micro-fragmented="22338">
+    <mem type="soa" free="3433312" total="7969792" percent="43" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="131" type="compact" timems="5.416" contextid="125" timestamp="2019-08-02T19:00:17.295">
+  <compact-info movecount="14335" movebytes="2540416" reason="no compaction" />
+</gc-op>
+<gc-end id="132" type="global" contextid="125" durationms="7.592" usertimems="12.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.295" activeThreads="8">
+  <mem-info id="133" free="3829976" total="8388608" percent="45">
+    <mem type="tenure" free="3829976" total="8388608" percent="45">
+      <mem type="soa" free="3411160" total="7969792" percent="42" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="134" type="global" contextid="125" timestamp="2019-08-02T19:00:17.295" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="28" />
+  <attribute name= "Current Time Running" value="812" />
+<allocation-satisfied id="135" threadId="0000000002204B00" bytesRequested="2056" />
+<af-end id="136" timestamp="2019-08-02T19:00:17.295" threadId="0000000002205488" success="true" />
+<exclusive-end id="137" timestamp="2019-08-02T19:00:17.295" durationms="8.242" />
+
+<exclusive-start id="138" timestamp="2019-08-02T19:00:17.338" intervalms="50.607">
+  <response-info timems="0.035" idlems="0.035" threads="0" lastid="0000000002204B00" lastname="Thread-7" />
+</exclusive-start>
+<af-start id="139" threadId="0000000002205488" totalBytesRequested="16" timestamp="2019-08-02T19:00:17.338" intervalms="50.640" />
+<cycle-start id="140" type="global" contextid="0" timestamp="2019-08-02T19:00:17.338" intervalms="50.645" />
+<gc-start id="141" type="global" contextid="140" timestamp="2019-08-02T19:00:17.338">
+  <mem-info id="142" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3403640" >
+  <allocated-bytes non-tlh="147496" tlh="3256144" />
+  <largest-consumer threadName="Thread-8" threadId="0000000002208700" bytes="929056" />
+</allocation-stats>
+<gc-op id="143" type="mark" timems="1.229" contextid="140" timestamp="2019-08-02T19:00:17.339">
+  <trace-info objectcount="43152" scancount="34886" scanbytes="2002904" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="14" maxThreshold="32" />
+  <references type="weak" candidates="278" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="144" type="sweep" timems="0.237" contextid="140" timestamp="2019-08-02T19:00:17.340" />
+<mem-info id="145" free="4076448" total="8388608" percent="48">
+  <mem type="tenure" free="4076448" total="8388608" percent="48" micro-fragmented="24110">
+    <mem type="soa" free="3657632" total="7969792" percent="45" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="146" type="compact" timems="5.070" contextid="140" timestamp="2019-08-02T19:00:17.345">
+  <compact-info movecount="13727" movebytes="2314416" reason="no compaction" />
+</gc-op>
+<gc-end id="147" type="global" contextid="140" durationms="7.122" usertimems="12.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.345" activeThreads="8">
+  <mem-info id="148" free="4076456" total="8388608" percent="48">
+    <mem type="tenure" free="4076456" total="8388608" percent="48">
+      <mem type="soa" free="3657640" total="7969792" percent="45" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="149" type="global" contextid="140" timestamp="2019-08-02T19:00:17.345" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="28" />
+  <attribute name= "Current Time Running" value="862" />
+<allocation-satisfied id="150" threadId="0000000002204B00" bytesRequested="16" />
+<af-end id="151" timestamp="2019-08-02T19:00:17.346" threadId="0000000002205488" success="true" />
+<exclusive-end id="152" timestamp="2019-08-02T19:00:17.346" durationms="7.988" />
+
+<exclusive-start id="153" timestamp="2019-08-02T19:00:17.395" intervalms="57.061">
+  <response-info timems="0.127" idlems="0.127" threads="0" lastid="00000000021FD300" lastname="Thread-5" />
+</exclusive-start>
+<af-start id="154" threadId="00000000021FDC88" totalBytesRequested="32776" timestamp="2019-08-02T19:00:17.395" intervalms="56.928" />
+<cycle-start id="155" type="global" contextid="0" timestamp="2019-08-02T19:00:17.395" intervalms="56.915" />
+<gc-start id="156" type="global" contextid="155" timestamp="2019-08-02T19:00:17.395">
+  <mem-info id="157" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3661224" >
+  <allocated-bytes non-tlh="81944" tlh="3579280" />
+  <largest-consumer threadName="Thread-9" threadId="000000000220C300" bytes="886704" />
+</allocation-stats>
+<gc-op id="158" type="mark" timems="2.540" contextid="155" timestamp="2019-08-02T19:00:17.398">
+  <trace-info objectcount="43865" scancount="35520" scanbytes="2096176" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="101" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="159" type="sweep" timems="0.780" contextid="155" timestamp="2019-08-02T19:00:17.398" />
+<mem-info id="160" free="3810536" total="8388608" percent="45">
+  <mem type="tenure" free="3810536" total="8388608" percent="45" micro-fragmented="35433">
+    <mem type="soa" free="3391720" total="7969792" percent="42" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="161" type="compact" timems="6.967" contextid="155" timestamp="2019-08-02T19:00:17.406">
+  <compact-info movecount="14440" movebytes="2591512" reason="no compaction" />
+</gc-op>
+<gc-end id="162" type="global" contextid="155" durationms="11.115" usertimems="20.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.406" activeThreads="8">
+  <mem-info id="163" free="3807544" total="8388608" percent="45">
+    <mem type="tenure" free="3807544" total="8388608" percent="45">
+      <mem type="soa" free="3388728" total="7969792" percent="42" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="164" type="global" contextid="155" timestamp="2019-08-02T19:00:17.406" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="143" />
+  <attribute name= "Current Time Running" value="923" />
+<allocation-satisfied id="165" threadId="00000000021FD300" bytesRequested="32776" />
+<af-end id="166" timestamp="2019-08-02T19:00:17.406" threadId="00000000021FDC88" success="true" />
+<exclusive-end id="167" timestamp="2019-08-02T19:00:17.407" durationms="11.788" />
+
+<exclusive-start id="168" timestamp="2019-08-02T19:00:17.448" intervalms="52.930">
+  <response-info timems="0.050" idlems="0.050" threads="0" lastid="0000000002204B00" lastname="Thread-7" />
+</exclusive-start>
+<af-start id="169" threadId="0000000002205488" totalBytesRequested="32776" timestamp="2019-08-02T19:00:17.448" intervalms="53.024" />
+<cycle-start id="170" type="global" contextid="0" timestamp="2019-08-02T19:00:17.448" intervalms="53.033" />
+<gc-start id="171" type="global" contextid="170" timestamp="2019-08-02T19:00:17.448">
+  <mem-info id="172" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3291832" >
+  <allocated-bytes non-tlh="163880" tlh="3127952" />
+  <largest-consumer threadName="Thread-8" threadId="0000000002208700" bytes="634488" />
+</allocation-stats>
+<gc-op id="173" type="mark" timems="1.681" contextid="170" timestamp="2019-08-02T19:00:17.450">
+  <trace-info objectcount="43320" scancount="35024" scanbytes="2040976" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="14" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="174" type="sweep" timems="0.748" contextid="170" timestamp="2019-08-02T19:00:17.451" />
+<mem-info id="175" free="4011344" total="8388608" percent="47">
+  <mem type="tenure" free="4011344" total="8388608" percent="47" micro-fragmented="29619">
+    <mem type="soa" free="3592528" total="7969792" percent="45" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="176" type="compact" timems="6.236" contextid="170" timestamp="2019-08-02T19:00:17.457">
+  <compact-info movecount="13895" movebytes="2381936" reason="no compaction" />
+</gc-op>
+<gc-end id="177" type="global" contextid="170" durationms="9.405" usertimems="20.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.457" activeThreads="8">
+  <mem-info id="178" free="4017120" total="8388608" percent="47">
+    <mem type="tenure" free="4017120" total="8388608" percent="47">
+      <mem type="soa" free="3598304" total="7969792" percent="45" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="179" type="global" contextid="170" timestamp="2019-08-02T19:00:17.458" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="74" />
+  <attribute name= "Current Time Running" value="974" />
+<allocation-satisfied id="180" threadId="0000000002204B00" bytesRequested="32776" />
+<af-end id="181" timestamp="2019-08-02T19:00:17.458" threadId="0000000002205488" success="true" />
+<exclusive-end id="182" timestamp="2019-08-02T19:00:17.458" durationms="10.195" />
+
+<exclusive-start id="183" timestamp="2019-08-02T19:00:17.497" intervalms="49.066">
+  <response-info timems="0.072" idlems="0.072" threads="0" lastid="00000000021F9800" lastname="Thread-4" />
+</exclusive-start>
+<af-start id="184" threadId="00000000021FA188" totalBytesRequested="16392" timestamp="2019-08-02T19:00:17.497" intervalms="49.037" />
+<cycle-start id="185" type="global" contextid="0" timestamp="2019-08-02T19:00:17.497" intervalms="49.044" />
+<gc-start id="186" type="global" contextid="185" timestamp="2019-08-02T19:00:17.497">
+  <mem-info id="187" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3540200" >
+  <allocated-bytes non-tlh="196656" tlh="3343544" />
+  <largest-consumer threadName="Thread-5" threadId="00000000021FD300" bytes="796128" />
+</allocation-stats>
+<gc-op id="188" type="mark" timems="1.147" contextid="185" timestamp="2019-08-02T19:00:17.498">
+  <trace-info objectcount="42429" scancount="34205" scanbytes="1909144" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="278" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="103" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="189" type="sweep" timems="0.246" contextid="185" timestamp="2019-08-02T19:00:17.499" />
+<mem-info id="190" free="4420648" total="8388608" percent="52">
+  <mem type="tenure" free="4420648" total="8388608" percent="52" micro-fragmented="5903">
+    <mem type="soa" free="4001832" total="7969792" percent="50" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="191" type="compact" timems="4.957" contextid="185" timestamp="2019-08-02T19:00:17.504">
+  <compact-info movecount="13004" movebytes="1981360" reason="no compaction" />
+</gc-op>
+<gc-end id="192" type="global" contextid="185" durationms="6.940" usertimems="12.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.504" activeThreads="8">
+  <mem-info id="193" free="4434080" total="8388608" percent="52">
+    <mem type="tenure" free="4434080" total="8388608" percent="52">
+      <mem type="soa" free="4015264" total="7969792" percent="50" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="194" type="global" contextid="185" timestamp="2019-08-02T19:00:17.504" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="30" />
+  <attribute name= "Current Time Running" value="1021" />
+<allocation-satisfied id="195" threadId="00000000021F9800" bytesRequested="16392" />
+<af-end id="196" timestamp="2019-08-02T19:00:17.504" threadId="00000000021FA188" success="true" />
+<exclusive-end id="197" timestamp="2019-08-02T19:00:17.504" durationms="7.720" />
+
+<exclusive-start id="198" timestamp="2019-08-02T19:00:17.577" intervalms="80.367">
+  <response-info timems="0.059" idlems="0.059" threads="0" lastid="0000000002200F00" lastname="Thread-6" />
+</exclusive-start>
+<af-start id="199" threadId="0000000002201888" totalBytesRequested="32776" timestamp="2019-08-02T19:00:17.577" intervalms="80.331" />
+<cycle-start id="200" type="global" contextid="0" timestamp="2019-08-02T19:00:17.577" intervalms="80.327" />
+<gc-start id="201" type="global" contextid="200" timestamp="2019-08-02T19:00:17.577">
+  <mem-info id="202" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3973736" >
+  <allocated-bytes non-tlh="147496" tlh="3826240" />
+  <largest-consumer threadName="Thread-9" threadId="000000000220C300" bytes="916632" />
+</allocation-stats>
+<gc-op id="203" type="mark" timems="1.951" contextid="200" timestamp="2019-08-02T19:00:17.579">
+  <trace-info objectcount="42945" scancount="34640" scanbytes="1958220" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="16" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="101" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="204" type="sweep" timems="1.169" contextid="200" timestamp="2019-08-02T19:00:17.581" />
+<mem-info id="205" free="4121584" total="8388608" percent="49">
+  <mem type="tenure" free="4121584" total="8388608" percent="49" micro-fragmented="19210">
+    <mem type="soa" free="3702768" total="7969792" percent="46" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="206" type="compact" timems="7.865" contextid="200" timestamp="2019-08-02T19:00:17.589">
+  <compact-info movecount="13520" movebytes="2277848" reason="no compaction" />
+</gc-op>
+<gc-end id="207" type="global" contextid="200" durationms="12.050" usertimems="12.000" systemtimems="8.000" timestamp="2019-08-02T19:00:17.589" activeThreads="8">
+  <mem-info id="208" free="4121208" total="8388608" percent="49">
+    <mem type="tenure" free="4121208" total="8388608" percent="49">
+      <mem type="soa" free="3702392" total="7969792" percent="46" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="209" type="global" contextid="200" timestamp="2019-08-02T19:00:17.590" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="88" />
+  <attribute name= "Current Time Running" value="1106" />
+<allocation-satisfied id="210" threadId="0000000002200F00" bytesRequested="32776" />
+<af-end id="211" timestamp="2019-08-02T19:00:17.590" threadId="0000000002201888" success="true" />
+<exclusive-end id="212" timestamp="2019-08-02T19:00:17.590" durationms="12.648" />
+
+<exclusive-start id="213" timestamp="2019-08-02T19:00:17.648" intervalms="71.356">
+  <response-info timems="0.048" idlems="0.048" threads="0" lastid="000000000220C300" lastname="Thread-9" />
+</exclusive-start>
+<af-start id="214" threadId="000000000220CC88" totalBytesRequested="16" timestamp="2019-08-02T19:00:17.649" intervalms="71.397" />
+<cycle-start id="215" type="global" contextid="0" timestamp="2019-08-02T19:00:17.649" intervalms="71.394" />
+<gc-start id="216" type="global" contextid="215" timestamp="2019-08-02T19:00:17.649">
+  <mem-info id="217" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3668864" >
+  <allocated-bytes non-tlh="98328" tlh="3570536" />
+  <largest-consumer threadName="Thread-10" threadId="000000000220FF00" bytes="1223408" />
+</allocation-stats>
+<gc-op id="218" type="mark" timems="1.683" contextid="215" timestamp="2019-08-02T19:00:17.651">
+  <trace-info objectcount="44062" scancount="35580" scanbytes="2094900" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="101" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="219" type="sweep" timems="0.793" contextid="215" timestamp="2019-08-02T19:00:17.651" />
+<mem-info id="220" free="3814040" total="8388608" percent="45">
+  <mem type="tenure" free="3814040" total="8388608" percent="45" micro-fragmented="10309">
+    <mem type="soa" free="3395224" total="7969792" percent="42" />
+    <mem type="loa" free="418816" total="418816" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="221" type="compact" timems="6.549" contextid="215" timestamp="2019-08-02T19:00:17.658">
+  <compact-info movecount="14637" movebytes="2581600" reason="no compaction" />
+</gc-op>
+<gc-end id="222" type="global" contextid="215" durationms="9.764" usertimems="20.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.659" activeThreads="8">
+  <mem-info id="223" free="3813368" total="8388608" percent="45">
+    <mem type="tenure" free="3813368" total="8388608" percent="45">
+      <mem type="soa" free="3394552" total="7969792" percent="42" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="224" type="global" contextid="215" timestamp="2019-08-02T19:00:17.659" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="88" />
+  <attribute name= "Current Time Running" value="1175" />
+<allocation-satisfied id="225" threadId="000000000220C300" bytesRequested="16" />
+<af-end id="226" timestamp="2019-08-02T19:00:17.659" threadId="000000000220CC88" success="true" />
+<exclusive-end id="227" timestamp="2019-08-02T19:00:17.659" durationms="10.552" />
+
+<exclusive-start id="228" timestamp="2019-08-02T19:00:17.691" intervalms="42.117">
+  <response-info timems="0.069" idlems="0.069" threads="0" lastid="00000000021F9800" lastname="Thread-4" />
+</exclusive-start>
+<af-start id="229" threadId="00000000021FA188" totalBytesRequested="16392" timestamp="2019-08-02T19:00:17.691" intervalms="42.085" />
+<cycle-start id="230" type="global" contextid="0" timestamp="2019-08-02T19:00:17.691" intervalms="42.084" />
+<gc-start id="231" type="global" contextid="230" timestamp="2019-08-02T19:00:17.691">
+  <mem-info id="232" free="418816" total="8388608" percent="4">
+    <mem type="tenure" free="418816" total="8388608" percent="4">
+      <mem type="soa" free="0" total="7969792" percent="0" />
+      <mem type="loa" free="418816" total="418816" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3238744" >
+  <allocated-bytes non-tlh="213048" tlh="3025696" />
+  <largest-consumer threadName="Thread-6" threadId="0000000002200F00" bytes="852200" />
+</allocation-stats>
+<heap-resize id="233" type="loa contract" space="tenure" amount="83968" count="1" timems="0.000" reason="contract underutilized loa" timestamp="2019-08-02T19:00:17.691" />
+<gc-op id="234" type="mark" timems="1.089" contextid="230" timestamp="2019-08-02T19:00:17.692">
+  <trace-info objectcount="42902" scancount="34618" scanbytes="2013376" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="168" cleared="76" enqueued="73" dynamicThreshold="14" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="0"  />
+</gc-op>
+<gc-op id="235" type="sweep" timems="0.254" contextid="230" timestamp="2019-08-02T19:00:17.692" />
+<mem-info id="236" free="4089592" total="8388608" percent="48">
+  <mem type="tenure" free="4089592" total="8388608" percent="48" micro-fragmented="26317">
+    <mem type="soa" free="3754744" total="8053760" percent="46" />
+    <mem type="loa" free="334848" total="334848" percent="100" />
+  </mem>
+  <pending-finalizers system="0" default="0" reference="73" classloader="0" />
+</mem-info>
+<gc-op id="237" type="compact" timems="9.486" contextid="230" timestamp="2019-08-02T19:00:17.702">
+  <compact-info movecount="36961" movebytes="3988264" reason="no compaction" />
+</gc-op>
+<gc-end id="238" type="global" contextid="230" durationms="11.548" usertimems="16.000" systemtimems="4.000" timestamp="2019-08-02T19:00:17.702" activeThreads="8">
+  <mem-info id="239" free="4083344" total="8388608" percent="48">
+    <mem type="tenure" free="4083344" total="8388608" percent="48">
+      <mem type="soa" free="3748496" total="8053760" percent="46" />
+      <mem type="loa" free="334848" total="334848" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="73" classloader="0" />
+  </mem-info>
+</gc-end>
+<cycle-end id="240" type="global" contextid="230" timestamp="2019-08-02T19:00:17.703" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="24" />
+  <attribute name= "Current Time Running" value="1219" />
+<allocation-satisfied id="241" threadId="00000000021F9800" bytesRequested="16392" />
+<af-end id="242" timestamp="2019-08-02T19:00:17.703" threadId="00000000021FA188" success="true" />
+<exclusive-end id="243" timestamp="2019-08-02T19:00:17.703" durationms="12.371" />
+
+<concurrent-kickoff id="244" timestamp="2019-08-02T19:00:17.755">
+  <kickoff reason="threshold reached" targetBytes="2489738" thresholdFreeBytes="343258" remainingFree="334848" tenureFreeBytes="334848" />
+</concurrent-kickoff>
+<exclusive-start id="245" timestamp="2019-08-02T19:00:17.756" intervalms="65.304">
+  <response-info timems="0.062" idlems="0.062" threads="0" lastid="0000000002200F00" lastname="Thread-6" />
+</exclusive-start>
+<cycle-start id="246" type="global" contextid="0" timestamp="2019-08-02T19:00:17.756" intervalms="65.187" />
+<exclusive-end id="247" timestamp="2019-08-02T19:00:17.756" durationms="0.113" />
+
+<exclusive-start id="248" timestamp="2019-08-02T19:00:17.756" intervalms="0.297">
+  <response-info timems="0.049" idlems="0.049" threads="0" lastid="0000000002200F00" lastname="Thread-6" />
+</exclusive-start>
+<af-start id="249" threadId="0000000002201888" totalBytesRequested="16392" timestamp="2019-08-02T19:00:17.756" intervalms="65.558" />
+<concurrent-aborted id="250" timestamp="2019-08-02T19:00:17.756">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="251" type="global" contextid="246" timestamp="2019-08-02T19:00:17.756" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="24" />
+  <attribute name= "Current Time Running" value="1219" />
+<cycle-start id="252" type="global" contextid="0" timestamp="2019-08-02T19:00:17.756" intervalms="0.474" />
+<gc-start id="253" type="global" contextid="252" timestamp="2019-08-02T19:00:17.757">
+  <mem-info id="254" free="334848" total="8388608" percent="3">
+    <mem type="tenure" free="334848" total="8388608" percent="3">
+      <mem type="soa" free="0" total="8053760" percent="0" />
+      <mem type="loa" free="334848" total="334848" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3694448" >
+  <allocated-bytes non-tlh="163880" tlh="3530568" />
+  <largest-consumer threadName="Thread-6" threadId="0000000002200F00" bytes="685280" />
+</allocation-stats>
+<heap-resize id="255" type="loa contract" space="tenure" amount="83968" count="1" timems="0.000" reason="contract underutilized loa" timestamp="2019-08-02T19:00:17.757" />
+<gc-op id="256" type="mark" timems="2.038" contextid="252" timestamp="2019-08-02T19:00:17.759">
+  <trace-info objectcount="42816" scancount="34515" scanbytes="2023680" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="92" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3963" cleared="18"  />
+</gc-op>
+<gc-op id="257" type="sweep" timems="1.542" contextid="252" timestamp="2019-08-02T19:00:17.760" />
+<mem-info id="258" free="3963704" total="8388608" percent="47">
+  <mem type="tenure" free="3963704" total="8388608" percent="47" micro-fragmented="13911">
+    <mem type="soa" free="3712824" total="8137728" percent="45" />
+    <mem type="loa" free="250880" total="250880" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="259" type="compact" timems="12.395" contextid="252" timestamp="2019-08-02T19:00:17.773">
+  <compact-info movecount="31554" movebytes="3900368" reason="no compaction" />
+</gc-op>
+<gc-end id="260" type="global" contextid="252" durationms="17.223" usertimems="24.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.774" activeThreads="8">
+  <mem-info id="261" free="3950104" total="8388608" percent="47">
+    <mem type="tenure" free="3950104" total="8388608" percent="47">
+      <mem type="soa" free="3699224" total="8137728" percent="45" />
+      <mem type="loa" free="250880" total="250880" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="262" type="global" contextid="252" timestamp="2019-08-02T19:00:17.774" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="72" />
+  <attribute name= "Current Time Running" value="1290" />
+<allocation-satisfied id="263" threadId="0000000002200F00" bytesRequested="16392" />
+<af-end id="264" timestamp="2019-08-02T19:00:17.774" threadId="0000000002201888" success="true" />
+<exclusive-end id="265" timestamp="2019-08-02T19:00:17.774" durationms="18.035" />
+
+<concurrent-kickoff id="266" timestamp="2019-08-02T19:00:17.833">
+  <kickoff reason="threshold reached" targetBytes="2489738" thresholdFreeBytes="343258" remainingFree="288264" tenureFreeBytes="288264" />
+</concurrent-kickoff>
+<exclusive-start id="267" timestamp="2019-08-02T19:00:17.833" intervalms="77.281">
+  <response-info timems="0.202" idlems="0.109" threads="1" lastid="0000000002204B00" lastname="Thread-7" />
+</exclusive-start>
+<cycle-start id="268" type="global" contextid="0" timestamp="2019-08-02T19:00:17.834" intervalms="77.107" />
+<exclusive-end id="269" timestamp="2019-08-02T19:00:17.834" durationms="0.119" />
+
+<exclusive-start id="270" timestamp="2019-08-02T19:00:17.835" intervalms="1.638">
+  <response-info timems="0.303" idlems="0.303" threads="0" lastid="000000000220FF00" lastname="Thread-10" />
+</exclusive-start>
+<af-start id="271" threadId="0000000002210888" totalBytesRequested="8200" timestamp="2019-08-02T19:00:17.835" intervalms="78.962" />
+<concurrent-aborted id="272" timestamp="2019-08-02T19:00:17.835">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="273" type="global" contextid="268" timestamp="2019-08-02T19:00:17.835" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="72" />
+  <attribute name= "Current Time Running" value="1290" />
+<cycle-start id="274" type="global" contextid="0" timestamp="2019-08-02T19:00:17.836" intervalms="1.998" />
+<gc-start id="275" type="global" contextid="274" timestamp="2019-08-02T19:00:17.836">
+  <mem-info id="276" free="250880" total="8388608" percent="2">
+    <mem type="tenure" free="250880" total="8388608" percent="2">
+      <mem type="soa" free="0" total="8137728" percent="0" />
+      <mem type="loa" free="250880" total="250880" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3698864" >
+  <allocated-bytes non-tlh="98328" tlh="3600536" />
+  <largest-consumer threadName="Thread-5" threadId="00000000021FD300" bytes="927232" />
+</allocation-stats>
+<heap-resize id="277" type="loa contract" space="tenure" amount="83968" count="1" timems="0.000" reason="contract underutilized loa" timestamp="2019-08-02T19:00:17.836" />
+<gc-op id="278" type="mark" timems="1.139" contextid="274" timestamp="2019-08-02T19:00:17.837">
+  <trace-info objectcount="41648" scancount="33709" scanbytes="1972012" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="92" cleared="21" enqueued="20" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="278" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="103" cleared="0" enqueued="0" />
+  <stringconstants candidates="3945" cleared="0"  />
+</gc-op>
+<gc-op id="279" type="sweep" timems="0.251" contextid="274" timestamp="2019-08-02T19:00:17.837" />
+<mem-info id="280" free="4137648" total="8388608" percent="49">
+  <mem type="tenure" free="4137648" total="8388608" percent="49" micro-fragmented="1026">
+    <mem type="soa" free="3970736" total="8221696" percent="48" />
+    <mem type="loa" free="166912" total="166912" percent="100" />
+  </mem>
+  <pending-finalizers system="0" default="0" reference="20" classloader="0" />
+</mem-info>
+<gc-op id="281" type="compact" timems="7.590" contextid="274" timestamp="2019-08-02T19:00:17.845">
+  <compact-info movecount="26340" movebytes="3545744" reason="no compaction" />
+</gc-op>
+<gc-end id="282" type="global" contextid="274" durationms="9.666" usertimems="12.000" systemtimems="4.000" timestamp="2019-08-02T19:00:17.845" activeThreads="8">
+  <mem-info id="283" free="4135408" total="8388608" percent="49">
+    <mem type="tenure" free="4135408" total="8388608" percent="49">
+      <mem type="soa" free="3968496" total="8221696" percent="48" />
+      <mem type="loa" free="166912" total="166912" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="20" classloader="0" />
+  </mem-info>
+</gc-end>
+<cycle-end id="284" type="global" contextid="274" timestamp="2019-08-02T19:00:17.845" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="27" />
+  <attribute name= "Current Time Running" value="1362" />
+<allocation-satisfied id="285" threadId="000000000220FF00" bytesRequested="8200" />
+<af-end id="286" timestamp="2019-08-02T19:00:17.846" threadId="0000000002210888" success="true" />
+<exclusive-end id="287" timestamp="2019-08-02T19:00:17.846" durationms="10.591" />
+
+<concurrent-kickoff id="288" timestamp="2019-08-02T19:00:17.902">
+  <kickoff reason="threshold reached" targetBytes="2489738" thresholdFreeBytes="343258" remainingFree="244152" tenureFreeBytes="244152" />
+</concurrent-kickoff>
+<exclusive-start id="289" timestamp="2019-08-02T19:00:17.902" intervalms="67.080">
+  <response-info timems="0.096" idlems="0.096" threads="0" lastid="0000000002200F00" lastname="Thread-6" />
+</exclusive-start>
+<cycle-start id="290" type="global" contextid="0" timestamp="2019-08-02T19:00:17.902" intervalms="66.773" />
+<exclusive-end id="291" timestamp="2019-08-02T19:00:17.902" durationms="0.142" />
+
+<exclusive-start id="292" timestamp="2019-08-02T19:00:17.904" intervalms="1.755">
+  <response-info timems="0.063" idlems="0.063" threads="0" lastid="0000000002208700" lastname="Thread-8" />
+</exclusive-start>
+<af-start id="293" threadId="0000000002209088" totalBytesRequested="824" timestamp="2019-08-02T19:00:17.904" intervalms="68.826" />
+<concurrent-aborted id="294" timestamp="2019-08-02T19:00:17.904">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="295" type="global" contextid="290" timestamp="2019-08-02T19:00:17.904" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="27" />
+  <attribute name= "Current Time Running" value="1362" />
+<cycle-start id="296" type="global" contextid="0" timestamp="2019-08-02T19:00:17.904" intervalms="1.918" />
+<gc-start id="297" type="global" contextid="296" timestamp="2019-08-02T19:00:17.904">
+  <mem-info id="298" free="166912" total="8388608" percent="1">
+    <mem type="tenure" free="166912" total="8388608" percent="1">
+      <mem type="soa" free="0" total="8221696" percent="0" />
+      <mem type="loa" free="166912" total="166912" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3967000" >
+  <allocated-bytes non-tlh="229432" tlh="3737568" />
+  <largest-consumer threadName="Thread-6" threadId="0000000002200F00" bytes="904952" />
+</allocation-stats>
+<heap-resize id="299" type="loa contract" space="tenure" amount="83968" count="1" timems="0.000" reason="contract underutilized loa" timestamp="2019-08-02T19:00:17.904" />
+<gc-op id="300" type="mark" timems="1.183" contextid="296" timestamp="2019-08-02T19:00:17.906">
+  <trace-info objectcount="41160" scancount="33411" scanbytes="2037072" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="71" cleared="5" enqueued="3" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3945" cleared="0"  />
+</gc-op>
+<gc-op id="301" type="sweep" timems="0.266" contextid="296" timestamp="2019-08-02T19:00:17.906" />
+<mem-info id="302" free="4000656" total="8388608" percent="47">
+  <mem type="tenure" free="4000656" total="8388608" percent="47" micro-fragmented="29440">
+    <mem type="soa" free="3917712" total="8305664" percent="47" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+  <pending-finalizers system="0" default="0" reference="3" classloader="0" />
+</mem-info>
+<gc-op id="303" type="compact" timems="8.242" contextid="296" timestamp="2019-08-02T19:00:17.914">
+  <compact-info movecount="29898" movebytes="3867952" reason="no compaction" />
+</gc-op>
+<gc-end id="304" type="global" contextid="296" durationms="10.326" usertimems="16.000" systemtimems="0.000" timestamp="2019-08-02T19:00:17.915" activeThreads="8">
+  <mem-info id="305" free="3986616" total="8388608" percent="47">
+    <mem type="tenure" free="3986616" total="8388608" percent="47">
+      <mem type="soa" free="3903672" total="8305664" percent="47" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="3" classloader="0" />
+  </mem-info>
+</gc-end>
+<cycle-end id="306" type="global" contextid="296" timestamp="2019-08-02T19:00:17.915" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="29" />
+  <attribute name= "Current Time Running" value="1431" />
+<allocation-satisfied id="307" threadId="0000000002208700" bytesRequested="824" />
+<af-end id="308" timestamp="2019-08-02T19:00:17.915" threadId="0000000002209088" success="true" />
+<exclusive-end id="309" timestamp="2019-08-02T19:00:17.915" durationms="11.103" />
+
+<concurrent-kickoff id="310" timestamp="2019-08-02T19:00:17.975">
+  <kickoff reason="threshold reached" targetBytes="2489738" thresholdFreeBytes="343258" remainingFree="320680" tenureFreeBytes="320680" />
+</concurrent-kickoff>
+<exclusive-start id="311" timestamp="2019-08-02T19:00:17.976" intervalms="71.771">
+  <response-info timems="0.107" idlems="0.107" threads="0" lastid="00000000021F5C00" lastname="Thread-3" />
+</exclusive-start>
+<cycle-start id="312" type="global" contextid="0" timestamp="2019-08-02T19:00:17.976" intervalms="71.548" />
+<exclusive-end id="313" timestamp="2019-08-02T19:00:17.976" durationms="0.111" />
+
+<exclusive-start id="314" timestamp="2019-08-02T19:00:17.978" intervalms="1.815">
+  <response-info timems="0.103" idlems="0.103" threads="0" lastid="000000000220FF00" lastname="Thread-10" />
+</exclusive-start>
+<af-start id="315" threadId="0000000002210888" totalBytesRequested="8200" timestamp="2019-08-02T19:00:17.978" intervalms="73.559" />
+<gc-start id="316" type="global" contextid="312" timestamp="2019-08-02T19:00:17.978">
+  <mem-info id="317" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3851080" >
+  <allocated-bytes non-tlh="65552" tlh="3785528" />
+  <largest-consumer threadName="Thread-8" threadId="0000000002208700" bytes="637640" />
+</allocation-stats>
+<concurrent-halted id="318" timestamp="2019-08-02T19:00:17.978">
+  <halted state="Tracing incomplete" status="clean trace" />
+  <traced bytesTarget="2489738" bytesTotal="724492" bytesByMutator="131796" bytesByHelper="592696" percent="29" />
+  <cards cleaned="0" thresholdBytes="135222" />
+</concurrent-halted>
+<gc-op id="319" type="tracing" timems="0.311" contextid="312" timestamp="2019-08-02T19:00:17.978">
+  <trace bytesTraced="292760" workStackOverflowCount="0" />
+</gc-op>
+<gc-op id="320" type="card-cleaning" timems="0.491" contextid="312" timestamp="2019-08-02T19:00:17.979">
+  <card-cleaning cardsCleaned="178" bytesTraced="291992" workStackOverflowCount="0" />
+</gc-op>
+<gc-op id="321" type="mark" timems="0.629" contextid="312" timestamp="2019-08-02T19:00:17.979">
+  <trace-info objectcount="8405" scancount="7885" scanbytes="724276" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="66" cleared="1" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="278" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="104" cleared="0" enqueued="0" />
+  <stringconstants candidates="3945" cleared="1"  />
+</gc-op>
+<gc-op id="322" type="sweep" timems="0.246" contextid="312" timestamp="2019-08-02T19:00:17.980" />
+<mem-info id="323" free="4102856" total="8388608" percent="48">
+  <mem type="tenure" free="4102856" total="8388608" percent="48" micro-fragmented="16668">
+    <mem type="soa" free="4019912" total="8305664" percent="48" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="324" type="compact" timems="7.125" contextid="312" timestamp="2019-08-02T19:00:17.987">
+  <compact-info movecount="23809" movebytes="3447816" reason="no compaction" />
+</gc-op>
+<gc-end id="325" type="global" contextid="312" durationms="9.605" usertimems="8.000" systemtimems="4.000" timestamp="2019-08-02T19:00:17.987" activeThreads="8">
+  <mem-info id="326" free="4090048" total="8388608" percent="48">
+    <mem type="tenure" free="4090048" total="8388608" percent="48">
+      <mem type="soa" free="4007104" total="8305664" percent="48" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="327" type="global" contextid="312" timestamp="2019-08-02T19:00:17.987" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="25" />
+  <attribute name= "Current Time Running" value="1504" />
+<allocation-satisfied id="328" threadId="000000000220FF00" bytesRequested="8200" />
+<af-end id="329" timestamp="2019-08-02T19:00:17.988" threadId="0000000002210888" success="true" />
+<exclusive-end id="330" timestamp="2019-08-02T19:00:17.988" durationms="10.137" />
+
+<concurrent-kickoff id="331" timestamp="2019-08-02T19:00:18.031">
+  <kickoff reason="threshold reached" targetBytes="1309244" thresholdFreeBytes="182394" remainingFree="145568" tenureFreeBytes="145568" />
+</concurrent-kickoff>
+<exclusive-start id="332" timestamp="2019-08-02T19:00:18.031" intervalms="53.543">
+  <response-info timems="0.041" idlems="0.041" threads="0" lastid="0000000002200F00" lastname="Thread-6" />
+</exclusive-start>
+<cycle-start id="333" type="global" contextid="0" timestamp="2019-08-02T19:00:18.031" intervalms="55.376" />
+<exclusive-end id="334" timestamp="2019-08-02T19:00:18.031" durationms="0.118" />
+
+<exclusive-start id="335" timestamp="2019-08-02T19:00:18.032" intervalms="0.789">
+  <response-info timems="0.072" idlems="0.072" threads="0" lastid="00000000021F9800" lastname="Thread-4" />
+</exclusive-start>
+<af-start id="336" threadId="00000000021FA188" totalBytesRequested="32776" timestamp="2019-08-02T19:00:18.032" intervalms="54.374" />
+<concurrent-aborted id="337" timestamp="2019-08-02T19:00:18.032">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="338" type="global" contextid="333" timestamp="2019-08-02T19:00:18.032" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="25" />
+  <attribute name= "Current Time Running" value="1504" />
+<cycle-start id="339" type="global" contextid="0" timestamp="2019-08-02T19:00:18.032" intervalms="0.997" />
+<gc-start id="340" type="global" contextid="339" timestamp="2019-08-02T19:00:18.032">
+  <mem-info id="341" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3959072" >
+  <allocated-bytes non-tlh="131104" tlh="3827968" />
+  <largest-consumer threadName="Thread-5" threadId="00000000021FD300" bytes="914888" />
+</allocation-stats>
+<gc-op id="342" type="mark" timems="1.062" contextid="339" timestamp="2019-08-02T19:00:18.033">
+  <trace-info objectcount="40689" scancount="32982" scanbytes="1952832" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="65" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3944" cleared="0"  />
+</gc-op>
+<gc-op id="343" type="sweep" timems="0.296" contextid="339" timestamp="2019-08-02T19:00:18.034" />
+<mem-info id="344" free="4162112" total="8388608" percent="49">
+  <mem type="tenure" free="4162112" total="8388608" percent="49" micro-fragmented="39617">
+    <mem type="soa" free="4079168" total="8305664" percent="49" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="345" type="compact" timems="5.082" contextid="339" timestamp="2019-08-02T19:00:18.039">
+  <compact-info movecount="12733" movebytes="2295048" reason="no compaction" />
+</gc-op>
+<gc-end id="346" type="global" contextid="339" durationms="7.049" usertimems="4.000" systemtimems="8.000" timestamp="2019-08-02T19:00:18.039" activeThreads="8">
+  <mem-info id="347" free="4158184" total="8388608" percent="49">
+    <mem type="tenure" free="4158184" total="8388608" percent="49">
+      <mem type="soa" free="4075240" total="8305664" percent="49" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="348" type="global" contextid="339" timestamp="2019-08-02T19:00:18.039" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="30" />
+  <attribute name= "Current Time Running" value="1556" />
+<allocation-satisfied id="349" threadId="00000000021F9800" bytesRequested="32776" />
+<af-end id="350" timestamp="2019-08-02T19:00:18.040" threadId="00000000021FA188" success="true" />
+<exclusive-end id="351" timestamp="2019-08-02T19:00:18.040" durationms="7.801" />
+
+<concurrent-kickoff id="352" timestamp="2019-08-02T19:00:18.092">
+  <kickoff reason="threshold reached" targetBytes="2159162" thresholdFreeBytes="298018" remainingFree="279240" tenureFreeBytes="279240" />
+</concurrent-kickoff>
+<exclusive-start id="353" timestamp="2019-08-02T19:00:18.093" intervalms="60.633">
+  <response-info timems="0.098" idlems="0.052" threads="1" lastid="0000000002204B00" lastname="Thread-7" />
+</exclusive-start>
+<cycle-start id="354" type="global" contextid="0" timestamp="2019-08-02T19:00:18.093" intervalms="60.467" />
+<exclusive-end id="355" timestamp="2019-08-02T19:00:18.093" durationms="0.167" />
+
+<exclusive-start id="356" timestamp="2019-08-02T19:00:18.093" intervalms="0.706">
+  <response-info timems="0.096" idlems="0.096" threads="0" lastid="0000000002208700" lastname="Thread-8" />
+</exclusive-start>
+<af-start id="357" threadId="0000000002209088" totalBytesRequested="16" timestamp="2019-08-02T19:00:18.093" intervalms="61.280" />
+<concurrent-aborted id="358" timestamp="2019-08-02T19:00:18.093">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="359" type="global" contextid="354" timestamp="2019-08-02T19:00:18.093" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="30" />
+  <attribute name= "Current Time Running" value="1556" />
+<cycle-start id="360" type="global" contextid="0" timestamp="2019-08-02T19:00:18.094" intervalms="0.886" />
+<gc-start id="361" type="global" contextid="360" timestamp="2019-08-02T19:00:18.094">
+  <mem-info id="362" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="4011560" >
+  <allocated-bytes non-tlh="163880" tlh="3847680" />
+  <largest-consumer threadName="Thread-4" threadId="00000000021F9800" bytes="826632" />
+</allocation-stats>
+<gc-op id="363" type="mark" timems="1.542" contextid="360" timestamp="2019-08-02T19:00:18.095">
+  <trace-info objectcount="40487" scancount="32758" scanbytes="1940352" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="65" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3944" cleared="0"  />
+</gc-op>
+<gc-op id="364" type="sweep" timems="0.372" contextid="360" timestamp="2019-08-02T19:00:18.096" />
+<mem-info id="365" free="4163736" total="8388608" percent="49">
+  <mem type="tenure" free="4163736" total="8388608" percent="49" micro-fragmented="37484">
+    <mem type="soa" free="4080792" total="8305664" percent="49" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="366" type="compact" timems="4.951" contextid="360" timestamp="2019-08-02T19:00:18.101">
+  <compact-info movecount="12531" movebytes="2290144" reason="no compaction" />
+</gc-op>
+<gc-end id="367" type="global" contextid="360" durationms="7.480" usertimems="16.000" systemtimems="0.000" timestamp="2019-08-02T19:00:18.101" activeThreads="8">
+  <mem-info id="368" free="4167192" total="8388608" percent="49">
+    <mem type="tenure" free="4167192" total="8388608" percent="49">
+      <mem type="soa" free="4084248" total="8305664" percent="49" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="369" type="global" contextid="360" timestamp="2019-08-02T19:00:18.101" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="34" />
+  <attribute name= "Current Time Running" value="1618" />
+<allocation-satisfied id="370" threadId="0000000002208700" bytesRequested="16" />
+<af-end id="371" timestamp="2019-08-02T19:00:18.101" threadId="0000000002209088" success="true" />
+<exclusive-end id="372" timestamp="2019-08-02T19:00:18.101" durationms="8.116" />
+
+<concurrent-kickoff id="373" timestamp="2019-08-02T19:00:18.159">
+  <kickoff reason="threshold reached" targetBytes="2159162" thresholdFreeBytes="298018" remainingFree="251384" tenureFreeBytes="251384" />
+</concurrent-kickoff>
+<exclusive-start id="374" timestamp="2019-08-02T19:00:18.159" intervalms="66.245">
+  <response-info timems="0.106" idlems="0.060" threads="1" lastid="000000000220C300" lastname="Thread-9" />
+</exclusive-start>
+<cycle-start id="375" type="global" contextid="0" timestamp="2019-08-02T19:00:18.160" intervalms="66.032" />
+<exclusive-end id="376" timestamp="2019-08-02T19:00:18.160" durationms="0.132" />
+
+<exclusive-start id="377" timestamp="2019-08-02T19:00:18.160" intervalms="0.509">
+  <response-info timems="0.042" idlems="0.042" threads="0" lastid="00000000021F5C00" lastname="Thread-3" />
+</exclusive-start>
+<af-start id="378" threadId="00000000021F6588" totalBytesRequested="16392" timestamp="2019-08-02T19:00:18.160" intervalms="66.772" />
+<concurrent-aborted id="379" timestamp="2019-08-02T19:00:18.160">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="380" type="global" contextid="375" timestamp="2019-08-02T19:00:18.160" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="34" />
+  <attribute name= "Current Time Running" value="1618" />
+<cycle-start id="381" type="global" contextid="0" timestamp="2019-08-02T19:00:18.160" intervalms="0.665" />
+<gc-start id="382" type="global" contextid="381" timestamp="2019-08-02T19:00:18.160">
+  <mem-info id="383" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="4025688" >
+  <allocated-bytes non-tlh="131104" tlh="3894584" />
+  <largest-consumer threadName="Thread-6" threadId="0000000002200F00" bytes="909904" />
+</allocation-stats>
+<gc-op id="384" type="mark" timems="1.050" contextid="381" timestamp="2019-08-02T19:00:18.161">
+  <trace-info objectcount="40455" scancount="32705" scanbytes="1958344" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="65" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3944" cleared="0"  />
+</gc-op>
+<gc-op id="385" type="sweep" timems="0.241" contextid="381" timestamp="2019-08-02T19:00:18.162" />
+<mem-info id="386" free="4194464" total="8388608" percent="50">
+  <mem type="tenure" free="4194464" total="8388608" percent="50" micro-fragmented="26084">
+    <mem type="soa" free="4111520" total="8305664" percent="49" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="387" type="compact" timems="4.804" contextid="381" timestamp="2019-08-02T19:00:18.167">
+  <compact-info movecount="12499" movebytes="2262112" reason="no compaction" />
+</gc-op>
+<gc-end id="388" type="global" contextid="381" durationms="6.735" usertimems="16.000" systemtimems="0.000" timestamp="2019-08-02T19:00:18.167" activeThreads="8">
+  <mem-info id="389" free="4187032" total="8388608" percent="49">
+    <mem type="tenure" free="4187032" total="8388608" percent="49">
+      <mem type="soa" free="4104088" total="8305664" percent="49" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="390" type="global" contextid="381" timestamp="2019-08-02T19:00:18.167" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="33" />
+  <attribute name= "Current Time Running" value="1684" />
+<allocation-satisfied id="391" threadId="00000000021F5C00" bytesRequested="16392" />
+<af-end id="392" timestamp="2019-08-02T19:00:18.167" threadId="00000000021F6588" success="true" />
+<exclusive-end id="393" timestamp="2019-08-02T19:00:18.167" durationms="7.442" />
+
+<concurrent-kickoff id="394" timestamp="2019-08-02T19:00:18.205">
+  <kickoff reason="threshold reached" targetBytes="2159162" thresholdFreeBytes="298018" remainingFree="267104" tenureFreeBytes="267104" />
+</concurrent-kickoff>
+<exclusive-start id="395" timestamp="2019-08-02T19:00:18.205" intervalms="45.282">
+  <response-info timems="0.100" idlems="0.100" threads="0" lastid="00000000021F9800" lastname="Thread-4" />
+</exclusive-start>
+<cycle-start id="396" type="global" contextid="0" timestamp="2019-08-02T19:00:18.205" intervalms="45.104" />
+<exclusive-end id="397" timestamp="2019-08-02T19:00:18.205" durationms="0.114" />
+
+<exclusive-start id="398" timestamp="2019-08-02T19:00:18.210" intervalms="4.852">
+  <response-info timems="0.043" idlems="0.043" threads="0" lastid="0000000002204B00" lastname="Thread-7" />
+</exclusive-start>
+<af-start id="399" threadId="0000000002205488" totalBytesRequested="16392" timestamp="2019-08-02T19:00:18.210" intervalms="50.226" />
+<concurrent-aborted id="400" timestamp="2019-08-02T19:00:18.210">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="401" type="global" contextid="396" timestamp="2019-08-02T19:00:18.210" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="33" />
+  <attribute name= "Current Time Running" value="1684" />
+<cycle-start id="402" type="global" contextid="0" timestamp="2019-08-02T19:00:18.210" intervalms="5.130" />
+<gc-start id="403" type="global" contextid="402" timestamp="2019-08-02T19:00:18.211">
+  <mem-info id="404" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="4084744" >
+  <allocated-bytes non-tlh="229432" tlh="3855312" />
+  <largest-consumer threadName="Thread-4" threadId="00000000021F9800" bytes="960728" />
+</allocation-stats>
+<gc-op id="405" type="mark" timems="2.391" contextid="402" timestamp="2019-08-02T19:00:18.213">
+  <trace-info objectcount="40631" scancount="32931" scanbytes="1953436" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="65" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3944" cleared="0"  />
+</gc-op>
+<gc-op id="406" type="sweep" timems="1.514" contextid="402" timestamp="2019-08-02T19:00:18.215" />
+<mem-info id="407" free="4194880" total="8388608" percent="50">
+  <mem type="tenure" free="4194880" total="8388608" percent="50" micro-fragmented="26459">
+    <mem type="soa" free="4111936" total="8305664" percent="49" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="408" type="compact" timems="9.011" contextid="402" timestamp="2019-08-02T19:00:18.224">
+  <compact-info movecount="12675" movebytes="2261616" reason="no compaction" />
+</gc-op>
+<gc-end id="409" type="global" contextid="402" durationms="14.269" usertimems="16.000" systemtimems="4.000" timestamp="2019-08-02T19:00:18.225" activeThreads="8">
+  <mem-info id="410" free="4158856" total="8388608" percent="49">
+    <mem type="tenure" free="4158856" total="8388608" percent="49">
+      <mem type="soa" free="4075912" total="8305664" percent="49" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="411" type="global" contextid="402" timestamp="2019-08-02T19:00:18.225" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="93" />
+  <attribute name= "Current Time Running" value="1741" />
+<allocation-satisfied id="412" threadId="0000000002204B00" bytesRequested="16392" />
+<af-end id="413" timestamp="2019-08-02T19:00:18.225" threadId="0000000002205488" success="true" />
+<exclusive-end id="414" timestamp="2019-08-02T19:00:18.225" durationms="15.358" />
+
+<concurrent-kickoff id="415" timestamp="2019-08-02T19:00:18.281">
+  <kickoff reason="threshold reached" targetBytes="2159162" thresholdFreeBytes="298018" remainingFree="243048" tenureFreeBytes="243048" />
+</concurrent-kickoff>
+<exclusive-start id="416" timestamp="2019-08-02T19:00:18.281" intervalms="70.612">
+  <response-info timems="0.151" idlems="0.084" threads="1" lastid="0000000002208700" lastname="Thread-8" />
+</exclusive-start>
+<cycle-start id="417" type="global" contextid="0" timestamp="2019-08-02T19:00:18.281" intervalms="70.333" />
+<exclusive-end id="418" timestamp="2019-08-02T19:00:18.281" durationms="0.110" />
+
+<exclusive-start id="419" timestamp="2019-08-02T19:00:18.282" intervalms="1.269">
+  <response-info timems="0.028" idlems="0.028" threads="0" lastid="0000000002208700" lastname="Thread-8" />
+</exclusive-start>
+<af-start id="420" threadId="0000000002209088" totalBytesRequested="32776" timestamp="2019-08-02T19:00:18.282" intervalms="71.895" />
+<concurrent-aborted id="421" timestamp="2019-08-02T19:00:18.282">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="422" type="global" contextid="417" timestamp="2019-08-02T19:00:18.282" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="93" />
+  <attribute name= "Current Time Running" value="1741" />
+<cycle-start id="423" type="global" contextid="0" timestamp="2019-08-02T19:00:18.282" intervalms="1.583" />
+<gc-start id="424" type="global" contextid="423" timestamp="2019-08-02T19:00:18.282">
+  <mem-info id="425" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="4053888" >
+  <allocated-bytes non-tlh="131104" tlh="3922784" />
+  <largest-consumer threadName="Thread-8" threadId="0000000002208700" bytes="731408" />
+</allocation-stats>
+<gc-op id="426" type="mark" timems="1.128" contextid="423" timestamp="2019-08-02T19:00:18.284">
+  <trace-info objectcount="40802" scancount="33049" scanbytes="1989420" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="65" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="101" cleared="0" enqueued="0" />
+  <stringconstants candidates="3944" cleared="0"  />
+</gc-op>
+<gc-op id="427" type="sweep" timems="0.270" contextid="423" timestamp="2019-08-02T19:00:18.284" />
+<mem-info id="428" free="4079984" total="8388608" percent="48">
+  <mem type="tenure" free="4079984" total="8388608" percent="48" micro-fragmented="5906">
+    <mem type="soa" free="3997040" total="8305664" percent="48" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="429" type="compact" timems="5.087" contextid="423" timestamp="2019-08-02T19:00:18.289">
+  <compact-info movecount="12846" movebytes="2365648" reason="no compaction" />
+</gc-op>
+<gc-end id="430" type="global" contextid="423" durationms="7.097" usertimems="12.000" systemtimems="0.000" timestamp="2019-08-02T19:00:18.290" activeThreads="8">
+  <mem-info id="431" free="4063016" total="8388608" percent="48">
+    <mem type="tenure" free="4063016" total="8388608" percent="48">
+      <mem type="soa" free="3980072" total="8305664" percent="47" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="432" type="global" contextid="423" timestamp="2019-08-02T19:00:18.290" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="31" />
+  <attribute name= "Current Time Running" value="1806" />
+<allocation-satisfied id="433" threadId="0000000002208700" bytesRequested="32776" />
+<af-end id="434" timestamp="2019-08-02T19:00:18.290" threadId="0000000002209088" success="true" />
+<exclusive-end id="435" timestamp="2019-08-02T19:00:18.290" durationms="7.949" />
+
+<concurrent-kickoff id="436" timestamp="2019-08-02T19:00:18.327">
+  <kickoff reason="threshold reached" targetBytes="2159162" thresholdFreeBytes="298018" remainingFree="261896" tenureFreeBytes="261896" />
+</concurrent-kickoff>
+<exclusive-start id="437" timestamp="2019-08-02T19:00:18.327" intervalms="44.790">
+  <response-info timems="0.068" idlems="0.068" threads="0" lastid="00000000021F5C00" lastname="Thread-3" />
+</exclusive-start>
+<cycle-start id="438" type="global" contextid="0" timestamp="2019-08-02T19:00:18.327" intervalms="44.546" />
+<exclusive-end id="439" timestamp="2019-08-02T19:00:18.327" durationms="0.182" />
+
+<exclusive-start id="440" timestamp="2019-08-02T19:00:18.329" intervalms="2.317">
+  <response-info timems="0.036" idlems="0.036" threads="0" lastid="00000000021FD300" lastname="Thread-5" />
+</exclusive-start>
+<af-start id="441" threadId="00000000021FDC88" totalBytesRequested="16392" timestamp="2019-08-02T19:00:18.329" intervalms="47.084" />
+<concurrent-aborted id="442" timestamp="2019-08-02T19:00:18.329">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="443" type="global" contextid="438" timestamp="2019-08-02T19:00:18.329" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="31" />
+  <attribute name= "Current Time Running" value="1806" />
+<cycle-start id="444" type="global" contextid="0" timestamp="2019-08-02T19:00:18.329" intervalms="2.517" />
+<gc-start id="445" type="global" contextid="444" timestamp="2019-08-02T19:00:18.330">
+  <mem-info id="446" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3901720" >
+  <allocated-bytes non-tlh="131104" tlh="3770616" />
+  <largest-consumer threadName="Thread-3" threadId="00000000021F5C00" bytes="885744" />
+</allocation-stats>
+<gc-op id="447" type="mark" timems="1.937" contextid="444" timestamp="2019-08-02T19:00:18.332">
+  <trace-info objectcount="40225" scancount="32536" scanbytes="1969176" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="65" cleared="0" enqueued="0" dynamicThreshold="15" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3944" cleared="0"  />
+</gc-op>
+<gc-op id="448" type="sweep" timems="1.608" contextid="444" timestamp="2019-08-02T19:00:18.333" />
+<mem-info id="449" free="4222096" total="8388608" percent="50">
+  <mem type="tenure" free="4222096" total="8388608" percent="50" micro-fragmented="20534">
+    <mem type="soa" free="4139152" total="8305664" percent="49" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="450" type="compact" timems="7.478" contextid="444" timestamp="2019-08-02T19:00:18.341">
+  <compact-info movecount="12269" movebytes="2241992" reason="no compaction" />
+</gc-op>
+<gc-end id="451" type="global" contextid="444" durationms="12.229" usertimems="16.000" systemtimems="4.000" timestamp="2019-08-02T19:00:18.342" activeThreads="8">
+  <mem-info id="452" free="4207152" total="8388608" percent="50">
+    <mem type="tenure" free="4207152" total="8388608" percent="50">
+      <mem type="soa" free="4124208" total="8305664" percent="49" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="453" type="global" contextid="444" timestamp="2019-08-02T19:00:18.342" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="72" />
+  <attribute name= "Current Time Running" value="1858" />
+<allocation-satisfied id="454" threadId="00000000021FD300" bytesRequested="16392" />
+<af-end id="455" timestamp="2019-08-02T19:00:18.342" threadId="00000000021FDC88" success="true" />
+<exclusive-end id="456" timestamp="2019-08-02T19:00:18.342" durationms="13.194" />
+
+<concurrent-kickoff id="457" timestamp="2019-08-02T19:00:18.391">
+  <kickoff reason="threshold reached" targetBytes="2159162" thresholdFreeBytes="298018" remainingFree="197136" tenureFreeBytes="197136" />
+</concurrent-kickoff>
+<exclusive-start id="458" timestamp="2019-08-02T19:00:18.391" intervalms="61.946">
+  <response-info timems="0.060" idlems="0.060" threads="0" lastid="0000000002200F00" lastname="Thread-6" />
+</exclusive-start>
+<cycle-start id="459" type="global" contextid="0" timestamp="2019-08-02T19:00:18.391" intervalms="61.720" />
+<exclusive-end id="460" timestamp="2019-08-02T19:00:18.391" durationms="0.161" />
+
+<exclusive-start id="461" timestamp="2019-08-02T19:00:18.393" intervalms="1.688">
+  <response-info timems="0.051" idlems="0.051" threads="0" lastid="00000000021FD300" lastname="Thread-5" />
+</exclusive-start>
+<af-start id="462" threadId="00000000021FDC88" totalBytesRequested="48" timestamp="2019-08-02T19:00:18.393" intervalms="63.580" />
+<concurrent-aborted id="463" timestamp="2019-08-02T19:00:18.393">
+  <reason value="insufficient progress made" />
+</concurrent-aborted>
+<cycle-end id="464" type="global" contextid="459" timestamp="2019-08-02T19:00:18.393" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="72" />
+  <attribute name= "Current Time Running" value="1858" />
+<cycle-start id="465" type="global" contextid="0" timestamp="2019-08-02T19:00:18.393" intervalms="1.850" />
+<gc-start id="466" type="global" contextid="465" timestamp="2019-08-02T19:00:18.393">
+  <mem-info id="467" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="4143656" >
+  <allocated-bytes non-tlh="131104" tlh="4012552" />
+  <largest-consumer threadName="Thread-6" threadId="0000000002200F00" bytes="922232" />
+</allocation-stats>
+<gc-op id="468" type="mark" timems="2.479" contextid="465" timestamp="2019-08-02T19:00:18.396">
+  <trace-info objectcount="41413" scancount="33566" scanbytes="2039580" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="65" cleared="0" enqueued="0" dynamicThreshold="16" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="102" cleared="0" enqueued="0" />
+  <stringconstants candidates="3944" cleared="0"  />
+</gc-op>
+<gc-op id="469" type="sweep" timems="1.780" contextid="465" timestamp="2019-08-02T19:00:18.397" />
+<mem-info id="470" free="3904280" total="8388608" percent="46">
+  <mem type="tenure" free="3904280" total="8388608" percent="46" micro-fragmented="12650">
+    <mem type="soa" free="3821336" total="8305664" percent="46" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="471" type="compact" timems="9.087" contextid="465" timestamp="2019-08-02T19:00:18.407">
+  <compact-info movecount="13457" movebytes="2543368" reason="no compaction" />
+</gc-op>
+<gc-end id="472" type="global" contextid="465" durationms="14.502" usertimems="20.000" systemtimems="4.000" timestamp="2019-08-02T19:00:18.408" activeThreads="8">
+  <mem-info id="473" free="3893488" total="8388608" percent="46">
+    <mem type="tenure" free="3893488" total="8388608" percent="46">
+      <mem type="soa" free="3810544" total="8305664" percent="45" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="474" type="global" contextid="465" timestamp="2019-08-02T19:00:18.408" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="88" />
+  <attribute name= "Current Time Running" value="1924" />
+<allocation-satisfied id="475" threadId="00000000021FD300" bytesRequested="48" />
+<af-end id="476" timestamp="2019-08-02T19:00:18.408" threadId="00000000021FDC88" success="true" />
+<exclusive-end id="477" timestamp="2019-08-02T19:00:18.408" durationms="15.223" />
+
+<concurrent-kickoff id="478" timestamp="2019-08-02T19:00:18.459">
+  <kickoff reason="threshold reached" targetBytes="2159162" thresholdFreeBytes="298018" remainingFree="297184" tenureFreeBytes="297184" />
+</concurrent-kickoff>
+<exclusive-start id="479" timestamp="2019-08-02T19:00:18.460" intervalms="67.010">
+  <response-info timems="0.061" idlems="0.061" threads="0" lastid="00000000021F9800" lastname="Thread-4" />
+</exclusive-start>
+<cycle-start id="480" type="global" contextid="0" timestamp="2019-08-02T19:00:18.460" intervalms="66.783" />
+<exclusive-end id="481" timestamp="2019-08-02T19:00:18.460" durationms="0.090" />
+
+<exclusive-start id="482" timestamp="2019-08-02T19:00:18.463" intervalms="3.263">
+  <response-info timems="0.054" idlems="0.054" threads="0" lastid="000000000220FF00" lastname="Thread-10" />
+</exclusive-start>
+<af-start id="483" threadId="0000000002210888" totalBytesRequested="32776" timestamp="2019-08-02T19:00:18.463" intervalms="70.291" />
+<gc-start id="484" type="global" contextid="480" timestamp="2019-08-02T19:00:18.463">
+  <mem-info id="485" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3785360" >
+  <allocated-bytes non-tlh="65552" tlh="3719808" />
+  <largest-consumer threadName="Thread-6" threadId="0000000002200F00" bytes="989576" />
+</allocation-stats>
+<concurrent-halted id="486" timestamp="2019-08-02T19:00:18.463">
+  <halted state="Class scanning incomplete" status="clean trace" />
+  <traced bytesTarget="2159162" bytesTotal="624164" bytesByMutator="32332" bytesByHelper="591832" percent="28" />
+  <cards cleaned="0" thresholdBytes="117400" />
+</concurrent-halted>
+<gc-op id="487" type="tracing" timems="0.356" contextid="480" timestamp="2019-08-02T19:00:18.464">
+  <trace bytesTraced="545976" workStackOverflowCount="0" />
+</gc-op>
+<gc-op id="488" type="card-cleaning" timems="0.196" contextid="480" timestamp="2019-08-02T19:00:18.464">
+  <card-cleaning cardsCleaned="232" bytesTraced="439492" workStackOverflowCount="0" />
+</gc-op>
+<gc-op id="489" type="mark" timems="0.604" contextid="480" timestamp="2019-08-02T19:00:18.465">
+  <trace-info objectcount="5310" scancount="4938" scanbytes="529644" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="65" cleared="0" enqueued="0" dynamicThreshold="14" maxThreshold="32" />
+  <references type="weak" candidates="277" cleared="0" enqueued="0" />
+  <references type="phantom" candidates="101" cleared="0" enqueued="0" />
+  <stringconstants candidates="3944" cleared="0"  />
+</gc-op>
+<gc-op id="490" type="sweep" timems="0.249" contextid="480" timestamp="2019-08-02T19:00:18.465" />
+<mem-info id="491" free="3855024" total="8388608" percent="45">
+  <mem type="tenure" free="3855024" total="8388608" percent="45" micro-fragmented="0">
+    <mem type="soa" free="3772080" total="8305664" percent="45" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+</mem-info>
+<gc-op id="492" type="compact" timems="5.203" contextid="480" timestamp="2019-08-02T19:00:18.470">
+  <compact-info movecount="13492" movebytes="2601456" reason="no compaction" />
+</gc-op>
+<gc-end id="493" type="global" contextid="480" durationms="7.346" usertimems="12.000" systemtimems="0.000" timestamp="2019-08-02T19:00:18.471" activeThreads="8">
+  <mem-info id="494" free="3831304" total="8388608" percent="45">
+    <mem type="tenure" free="3831304" total="8388608" percent="45">
+      <mem type="soa" free="3748360" total="8305664" percent="45" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<cycle-end id="495" type="global" contextid="480" timestamp="2019-08-02T19:00:18.471" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="27" />
+  <attribute name= "Current Time Running" value="1987" />
+<allocation-satisfied id="496" threadId="000000000220FF00" bytesRequested="32776" />
+<af-end id="497" timestamp="2019-08-02T19:00:18.471" threadId="0000000002210888" success="true" />
+<exclusive-end id="498" timestamp="2019-08-02T19:00:18.471" durationms="7.911" />
+
+<concurrent-kickoff id="499" timestamp="2019-08-02T19:00:18.532">
+  <kickoff reason="threshold reached" targetBytes="1609632" thresholdFreeBytes="223576" remainingFree="223512" tenureFreeBytes="223512" />
+</concurrent-kickoff>
+<exclusive-start id="500" timestamp="2019-08-02T19:00:18.532" intervalms="68.940">
+  <response-info timems="0.062" idlems="0.062" threads="0" lastid="0000000001EB5A00" lastname="main" />
+</exclusive-start>
+<cycle-start id="501" type="global" contextid="0" timestamp="2019-08-02T19:00:18.532" intervalms="72.220" />
+<exclusive-end id="502" timestamp="2019-08-02T19:00:18.532" durationms="0.099" />
+
+<exclusive-start id="503" timestamp="2019-08-02T19:00:18.537" intervalms="5.296">
+  <response-info timems="0.034" idlems="0.034" threads="0" lastid="0000000001EB5A00" lastname="main" />
+</exclusive-start>
+<af-start id="504" threadId="0000000001EB6388" totalBytesRequested="16" timestamp="2019-08-02T19:00:18.537" intervalms="74.174" />
+<gc-start id="505" type="global" contextid="501" timestamp="2019-08-02T19:00:18.537">
+  <mem-info id="506" free="82944" total="8388608" percent="0">
+    <mem type="tenure" free="82944" total="8388608" percent="0">
+      <mem type="soa" free="0" total="8305664" percent="0" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="3741344" >
+  <allocated-bytes non-tlh="166640" tlh="3574704" />
+  <largest-consumer threadName="main" threadId="0000000001EB5A00" bytes="270464" />
+</allocation-stats>
+<concurrent-halted id="507" timestamp="2019-08-02T19:00:18.537">
+  <halted state="Class scanning incomplete" status="clean trace" />
+  <traced bytesTarget="1609632" bytesTotal="499484" bytesByMutator="146076" bytesByHelper="353408" percent="31" />
+  <cards cleaned="0" thresholdBytes="88075" />
+</concurrent-halted>
+<gc-op id="508" type="tracing" timems="1.037" contextid="501" timestamp="2019-08-02T19:00:18.539">
+  <trace bytesTraced="602748" workStackOverflowCount="0" />
+</gc-op>
+<gc-op id="509" type="card-cleaning" timems="0.848" contextid="501" timestamp="2019-08-02T19:00:18.539">
+  <card-cleaning cardsCleaned="137" bytesTraced="32896" workStackOverflowCount="0" />
+</gc-op>
+<gc-op id="510" type="mark" timems="1.345" contextid="501" timestamp="2019-08-02T19:00:18.541">
+  <trace-info objectcount="976" scancount="1138" scanbytes="40048" />
+  <finalization candidates="25" enqueued="0" />
+  <references type="soft" candidates="61" cleared="0" enqueued="0" dynamicThreshold="14" maxThreshold="32" />
+  <references type="weak" candidates="274" cleared="16" enqueued="16" />
+  <references type="phantom" candidates="104" cleared="12" enqueued="12" />
+  <stringconstants candidates="4353" cleared="45"  />
+</gc-op>
+<gc-op id="511" type="sweep" timems="1.500" contextid="501" timestamp="2019-08-02T19:00:18.542" />
+<mem-info id="512" free="5945160" total="8388608" percent="70">
+  <mem type="tenure" free="5945160" total="8388608" percent="70" micro-fragmented="79950">
+    <mem type="soa" free="5862216" total="8305664" percent="70" />
+    <mem type="loa" free="82944" total="82944" percent="100" />
+  </mem>
+  <pending-finalizers system="0" default="0" reference="28" classloader="0" />
+</mem-info>
+<gc-op id="513" type="compact" timems="9.191" contextid="501" timestamp="2019-08-02T19:00:18.552">
+  <compact-info movecount="29213" movebytes="2058184" reason="no compaction" />
+</gc-op>
+<gc-end id="514" type="global" contextid="501" durationms="15.052" usertimems="24.000" systemtimems="4.000" timestamp="2019-08-02T19:00:18.552" activeThreads="8">
+  <mem-info id="515" free="6046176" total="8388608" percent="72">
+    <mem type="tenure" free="6046176" total="8388608" percent="72">
+      <mem type="soa" free="5963232" total="8305664" percent="71" />
+      <mem type="loa" free="82944" total="82944" percent="100" />
+    </mem>
+    <pending-finalizers system="0" default="0" reference="28" classloader="0" />
+  </mem-info>
+</gc-end>
+<cycle-end id="516" type="global" contextid="501" timestamp="2019-08-02T19:00:18.553" />
+  <attribute name="elasticGC enabled" value="1" />
+  <attribute name= "numThreadsSpecified" value="0" />
+  <attribute name="heapSize specified" value="8388608" />
+  <attribute name= "numCores" value="8" />
+  <attribute name ="GC Interval" value="0" />
+  <attribute name ="Control flow" value="3" />
+  <attribute name="GC Util Range Max" value="99" />
+  <attribute name="Current GC Util" value="91" />
+  <attribute name= "Current Time Running" value="2069" />
+<allocation-satisfied id="517" threadId="0000000001EB5A00" bytesRequested="16" />
+<af-end id="518" timestamp="2019-08-02T19:00:18.553" threadId="0000000001EB6388" success="true" />
+<exclusive-end id="519" timestamp="2019-08-02T19:00:18.553" durationms="15.405" />
+
+</verbosegc>
+
