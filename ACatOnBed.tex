@@ -1,0 +1,50 @@
+This chapter provides an overview of the entire mode \emph{A Cat On A Bed} that discusses the hypotheses, explains the different
+phases briefly, requirements for evaluating the mode and the overarching
+experimental methodology.
+\subsection{Hypothesis}
+The problem addressed by this research is the performance interference
+caused by spikes in garbage collection (GC) utilisation in multitenant environments. The
+hypothesis is that \emph{A Cat On A Bed} will reduce GC utilisation and have a
+positive impact on performance interference.
+\subsection{Different phases}
+There are three development phases implemented to address the above
+hypothesis: naive threshold-based, \emph{Proportional-Integral-Derivative}
+(PID) controller-influenced and \emph{Linear Quadratic Regulator} (LQR)
+controller-influenced. Each phase addresses the problem using different
+approaches to understand which approach is most effective. The rationale
+behind using three approaches is that the current methods to manage GC
+utilisation, as established by the literature, are not valid on the
+cloud where there needs to be some guarantee for cloud providers around
+resource usage. In addition, empirical-based discussion of GC and its
+underlying resource usage is not provided by the literature; therefore,
+it was not clear before development which approach would be the most
+effective in managing GC utilisation.
+\newline\newline
+There is a final testing phase,\emph{ Many Cats On A Bed}, that focuses on the
+behaviour of the mode in multitenant environments. The prior development
+phases focused on \emph{A Cat On A Bed} in a single virtual machine
+environment.
+\subsection{Evaluation}
+In evaluating the different phases, the emphasis is on GC utilisation
+management. Therefore, any phases that show a lower GC utilisation when
+compared to the original JVM is considered effective. Another essential
+metric is performance time, which shows the impact of the added code on
+the time it takes to execute an application. For the final testing
+phase, \emph{Many Cats On A Bed}, additional metrics are considered, such as
+CPU utilisation and memory utilisation. 
+\newline\newline 
+The results are aggregated by size, benchmark and policy. They are not aggregated further into a single graph as the performance of the mode depends on the size, benchmark and policy. Aggregating this into a single graph would lead to misleading and, potentially, erroneous conclusions being made as it would hide the significance or lack of significance of the data. The results presented in this report, i.e. the graphs, are an excerpt of the full results. The full graphs are available via a Github repository referenced in Appendix A. 
+\subsection{Methodology}
+The experimental methodology involves repeating tests 16 times. In
+addition, tests are performed on both 4-CPU and 8-CPU Linux Xenial
+machines. In terms of the aggregation of tests, there are multiple
+aggregations in place. Firstly, tests are aggregated according to their
+phase/JVM. Secondly, due to the nature of DaCapo benchmarks
+\cite{blackburn2006dacapo}, tests can be aggregated into the
+different benchmarks (\emph{avrora, jython, pmd, sunflow} and \emph{xalan}) and the
+different sizes (small, default and large). Finally, as each GC policy
+has different behaviour, the tests are aggregated according to the GC
+policy chosen.
+
+\subsection{Summary}
+This chapter provided an overview of \emph{A Cat On A Bed} mode including the evaluation and experimental methodology. The next four chapters will discuss each development and testing phase. 

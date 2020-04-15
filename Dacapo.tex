@@ -1,0 +1,39 @@
+For all development phases, the test benchmark was the DaCapo Benchmark Suite 9.12-MR1-Bach \cite{blackburn2006dacapo}. DaCapo Benchmark Suite 9.12-MR1-Bach was chosen as it provides a range of different Java applications with unique run-time behavior. Provided Java applications were selected if they consistently ran without exception on an unmodified Java Virtual Machine (JVM). This
+criterion relates to the different JVMs used: Oracle JDK8/OpenJDK8 for the development of test benchmarks and Eclipse Open J9 - JDK11 for this research.
+\newline\newline
+The table below provides a list of the chosen benchmarks and a description of their characteristics. These characteristics impact on the benchmark's performance with the modified JVMs.
+
+\begin{center}
+\begin{tabular}{|m{3cm}|m{8cm}|}
+\hline
+\textbf{Benchmark} & \textbf{Description}\tabularnewline
+\hline
+
+\emph{avrora} & This benchmark provides tools for AVR micro-controllers
+\cite{dacapobenchmark2018}. The benchmark has fine-grained
+concurrency.\tabularnewline
+\hline
+\emph{jython} & A Python interpreter \cite{blackburn2006dacapo}. This
+benchmark generates a high amount of objects to the heap size \cite{blackburn2006dacapo}.\tabularnewline
+\hline
+
+\emph{pmd} & A source code analyser made for Java programs \cite{blackburn2006dacapo}. This benchmark has irregular object lifetime patterns;
+however, it is more stable over time \cite{blackburn2006dacapo}.\tabularnewline
+\hline
+
+\emph{sunflow} & A raytracing system for images \cite{dacapobenchmark2018}. It has a high allocation rate \cite{lengauer2017comprehensive}.\tabularnewline
+\hline
+
+\emph{xalan} & This benchmark transforms XML documents \cite{blackburn2006dacapo}. It has a high allocation rate \cite{blackburn2006dacapo}.\tabularnewline
+\hline
+
+\end{tabular}
+\end{center}
+The test benchmarks chosen had three different sizes: small, default and
+large. The testing for the three development phases incorporated all
+three sizes where possible.
+\newline\newline
+Some of the benchmarks, particularly \emph{pmd}, has a shorter runtime than the other benchmarks. A shorter runtime means modifications to garbage collector need to take effect immediately to benefit the application. Otherwise, the benefits from the modifications will not be observable. 
+
+
+

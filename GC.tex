@@ -1,0 +1,70 @@
+Garbage Collection (GC) is a background process found in object-oriented languages that manage memory \cite{micrsoftGC}. The GC manages memory by reclaiming or freeing up used memory. While an application is running, objects will be created using up memory \cite{micrsoftGC}. GC is run
+automatically when any of the following conditions are met:
+\begin{itemize}
+    \item Low physical or virtual memory
+    \item Memory used by objects on the heap exceeds a specified threshold
+    \item A user invokes the GC, i.e. System.GC or GC.Collect \cite{persson2006gc2,micrsoftGC}
+\end{itemize}
+This research utilises the OpenJ9 JVM created by IBM, so the
+focus is on IBM's GC policies. There are four central policies;
+Balanced, OptAvgPause, OptThruPut and, the default, GenCon \cite{persson2006gc1}.
+\newline\newline
+There are concepts essential to GC as a topic. These include
+throughput and pause time. Throughput for GC refers to 'the amount of data processed by an application' \cite{persson2006gc2}. Pause time
+for GC refers to the amount of time when the GC paused all application threads \cite{persson2006gc2}.
+\subsubsection{Garbage Collection Policies}
+Understanding how the GC policies work is important as different policies can provide varied benefits with different applications \cite{neu2014automatic}. For this research, it is crucial to
+understand how these policies work as the proposed elastic mode may not necessarily see the same results depending on the GC policy used.
+\newline\newline
+\emph{GenCon}
+\newline\newline
+GenCon is the default policy and separates heap into nursery and
+tenure. It handles short-lived objects
+in nursery space and longer-lived objects will be in tenure space. Within the nursery space, it is split into the allocate and survivor space \cite{nartovich2007ibm}. While the application is running, objects are put into the allocate
+space. Once this fills up, any objects that are still alive will then be copied into survivor or tenure space dependent on the object's age \cite{persson2006gc1}. GC is only triggered when the allocate space is full. This process is also
+explained in Figure \ref{fig:gencon}. Furthermore, the tenure space is concurrently marked to determine
+if objects are alive or not \cite{nartovich2007ibm}. The benefit of GenCon is that it performs smaller and more frequent garbage collections on the nursery, reducing the need for
+stop-the-world phases \cite{persson2006gc2}. It is particularly useful when
+applications have short-lived objects as they will see shorter pause
+times and good throughput/performance \cite{persson2006gc2}.
+\begin{figure} [H]
+    \centering
+    \includegraphics[width = \textwidth]{images/heapsizeGencon}
+    \caption{Heap during Gencon }
+    \label{fig:gencon}
+\end{figure}
+\emph{Balanced}
+\newline\newline
+Balanced splits the heap into many regions and performs garbage collection on each region \cite{ibmBalanced}. Each region is managed
+separately. All of the regions are the same size \cite{ibmwhenbalanced}. Having different
+regions with independent GC means that the entire heap does not necessarily
+need to be checked during GC \cite{ibmwhenbalanced}. This can reduce the length of GC pauses.
+While the application is running, objects are allocated to an empty set of regions \cite{ibmBalanced}. When this set of regions is full, a
+partial GC is performed on this set. Other regions may also have a GC performed
+if it is considered appropriate by the garbage collector \cite{ibmwhenbalanced}.This enables minimal pause times as stop-the-world phases are not required for the entire heap but portions \cite{ibmBalanced}. This policy is more suited for applications that need a large heap. An issue or
+limitation with region-based GC policy is that some objects that need collecting will not be collected \cite{ibmwhenbalanced}. This is because a partial GC only reviews
+part of the heap.
+\newline\newline
+\emph{OptAvgPause}
+\newline\newline
+Similar to OptThruPut, OptAvgPause uses a single heap with concurrent marking to help
+reduce pauses \cite{nartovich2007ibm}. It has a concurrent mark and sweep
+phase. Having a concurrent mark and sweep phase means the application
+thread, also known as the mutator, marks objects \cite{persson2006gc2}, thus reducing GC pauses. After GC has been run, the mutator threads sweeps objects as well \cite{nartovich2007ibm}. There is also be a background GC thread performing marking when
+possible \cite{persson2006gc1}. OptAvgPause is useful when there is a need to reduce GC pauses.
+\newline\newline
+Examples of relevant scenarios include having a sizeable heap or
+graphical user interface application \cite{persson2006gc1}. A consequence of
+OptAvgPause is that the application is paused for shorter periods, generally
+\cite{persson2006gc2}.
+\newline\newline
+\emph{OptThruPut}
+\newline\newline
+OptThruPut uses a single heap as well. However, the focus is on
+performance rather than reducing GC pause time \cite{nartovich2007ibm}. OptThruPut is made up of three main phases; mark, sweep and compact \cite{nartovich2007ibm}. The first two phases always run during GC. However, compaction may not always happen. During the mark phase, all objects currently in use are marked. The sweep phase then removes all other objects. Compaction generally occurs if there is no ability to reclaim enough free space. During compaction, all of the objects are moved to the beginning of the heap and aligned with no gaps between the objects \cite{persson2006gc1}. The implementation of the three phases is explained in Figure \ref{fig:heap_optthruput} \cite{persson2006gc2}. The figure shows the heap before and after the different phases.
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{images/optthruputheapsize}
+    \caption{Heap during Optthruput}
+    \label{fig:heap_optthruput}
+\end{figure}
