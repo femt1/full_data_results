@@ -1,0 +1,330 @@
+The relevant and related literature for this research area is diverse with various approaches suggested to mitigate or reduce performance
+interference in multitenant clouds. Some of these approaches include
+optimising virtual machines \cite{steinder2007server}, scaling resources
+generally \cite{lorido2014review}, improving the ability to monitor Service Level Objectives (SLOs) to
+manage resources more effectively \cite{patel2009service} and targeting
+resource-intensive processes \cite{chen2015cloudscope,maas2014case}. 
+\newline\newline
+The first three approaches form related work for this research. The final approach is the background for this research. In addition to these implementable approaches, there is also significant discussion on the theoretical approach/methodology to support the implementation. Hence, this literature review  discusses both empirical approaches and
+theoretical methodologies.
+\subsection{Implementation approaches}
+Literature suggests four potential implementation approaches to reduce performance interference in multitenant clouds; scaling resources \cite{naskos2015dependable}, monitoring Service Level Objectives/Service Level Agreements (SLOs/SLAs) more effectively, reducing
+resource-intensiveness of specific processes \cite{maas2018hardware} and
+optimising virtual machines. Within each broad area, there are nuances within the literature, reflecting the different aims and environment of the literature.
+\subsubsection{Scaling resources}
+For the first approach, scaling resources for cloud computing\footnote{See Chapter 2 for more detail on cloud computing},
+there are two areas: IaaS and PaaS scaling \cite{vaquero2011dynamically}.  However, there is greater focus by literature,
+historically, on IaaS scaling \cite{youseff2008toward}. IaaS
+scaling occurs on clouds that offer virtual hardware infrastructure \cite{vaquero2011dynamically, youseff2008toward}.
+PaaS scaling is a more novel concept that links to the
+current proliferation of containerised solutions, such as Docker and Kubernetes. Due to the novelty of PaaS scaling, there is significantly
+less literature compared to IaaS scaling. Therefore, this literature
+review focuses on IaaS scaling. 
+\newline\newline
+According to literature, there
+are two conventional methods for IaaS scaling: horizontal and vertical
+scaling \cite{sotiriadis2016vertical}. The concept of horizontal scaling usually refers to the change in the
+number of virtual machines/instances part of the cloud or cluster \cite{naskos2015dependable}. In contrast, vertical scaling increases the resources
+allocated to the virtual machine , such as memory \cite{coutinho2015elasticity}. Horizontal scaling was initially
+widespread as most operating systems did not support any vertical
+scaling on-the-fly \cite{vaquero2011dynamically,nandgaonkar2014comprehensive}. However, vertical scaling is becoming more prolific in
+terms of literature \cite{coutinho2015elasticity}. The increased popularity of
+vertical scaling reflects the growing developments in cloud computing as
+well as the shift towards lightweight virtualisation , such as
+containerised solutions \cite{morabito2018consolidate}.
+\newline\newline
+Generally, the solutions influenced by horizontal scaling focus on
+instantiating additional replicas of virtual machines. For example,
+Lorido-Botran, Miguel-Alonso and Lozano (2014) suggest a threshold-based
+architecture used to determine the number of virtual machines.
+Industry-based solutions apply a similar approach, such as RightScale
+(as cited by Vaquero et al.,2011) and Amazon's
+autoscaling services (cited by Vaquero et al., 2011).
+Both of these industry-based solutions scale VMs based on predefined
+metrics , such as CPU utilisation.
+\newline\newline
+More complex logic can be used, such as a whole application scaling
+approach. An example of a whole application scaling is the logic applied in Kesavan et al.`s (2010) solution of Cloud Capacity
+manager. The solution allows for a hierarchical viewing of a datacenter
+that enables a balanced load across the different levels of the
+hierarchy. A hierarchical view matches the inherent structure
+of the datacenter and also captures co-located VMs \cite{kesavan2013ccm}. Other related
+solutions include load balancing across VM replicas. An example is an
+industry-based solution from Amazon: Non-scalable Load Balancing (cited
+by Vaquero et al., 2011). This mechanism provides the
+ability to distribute load across VM replicas.
+\newline\newline
+Despite the inability of most operating systems to execute vertical
+scaling, the method has become more popular considering the current
+developments in cloud computing, including containerised solutions \cite{paladi2018towards}. According to Coutinho et al. (2014), the
+approaches used for vertical scaling can be divided into two main areas:
+resizing and replacement. Replacement refers to the adding of servers
+with more capability \cite{patros2016resource}, enabling cloud providers to increase resources. However, based on the literature
+review conducted by Coutinho et al. (2014), there is limited literature
+focusing on the replacement approach. Therefore, most of the literature focuses on resizing. 
+\newline\newline
+Resizing is considered to be an on-the-fly assignment of resources
+during runtime. An example of resizing is Dawoud, Takouna and Meinel's
+(2011) suggestion of an elastic VM scaling architecture utilising
+threshold-based rules. The rules relate to specified performance metric, such as CPU utilisation. Dawoud et al.`s (2011) system detects if
+the monitored metric exceeds the threshold resulting in resources of the
+virtual machine being scaled up. The described benefits of this system
+are the reduced response time and overhead reducing SLO
+violations \cite{dawoud2011elastic}.
+\newline\newline
+Another architecture was CloudScale \cite{shen2011cloudscale}
+developed for the RUBiS web server in scenarios with both single and multiple VMs. Instead of using thresholds, CloudScale relies on
+predictive logic to avoid under-estimation
+errors and conflicts caused by concurrent resource scaling. Predictive
+logic for CloudScale includes the use of signature and state-driven
+algorithms, such as discrete-time Markov chains \cite{shen2011cloudscale}. The choice of predictive logic allows greater
+adaptability for multitenant scenarios \cite{antonescu2015service,das2016automated}. Using threshold-based rules would
+make it difficult in multitenant scenarios as the threshold would need
+to adjust based on the number of VMs present in the scenario.
+CloudScale, in particular, contrasts to the earlier discussed literature
+relating to resizing as it considers multi-tenancy.
+\newline\newline
+A limitation for this area of literature on resource scaling is the
+dependency of the solutions on the underlying logic/rules that determine
+whether scaling should occur \cite{alhamazani2013overview}. Therefore, the
+effectiveness of the solutions is solely dependent on the effectiveness
+of the underlying logic. For example, if the suggested threshold-based
+rule is too low, it results in excessive resource scaling. In
+contrast, an overly high threshold-based rule would result in no change
+in resource leading to potentially insufficient resources in some scenarios.
+The solutions are then only effective in particular scenarios or when
+application behaviour is known \cite{calheiros2011virtual}. In the latter case, it links to another limitation in that it is challenging to
+create rules or logic on-the-fly.
+\newline\newline
+For example, Calheiros et al. (2011) suggest an approach that
+dynamically adjusts resources based on a heuristic analysis of system
+load. More specifically, this approach considers how the workload
+changes over time through factoring in arrival pattern and
+resource demands of requests. However, this information is necessary
+before runtime. Current efforts to apply concepts, such as reinforcement
+learning \cite{lorido2014review} reduce the reliance on
+pre-emptively knowing runtime behaviour. Similarly, Patros, Dilli, Kent
+and Dawson (2017) suggested the solution of Dynamically Compiled
+Artifact Sharing, which reused previous experience to decide how to scale cloud instances. This solution focused on the consumption of resources by the whole cloud instance \cite{patros2017dynamically}.
+\subsubsection{Improving the effectiveness of SLO/SLA monitoring}
+Improving the ability to monitor SLOs/SLAs is considered a potential
+solution to performance interference as it, ideally, leads to the
+identification of scenarios that will lead to performance interference \cite{zeginis2018slo}. Primarily, SLO monitoring is
+a detective measure for performance interference. Hence, the usual
+process for SLO monitoring is measuring the resources used, comparing
+the resources used against SLOs and then taking corrective action if
+required \cite{syed2017monitor}. The corrective
+action usually occurs if the resource use is excessive compared to the
+SLOs. The literature does not usually consider scenarios where the resource
+usage is considerably less than SLOs; instead the literature focuses on scenarios that
+lead to SLO violation \cite{labidi2017cloud, shen2011cloudscale,mosallanejad2013ha}. Most of the
+literature in this area focuses on improving current monitoring
+techniques either by improving the quality of data collected or
+increasing the scope of data collected \cite{mosallanejad2013ha}.
+\newline\newline
+Improving the quality of data collected can be achieved in a variety of
+ways \cite{labidi2017cloud}; however the
+shared focus for the literature is improving the way SLAs/SLOs are
+understood \cite{madni2016resource}. Better understanding
+SLAs/SLOs allows cloud providers to collect data that helps check
+compliance with SLAs/SLOs. Ludwig et al. (2015) proposed rSLA, which is
+a specific language that can be used primarily to express SLAs. An
+attached component to rSLA is the monitoring system that interprets the
+SLA and evaluates compliance based on collected and calculated
+measurements \cite{ludwig2015rsla}. Using this system allows for a better quality of data as
+the data collected is more aligned with the actual SLA.
+\newline\newline
+Serrano et al. (2016) suggest a similar approach using a different
+language: CSLA. This language enabled the ability for providers to
+express contracts in such a way that it should minimise SLA violations.
+The minimisation of SLA violations occurs as CSLA enables the ability
+for providers to discuss the proportion of necessary SLO compliance at a
+given time \cite{serrano2016sla}.
+\newline\newline
+Both of these approaches focus on the interpretation of SLAs to ensure
+collection of appropriate data. However, neither approach necessarily
+improves the quality of the data collection process; instead, they focus
+on the initial step of ensuring relevant (and hence quality) data. An
+alternative approach that focuses on improving data quality is
+Patel, Ranabahu and Sheth's (2009). Their solution adds additional
+measurement, conditional evaluation and management services to the
+existing SLO monitoring. Additional measurements add an element of
+redundancy into the process as well as ensuring the entire process is
+better managed \cite{patel2009service}. This solution implies that the
+resources used by a client will be better measured. Hence, SLO
+violations are more likely to be avoided.
+\newline\newline
+Increasing the scope of data collected usually relates to adjusting how
+data is collected and to the extent of the deployment of the monitoring
+system. Dastjerdi et al. (2012) present an architecture that
+automatically deploys monitoring services by recognising the potential
+for greater monitoring through third-party monitoring services. The
+deployment of third-party monitoring services occurs if there is a
+capability of the cloud to support the services. The implications of
+this are that additional metrics and data can be considered by the cloud
+even if the cloud itself lacks the internal services to monitor the data \cite{dastjerdi2012autonomous}. An alternative solution that avoids any
+privacy issues relating to third party monitoring services is SLAM, a
+framework \cite{moustafa2015sla}. SLAM monitors both physical and
+virtual resources. Thus, allowing data to be collected relating to both
+high-level metrics, such as response time, as well as lower-level
+metrics like availability and uptime \cite{moustafa2015slam}. Having additional metrics can help provide a complete
+picture of SLA compliance \cite{labidi2017cloud}.
+\newline\newline
+A fundamental flaw with any solutions put forward relating to SLO
+monitoring is that it is difficult to have any real-time monitoring \cite{katsaros2011building}. In other words, there is always an
+inherent delay between the resource usage and the collection of data
+showing resource usage. Even though it is acceptable in other research
+areas to have this delay, in performance interference research, this
+delay can be incredibly costly \cite{park2011markov}. The expensiveness of delay is because
+performance interference may have already occurred by the time the data
+is collected indicating that performance interference will occur. Hence,
+SLO violations would have occurred before corrective action takes place \cite{aceto2013cloud}. There is some attempt to
+create an architecture that does not require real-time monitoring such
+as Park et al.`s(2011) solution. This solution uses Markov chains to predict
+resource states \cite{park2011markov}. However, there is no guarantee that this type of
+prediction is more effective than using real-time monitoring.
+\subsubsection{Optimising virtual machines}
+Another suggested solution area is optimising virtual machines and how
+they operate. Most of this literature focuses on adjusting the resources
+allocated to each of the virtual machines \cite{sharma2016containers}. An example is Ginkgo that redistributes memory among VMs
+dynamically \cite{hines2011applications}. Gingko applied control theory concepts
+through a closed control loop. This loop allows a performance model to
+be built that calculates the memory required by each VM. The findings
+from Hines et al.`s (2011) work is that Gingko enables significantly
+improved memory usage to provide benefits to cloud providers.
+\newline\newline
+A limitation to Gingko is that its sole objective is to maximise
+performance \cite{hines2011applications}. This objective is not necessary for
+all applications. In addition, Gingko's testing did not extend to multitenant clouds. Therefore, the findings relating to memory gains is
+not repeatable in multitenant clouds scenarios.
+\subsubsection{Reducing the resource-intensiveness of specific processes}
+Instead of focusing on the cloud's resources, an alternative approach
+targets the applications by reducing the resource-intensiveness of
+specific processes that support the application. Literature focuses on
+resource-intensive processes in object-oriented languages, namely
+garbage collection \cite{patros2018resource}. This area of literature is the
+background for this research.
+\newline\newline
+Garbage collection is considered a resource-intensive process \cite{amaral2018performance} as it must walk through the heap and decide which
+objects should survive. Chapter 2 provides further detail about garbage
+collection. Reducing the resource-intensiveness of garbage collection
+has been the focus of significant effort by the literature. There are
+many solutions suggested by the literature, such as adjusting the heap
+size, reorganising memory, improving the speed of the garbage collection
+process inherently and preemptively calls garbage collection. Each of
+these solutions targets potential bottlenecks in or relating to the
+garbage collection process.
+\newline\newline
+The literature frequently focuses on heap size adjustments \cite{spinner2015proactive}. The focus reflects the importance of the heap size. Yang,
+Ting, Hertz, Moss and Kaplan (2004) suggest that adjusting the heap size
+based on the memory footprint of the application is effective in
+reducing the resource-intensiveness of GC. Yang et al.`s (2004)
+approach involves considering the current and forecasted memory
+footprint. Calculating the memory footprint involves significant
+computations considering LRU (least recently used) histograms and
+mutator vs. collector referencing \cite{yang2004automatic}. Based on the memory footprint, the
+heap size is then adjusted based on the difference between the current
+and forecasted memory footprint. Limitations to this method are that it
+is computationally demanding and it requires modifying the kernel to
+provide virtual memory manager support in order to work in a real
+system. It is not always possible in all scenarios.
+\newline\newline
+Another approach aims to improve the inherent speed of garbage
+collection by incorporating a hardware accelerator \cite{maas2018hardware}. This accelerator takes over the GC process instead
+of the CPU. Performance gains exist as the accelerator is closer to the
+memory controller. The findings of this approach were that there was a
+speeding up of GC by 3.3 times \cite{maas2018hardware}. 
+\newline\newline 
+An issue with this
+approach is that adding hardware acceleration for the cloud can create
+complications. Namely, that the servers used would need to have the same
+hardware and tenants would need the required libraries to interact with
+the hardware \cite{chen2014enabling}. Furthermore, it would
+require customisation of existing systems to enable the hardware
+accelerators to be used \cite{artail}.
+\newline\newline
+One solution that combines aspects of prior mentioned approaches is
+ElasticGC suggested by Patros et al. (2018). ElasticGC also adds the
+ability to adjust the CPU cores used by an application for garbage
+collection. This solution has a direct influence on the research
+discussed in this dissertation. ElasticGC aims to minimise garbage
+collection related spikes that occur when meeting SLOs is achievable.
+The mode is developed using Java and IBM's previously mentioned JVM:
+OpenJ9. The mode is deployed external from the JVM as a Java program. In
+terms of minimising garbage collection related spikes, ElasticGC applies
+the following methodology:
+\begin{itemize}
+\item
+  Monitor the load and SLO satisfaction
+\item
+  Decide and enforce a heap size using the \emph{softmx} command-line
+  option\footnote{The softmx command-line option allows the JVM the
+    ability to adjust the heap during runtime if it feels that it is
+    appropriate. The ability to use softmx is in variance to the default
+    choice of the JVM to fix the heap size before runtime and only
+    expand/contract the heap size for reasons , such as insufficient
+    memory.}
+\item
+  Deciding and enforcing the number of CPU cores allowed to be used by
+  the garbage collector through \emph{cpuset} command in Unix-based
+  operating systems
+\item
+  Invoking the garbage collector at periods of low load with commands
+  like \emph{system.GC()} within the Java program.
+\end{itemize}
+Using this approach helped to reduce performance interference in
+multitenant clouds when applications require lengthy and
+CPU-intensive garbage collections \cite{patros2018resource}.  Despite the
+findings from this approach, it does increase the frequency of
+collections, through the pre-emptive invoking of the GC, which may not
+be desirable for applications. In addition, there is a lack of evidence
+discussing the findings in scenarios when SLOs are not considered
+achievable.
+\subsection{Theoretical Approaches}
+There are several applicable theoretical approaches for designing
+architecture or systems to minimise performance interference. Some of
+these approaches include self-adaptive, control theory and game theory.
+\subsubsection{Self-adaptive approaches}
+Self-adaptive systems are considered a potential solution for
+performance interference in cloud computing as it adapts the system
+based on the environment \cite{macias2013selfadapt}. Self-adaptive systems allow for systems to make decisions based
+on the environmental factors and the objectives of the system. A
+discussion of the basic concepts for self-adaptive systems is provided
+in Chapter 2. An example of an application of self-adaptive systems for
+a similar issue to this research's problem is Lorido-Botran,
+Miguel-ALonso and Lozano (2014). This application used resource scaling
+with threshold-based rules. These rules allowed the scaling to occur
+based on the current resource usage of the application aligning with
+self-adaptive concepts \cite{lorido2014review}.
+Even though the creation of rules occurs before the running of the
+application, the underlying concept is self-adaption as these rules are
+to allow the resources to scale more quickly.
+\newline\newline
+Self-adaptation is applicable in scenarios where there is a need to adjust resources elastically. For example, Wang and Balazinska (2017) apply a self-adaptive perspective to change memory limits dynamically. This dynamic change overrides the existing memory limits in virtual machines \cite{wang2017elastic}. The consequence of changing memory dynamically is that it allows more specific limits, reducing the risk of insufficient or too much memory.
+\subsubsection{Game theory}
+Game theory is a relevant concept for cloud computing and is now more applicable to research in this area \cite{zheng2018dynamic}. The
+concept of game theory refers to the study of the strategic interaction between different players. A discussion of the fundamental details for game theory is provided in Chapter 2. The relevance of game theory to cloud computing is particularly true for multi-tenancy scenarios as actions of tenants can affect other tenants. It can also apply to the
+choice of when and how to run GC \cite{maas2015trash}. Generally, game theory is applied to cloud computing
+concerning the resource allocation problem \cite{ficco2016coral}.  For example, in Ficco et al.'s (2016) work,
+there were two facets:
+\begin{itemize}
+    \item How many host machines are required to cope with demand?
+    \item How many virtual machines will need to be allocated or reallocated to each host machine?
+\end{itemize}
+\subsubsection{Control theory}
+Cloud computing research is increasingly applying control theory
+to research problems \cite{filieri2015software}. Control theory is the
+provision of formal guarantees that a system will behave a particular
+way based on mathematical models \cite{white2013control}.
+Further detail is provided in Chapter 2. The application of control
+theory allows the modelling of a cloud or clouds, ensuring the quality of
+service or the meeting of SLOs. Shevtsov, Weyns and Maggio (2019) note that control theory is useful for cloud computing as it provides the ability to handle runtime changes without having to re-deploy software
+in the cloud.
+\newline\newline
+However, control theory is an infrequent choice in software development \cite{shevtsov2019self}. The infrequent use of control theory is, primarily, caused by control theory's reliance on typically complex mathematical models \cite{andersson2009modeling}.  For
+example, PID controllers and LQR controllers can be mathematically complex requiring in-depth understanding of the system \cite{white2013control}. Filieri et al. (2015) argue that control theory is more relevant now, despite the complex mathematical models, because it aligns with self-adaption as it allows for adaptations during runtime considering the other factors affecting a system. 
+\newline\newline
+In addition, there exist examples of control theory in software systems, such as Ginkgo by Hines et al. (2011). Gingko relied on a closed control loop and a simple performance model linking performance time to memory allocated to virtual machines \cite{hines2011applications}. Another example is White et al. (2013) who applied control theory to heap size adjustments. Their research utilised a PID controller to adjust the heap with Ziegler-Nichols tuning approach. Using this approach allowed some performance gain, however the PID would need tuning for new test scenarios.
+
+\subsection{Summary}
+This chapter discussed and analysed the relevant literature for this research problem of resource-intensive GCs causing performance interference in multitenant clouds. The literature reviewed contextualises this problem and evaluates other approaches used to solve the problem. This review also identified critical research gaps, such as the application of control theory, game theory and self-adaption to this problem. The next chapter discusses the approach and implementation of the development phases.

@@ -1,0 +1,402 @@
+The final development phase moves towards optimal control theory through
+a Linear Quadratic Regulator (LQR). An LQR controls a system with minimal cost incurred to the system as described in
+Chapter 2. It assumes that linear differential equations can describe
+the system. Incorporating an LQR into the OpenJ9 JVM gives better
+control over the GC utilisation as it makes decisions based on the model
+of the system rather than merely making naive adjustments to variables.
+This can be seen through most of the p-values falling below 0.05, and a
+lower average when compared to the previous development phases for
+OptAvgPause and OptThruPut.
+\newline\newline
+The phrase is named as \emph{Cat's Meow} as cats are able to adjust the tone of
+their voice to achieve what they want. For example, a cat may sound
+particularly sad in their meow to wake up an individual.
+
+\subsection{Approach}
+The approach for this phase is to develop an LQR that has the heap size, the
+number of GC threads and the interval between local GC's as variables
+that describe the state of the system. The \emph{lqr} control module provided
+by Python is used to solve the Riccati equations, discussed in Chapter 2, and provide the matrix
+for $K$ in $u = -Kx$. The conceptual background to an LQR is provided in
+Chapter 2. The $K$ matrix defined by the \emph{lqr} control module forms an important part of the implementation of the LQR in the OpenJ9 JVM. 
+
+\subsection{Implementation}
+The LQR controller was implemented using a new struct: \verb|LQR|. 
+This struct
+contains each value of the $K$ matrix stored as a separate variable. The
+use of individual variables is chosen in order to avoid the use of
+array-like structures. In addition, an integral sum is used to ensure
+values respond to the behaviour of the system, i.e. the adjustment of
+values is dynamic and varies over time. This is important as the GC's
+behaviour is not consistent throughout the runtime execution of a
+program. The integral sum is set up similarly to how it was designed in
+\emph{Circling} with a sliding window. The basic LQR controller without the
+integral error sum is mathematically described below. Output weighting
+is used with GC utilisation representing the desired output.
+\newline\newline
+\begin{math}
+H( t) \ =\ heap\ size\ at\ time\ t\\
+I( t) \ =\ interval\ between\ local\ GCs\ at\ time\ t\\
+T( t) \ =\ number\ of\ GC\ threads\ at\ time\ t\\
+uH( t) \ =\ used\ heap\ at\ time\ t\\
+GP( t) \ =\ GC\ policy\ at\ time\ t\\
+ar( t) \ =\ allocation\ rate\ of\ objects\ at\ time\ t\ or\ how\ the\ heap\ changes\ over\ time\ =\ \dot{uH( t)}\\
+GC( t) \ =\ GC\ utilisation\ at\ time\ t
+\end{math}
+\newline\newline
+The above functions are essential and comprise the initial model. These functions include the heap size, interval between local GCs and number of GC threads. The functions themselves are defined below.
+\newline\newline
+\begin{math}
+H( t) \ =\ H( 0) \ +\ 65536k_{1}( t)\\
+I( t) \ =\ I( 0) \ +\ k_{2}( t)\\
+T( t) \ =\ T( 0) \ +\ k_{3}( t)\\
+uH( t) \ =\ k_{4}( t)\\
+ar( t) \ =\ \dot{k_{4}( t)} \ =\ \frac{k_{4}( t) \ -\ k_{4}( t\ -1)}{t\ -\ ( t\ -\ 1)}\\
+GP( t) \ =k_{5}( t)\\
+\\
+where\ \ k_{1}( t) ,\ k_{2}( t) ,\ k_{3}( t) ,\ \ k_{4}( t) \ and\ k_{5}( t) \ are\ time-varying\ functions\ that\ are\ unknown\ and
+\\ \\
+65536\ is\ the\ default\ size\ of\ a\ region,\ a\ portion\ of\ the\ heap,\ in\ OpenJ9
+\end{math}
+\newline\newline
+In the equations above, there are five unknown functions which are time variant. These functions are necessary as there are a lot of variables affecting GC and they cannot all be modelled. The functions above are used to define the model for the LQR as seen below.
+\newline\newline
+\begin{math}
+x\ =\ \begin{bmatrix}
+H( t)\\
+uH( t)\\
+ar( t)\\
+GP( t)\\
+I( t)\\
+T( t)
+\end{bmatrix}
+\end{math}
+\newline\newline
+Therefore, this is the model of the system. This equation can be differentiated to give the following model where \begin{math} \dot{x} \end{math} represents the system differentiated over time. 
+\newline\newline
+\begin{math}
+\dot{x} \ =\ \begin{bmatrix}
+H'( t)\\
+uH'( t)\\
+ar'( t)\\
+GP'( t)\\
+I'( t)\\
+T'( t)
+\end{bmatrix}
+\end{math}
+\newline\newline
+This becomes the following using the definitions of the functions above:
+\newline\newline
+\begin{math}
+\dot{x} \ =\ \begin{bmatrix}
+65536k_{1} '( t)\\
+\ k_{2} '( t)\\
+\ k_{3} '( t)
+\end{bmatrix}
+\end{math}
+\newline\newline
+In addition, \begin{math} \dot{x} \end{math} can be represented, based on the LQR theories, as the following:
+\newline\newline
+\begin{math}
+\dot{x} \ =\ Ax\ +\ Bu
+\end{math}
+\newline\newline
+where A is a matrix representing the system with no control, B is the effect of control and u is the input to the system. 
+\newline\newline
+For this system, the following assumptions are made:
+\newline\newline
+\begin{math}
+It\ is\ assumed\ with\ no\ control\\
+H'( t) \ =\ 0\\
+I'( t) \ =\ 0\\
+GP'( t) \ =\ 0\\
+T'( t) \ =\ 0\\
+\end{math}
+\newline\newline
+These assumptions are rational as it is normal that the GC variables do not change during runtime. For example, GC policy does not change during runtime. In addition, the number of threads and the interval between local GCs cannot currently change in the OpenJ9 JVM. The heap size can technically change during runtime; however, this model assumes that the application has been run numerous times so, the heap size is optimised to suit the application. 
+\newline\newline
+Despite the strength of this initial model, it is complex to form \begin{math} uH(t)\end{math} and \begin{math} ar(t) \end{math} as both these functions depend on previous state. Therefore, a simplified model is proposed instead with its corresponding differential:
+\newline\newline
+\begin{math}
+x\ =\ \begin{bmatrix}
+H( t)\\
+I( t)\\
+T( t)
+\end{bmatrix}
+\end{math}
+\newline\newline
+\begin{math}
+\dot{x} \ =\ \begin{bmatrix}
+H'( t)\\
+I'( t)\\
+T'( t)
+\end{bmatrix}
+\end{math}
+\newline\newline
+In addition, u, the input, is set to the following matrix:
+\newline\newline
+\begin{math}
+u\ =\ \begin{bmatrix}
+\alpha \\
+\beta \\
+\theta 
+\end{bmatrix}
+\end{math}
+\newline\newline
+Another component of the LQR is the following equation:
+\newline\newline
+\begin{math}
+y\ =\ Cx\ +\ Du
+\end{math}
+\newline\newline
+Based on this system, y is equal to: 
+\newline\newline
+\begin{math}
+y\ =\ GC( t) \ =\ K_{1} H( t) \ +\ K_{2} I( t) \ +\ K_{3} T( t)\\
+\\
+where\ K_{1} ,\ K_{2} \ and\ K_{3} \ are\ variables
+\end{math}
+\newline\newline
+Therefore, moving back to:
+\newline\newline
+\begin{math}
+\dot{x} \ =\ Ax\ +\ Bu
+\end{math}
+\newline\newline
+It is possible to make this assumption, as described above, that \begin{math} A = 0 \end{math}. Therefore, the equation becomes 
+\begin{math}
+\dot{x} \ =\ Bu
+\end{math}
+\newline\newline
+which becomes
+\newline\newline
+\begin{math}
+\dot{x} \ =\ B\ \begin{bmatrix}
+\alpha \\
+\beta \\
+\theta 
+\end{bmatrix}
+\end{math}
+\newline\newline
+and, therefore, this
+\newline\newline
+\begin{math}
+\begin{bmatrix}
+65536k_{1} '( t)\\
+\ k_{2} '( t)\\
+\ k_{3} '( t)
+\end{bmatrix} =\ B\ \begin{bmatrix}
+\alpha \\
+\beta \\
+\theta 
+\end{bmatrix}
+\end{math}
+\newline\newline
+and B becomes, through matrix multiplication:
+\newline\newline
+\begin{math}
+B\ =\ \begin{bmatrix}
+65536 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}\\
+\\
+assuming\ that\ \alpha \ \rightarrow \ k_{1} '( t)\\
+\beta \ \rightarrow \ k_{2} '( t)\\
+\theta \ \rightarrow \ \ k_{3} '( t)
+\end{math}
+\newline\newline 
+The system is controllable and observable as the rank of B and \begin{math} \dot{x} \end{math} is 3. 
+\newline\newline
+The use of Python's \emph{lqr} control modules requires the determining of Q and R from the Riccati equations provided in Chapter 2. Output weighting is used to determine Q as the output, GC utilisation should be minimised. In addition, R is set to three times the identity matrix to simplify the model and ensure the final values from the \emph{lqr} module are appropriate for the model. 
+\newline\newline
+Therefore, Q and R are as follows:
+\newline\newline
+\begin{math}
+Q\ =\ H^{T} H\ \\ \\
+where\ y\ =\ Hx\\
+\\
+y\ =\ Hx\\
+K_{1} H( t) \ +\ K_{2} I( t) \ +\ K_{3} T( t) \ =\ H\begin{bmatrix}
+H( t)\\
+I( t)\\
+T( t)
+\end{bmatrix}\\
+\\
+\therefore H\ =\ \begin{bmatrix}
+K_{1} & K_{2} & K_{3}
+\end{bmatrix}\\
+\\
+Q\ =\ \begin{bmatrix}
+K^{2}_{1} & K_{1} K_{2} & K_{1} K_{3}\\
+K_{2} K_{1} & K^{2}_{2} & K_{2} K_{3}\\
+K_{3} K_{1} & K_{3} K_{2} & K^{2}_{3}
+\end{bmatrix}\\
+\\
+R\ =\ I\ =\ \begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\end{math}
+\newline\newline
+It is the \begin{math}  K_{1}, K_{2}, K_{3} \end{math} that determine the different values of the LQR controller as they feed into the \begin{math}K\end{math} matrix, which sets the input,\begin{math} u\end{math}. Hence, it is these different \begin{math}K \end{math}values that correspond to the names of the different JVMs created in this development phase. 
+\newline\newline
+In terms of code, the following steps were followed in the
+\emph{ParallelDispatcher} code to integrate the \emph{LQR} controller within the
+original GC logic:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+ 
+  Set  \begin{math}  K_{1}, K_{2}, K_{3} \end{math}  values.
+\item
+
+  Set the initial number of threads, heap and interval.
+
+\item
+ 
+  Calculate integral error.
+ 
+\item
+
+  Calculate new heap size.
+ 
+\item
+  
+  Calculate new interval.
+  
+\item
+ 
+  Calculate new thread count.
+ 
+\item
+
+  Confirm new changes are valid.
+
+\end{enumerate}
+Similar to the limits put on the variables in \emph{CatNap}, the heap size is
+limited to the maximum and minimum values set by the JVM initially. In addition,
+the maximum number of GC threads are limited to the number of CPU cores,
+and the maximum interval of local GCs allowed is 4000 msec.
+
+\subsection{Testing}
+The same approach used for \emph{Circling} and \emph{CatNap} was applied to
+ensure comparability. Hence, 4-CPU and 8-CPU Linux Virtual Machines
+are used along with chosen DaCapo benchmarks. This allows comparability
+between the different development phases.
+\newline\newline
+There are nine different versions of the \emph{Cat's Meow} mode. These versions
+represent different combinations of \begin{math}  K_{1}, K_{2}, K_{3} \end{math} values. The choice
+of values is determined by the \emph{lqr} control module in Python to ensure
+that the values create eigenvalues in the left-hand plane. Having
+eigenvalues in the left-hand plane ensures the system is stable. The
+configuration of values are calculated using the \emph{lqr} control module in Python. These
+values are chosen as the eigenvalues for all of these values were in the
+left-hand plane, meaning the system is stable. The stability of a system
+is critical, noted in Chapter 2, as it ensures that the system does
+not begin oscillating.
+\newline\newline
+The different combinations are listed below in the table, along with the
+overall relationship and the individual values. In addition to the JVMs
+listed, there are also two other JVMs; JDKF and JDKE. JDKF is the
+original JVM without any modifications beyond the ability to log GC
+utilisation and the time the application has been running. In a similar
+vein, JDKE is the modified JVM without enabling \emph{Cat's Meow} mode while
+still logging the GC utilisation and the time the application has been
+running.
+\newline\newline
+\begin{table}[H]
+\begin{tabular}[]{|c|c|c|c|}
+\hline
+Name & Value of K1 & Value of K2 & Value of K3\tabularnewline
+\hline
+JDK1-1-3 & 1 & 1 & 3\tabularnewline \hline
+
+JDK2-2-1 & 2 & 2 & 1\tabularnewline \hline
+
+JDK2-2-2 & 2 & 2 & 2\tabularnewline \hline
+
+JDK2-3-2 & 2 & 3 & 2\tabularnewline \hline
+
+JDK3-2-1 & 3 & 2 & 1\tabularnewline \hline
+
+JDK3-2-3 & 3 & 2 & 3\tabularnewline \hline
+
+JDK5-4-4 & 5 & 4 & 4\tabularnewline \hline
+
+JDK5-6-7 & 5 & 6 & 7\tabularnewline \hline
+
+JDK8-9-9 & 8 & 9 & 9\tabularnewline \hline
+\end{tabular}
+\caption{Modified JVM's implementing the described LQR controller for \emph{Cat's
+Meow}}
+\end{table}
+The above-described combinations aim to reflect the total number of
+possible relationships for different $K$ values. Using different JVMs
+identifies the combination of $K$ values most appropriate for reducing GC
+utilisation.
+
+\subsection{Results}
+Implementing an LQR controller allows for greater control over GC
+utilisation as reflected by the results of \emph{Cat's Meow}. A similar
+discussion to the earlier development phases is provided for the
+results from \emph{Cat's Meow} below.
+\subsubsection{P-values}
+The p-values show that there is a statistically significant difference
+between the original JVM of JDKF and the modified JVMs for most of the
+benchmarks with OptAvgPause and OptThruPut in terms of GC utilisation. In contrast, \emph{pmd} for GenCon
+does not have statistically significant values for all of the modified
+JVMs. It is a similar result for the p-values for \emph{sunflow} with Balanced.
+The consequences of these p-values mean that the null hypothesis can be
+rejected for the modified JVMs for most of the benchmarks run with
+OptAvgPause or OptThruPut. The null hypothesis cannot be rejected for
+pmd with GenCon. The p-values are provided below. Statistically significant values are bolded in the tables. 
+\newline\newline
+The full summary statistics are available through a shared link provided
+in Appendix A. These statistics include standard deviation, root mean
+squared error and mean.
+
+\subsubsection{Mean}
+
+The findings from the p-values table above are reiterated by the mean GC
+utilisation graphs provided on the next page. For the benchmarks run
+with OptAvgPause, there is a significant difference between the mean GC
+utilisation of the modified JVMs and the original JVM, JDKF. The
+difference is more noticeable for \emph{jython} than for the other benchmarks.
+It was mentioned in Chapter 3 that \emph{jython} creates a large number of
+objects on the heap. Therefore, the results from this phase indicate
+that the LQR controllers are better able to manage applications with
+many objects.
+\newline\newline
+In contrast to OptAvgPause is GenCon, where the mean GC utilisation
+tends higher than JDKF. The exception is \emph{xalan}, which shows lower GC
+utilisation than JDKF. Again, \emph{xalan} has a high allocation rate of
+objects to the heap meaning the conclusion made for \emph{jython} applies to \emph{xalan}. 
+\newline\newline
+Generally, the standard error for the mean GC utilisation is relatively small. An exception is JDK-1-1-3 with \emph{sunflow} and a Balanced GC policy. This variance reflects the variability of the GC with JDK1-1-3 combined with a Balanced GC policy. With this JVM and policy, GC utilisation tended to differ across each test run thus showing that the model with its  \begin{math} K\end{math} values is not as appropriate with the combination of policies and benchmark. 
+\newline\newline
+It is also noticeable that OptAvgPause and OptThruPut perform better than Balanced and GenCon. This better performance indicates that these policies align more with the LQR model created. In addition, it implies that the impact of generational garbage collection needs to be considered in an LQR model as both Balanced and GenCon have some form of generational garbage collection. 
+
+\subsubsection{GC Utilisation}
+The spread of GC utilisation over time again echoes the p-value
+findings. JDKF and JDKE, the modified JVM without the modifications
+enabled, tends to have higher GC utilisation than the modified
+JVMs for OptAvgPause and OptThruPut. The two unmodified JVMs, JDKF and JDKE, have a
+different trend tending towards an inverse parabolic curve. In contrast,
+the modified JVMs tend towards a very shallow parabolic curve. An
+example of \emph{sunflow} with OptThruPut is provided on the next page. This
+variance between JDKF or JDKE and the modified JVMs is not observable when using the GenCon or Balanced policies.
+\newline\newline
+Some of the GC utilisation readings appear to tend towards 0\% on the graphs on the next page. These low GC utilisation readings reflect the variable nature of GC utilisation meaning it can both spike up and down. Generally, GC utilisation will approximate to 0\% at the beginning of runtime. After that, GC utilisation will only tend closer to 0\% if the time spent in GC is minimal comparatively. Minimal time spent in the GC is more likely to occur with GC policies that avoid or minimise GC pauses, such as OptAvgPause. In addition, OptThruPut may see similar behaviour if global GCs are less frequent.   
+
+\subsection{Summary}
+Using an LQR controller provides better management of GC utilisation in
+particular scenarios where there is a high allocation rate or objects in
+the heap size and using OptAvgPause and OptThruPut policies. An LQR
+controller is less effective when combined with GenCon or Balanced
+policies. The effectiveness of these LQR controllers indicates that the
+model used to formulate the LQR is reasonably accurate. The next chapter
+further evaluates this model as well as the PID controller by testing
+the JVMs in a multitenant environment.

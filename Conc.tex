@@ -1,0 +1,91 @@
+
+In approaching this research, there were two research questions:
+\begin{itemize}
+\item
+
+  Will an elastic GC mode that varies the heap size, number of threads
+  and interval between standard GC's see a reduction in GC utilisation
+  and hence overall CPU utilisation?
+  
+\item
+
+  Is it possible to formulate Nash's equilibrium for co-located tenants
+  using the elastic GC mode to reduce performance interference overall?
+  
+\end{itemize}
+Based on the three development phases, it is clear that it is possible
+to manage and reduce GC utilisation both in single VM and multitenant
+scenarios; thus, addressing the first research question. The development
+phases also highlight that reducing GC utilisation can harm performance
+time of applications. Generally, the naive threshold-based approach,
+CatNap, was ineffective in managing GC utilisation. The other two
+phases, Cat's Meow and Circling, were more effective than CatNap showing
+that control-theory motivated approaches are appropriate for this
+research problem. Furthermore, an LQR is better for GC utilisation
+control but only with particular GC policies, OptAvgPause and
+OptThruPut, and applications with high allocation rates or large number of
+objects in a heap. The positive impact of the Cat's Meow JVMs, which
+implemented an LQR controller, indicates that concurrent GC policies,
+such as OptAvgPause and OptThruPut, work well with LQR controllers. The
+PID controllers implemented in Circling showed better performance time,
+meaning that the gain in other areas outweighs the cost of adding the
+PID controller logic. However, Circling JVMs did not see a significantly
+noticeable improvement in GC utilisation, meaning the benefits from the
+PID controller must result in time gains in other areas in a JVM.
+\newline\newline
+The multitenant testing reiterated the findings from the single VM. It
+further proved that the benefits of the different JVMs from Circling and
+Cat's Meow are observable in multitenant scenarios. In addition, CPU
+utilisation reduces for Circling JVMs, but it is less noticeable for
+Cat's Meow JVMs.
+\newline\newline
+A game theory model was formed to address the second research question.
+The model showed that Nash's equilibrium is met if both tenants do
+nothing. However, this is not an ideal solution and indicates that there
+needs to be an adjustment to how tenants view gains in cloud computing
+to ensure tenants are motivated to reduce their resource usage.
+\newline\newline
+Therefore, based on the findings from this research, the initial
+hypotheses were correct. These hypotheses were that it would be possible
+to reduce GC utilisation and formulate Nash's equilibrium. However, the
+reduction of GC utilisation primarily occurs with an LQR controller but
+is dependent on the benchmarks and GC policies.
+
+\subsection{Contribution}
+
+This research makes the following contributions:
+
+\begin{itemize}
+\item
+  A PID controller-driven elastic GC mode implemented on OpenJ9 that effectively reduces execution time of applications
+\item
+  An LQR controller-driven elastic GC mode implemented on OpenJ9 that better manages GC utilisation
+\item
+  A game-theoretic model for two co-located tenants on a multitenant
+  environment
+\end{itemize}
+
+\subsection{Limitations}
+One limitation of this research is the sole use of DaCapo benchmarks
+\cite{blackburn2006dacapo}. Additional benchmark suites could
+have been used to substantiate the results. Other benchmarks that were
+considered include Renaissance \cite{prokopec2019renaissance} and
+CloudSim \cite{calheiros2011virtual}. These benchmarks were not
+used in this research due to the scope and timing of the research.
+\newline\newline
+Another limitation is the simplification of the GC model applied in
+Cat's Meow. The model used simplifies the GC to being described by the
+three chosen variables: heap size, number of GC threads and the interval
+between local GCs. This is an over-simplification of the entire GC model
+but was needed to provide proof-of-concept that LQR is an appropriate
+approach for the research problem. Future work could focus on creating a
+realistic GC model for the Eclipse OpenJ9 JVM.
+
+\subsection{Future Work}
+Potential future work from this research has already been referenced in
+earlier parts of this dissertation. Generally, most future work focuses
+on the further development of the existing models, i.e. LQR and PID. In
+addition, a broader scope of testing suites could be used to evaluate
+the different development phases better. A final area for future work is
+evaluating the modes on realistic multitenant clouds to identify the
+implications of adjusting GC resource utilisation.

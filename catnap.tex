@@ -1,0 +1,540 @@
+This phase applies a naive approach using arbitrarily set thresholds of garbage collection
+(GC) utilisations to adjust the chosen variables, round-robin. The three
+variables are heap size, number of GC threads and interval between local
+GCs. A 4-CPU and 8-CPU Linux Xenial virtual machine are the
+two testing environments. DaCapo benchmarks \cite{blackburn2006dacapo}, as described in Chapter 3,
+provide the test suites.
+\newline\newline
+The findings from the testing indicate that there is a statistically
+significant difference in results from the modified JVMs and the
+original JVM. Also, there is lower variability for GC utilisation for
+the modified JVMs compared to the original JVM.
+\newline\newline
+The rationale behind the phase name is a naive threshold-based approach
+with round-robin means every GC results in a different direction taken
+in terms of resource use. Hence, it is like a cat having a short nap and
+then moving.
+\subsection{Approach}
+The approach used for \emph{CatNap} is naive threshold-based rules. There is an
+application of self-adaptive concepts through the threshold-based rules that allow the chosen variables (threads, heap size and interval between local GCs) to adjust dynamically. The adjustment occurs based on the measured GC utilisation. The rationale behind a naive approach is that
+there is limited literature, as identified in Chapter 3, that quantifies
+the direct impact the chosen variables have on GC utilisation. 
+\newline\newline
+Hence,
+this phase aims to understand if there is any relationship or pattern
+between the variables and GC utilisation. The rationale behind the
+chosen variables is that the variables affect the entire GC process
+irrespective of GC policy. This effect is important as the GC
+modifications must function irrespective of the user's chosen GC policy.
+For the GC threads, having an ability to adjust the number of threads
+during runtime reduces performance costs. Lowered performance costs, and
+hence lower GC utilisation, occur by avoiding an unnecessary or
+insufficient number of threads. The adjustment to threads extends the
+existing ability within the OpenJ9 JVM, as referenced in Chapter 3, to specify the initial number of
+threads before runtime through command-line options.
+\newline\newline
+Similarly, there is an existing ability to set the initial, maximum and
+minimum heap size for the OpenJ9 JVM, highlighting the importance of the
+heap size and reiterates the literature discussed in Chapter 2. Hence,
+the heap size was considered an important variable to control. In
+particular, having too large a heap would increase the time it takes for
+the threads to 'walk' through the heap. Having a too-small
+heap would result in an increase of allocation failures and
+hence, GCs. Both alternatives result in increased GC utilisation.
+The overall impact of GC utilisation increasing is that the resource
+usage of the JVM itself is more likely to increase. Increasing resource
+usage is undesirable in multitenant scenarios as it would increase
+the likelihood of performance interference. The final variable
+is the interval between local GCs. Adjustments to this variable both
+change the interval between normal local GCs and GC invocation.
+Local GCs are appropriate variables to adjust as they have a more
+specific focus than the other variables.
+\newline\newline
+Other variables considered include the number of CPU cores, pinning
+threads to cores and the GC policy. Adjusting the number of cores was
+chosen as a potential option as it leads to the ability to turn off
+cores. Hence, there are potential energy savings as idle CPU time
+decreases \cite{weiser1994scheduling}. However, the number of cores used by the OpenJ9 Virtual Machine (VM) does not
+technically affect the GC beyond helping to set thread counts. There is
+a command-line option available already (\verb|-XX: ActiveProcessorCount=|)
+however, it affects the entire VM, not just GC. 
+\newline\newline
+Implementing
+the ability to reduce the number of cores would only affect the initial
+number of threads and would not have an impact during runtime. For the
+pinning of threads to cores, this would be an extension to the ability
+to set the initial number of cores. Therefore, making it possible to
+turn off cores by instead pinning all the GC threads to a particular
+core. This ability is not available in OpenJ9 currently. However, it is
+available in the HotSpot open-source JVM. 
+\newline\newline 
+Enabling this ability in OpenJ9 would mean re-configuring how the VM views CPU cores. At the
+moment, they are only used to assign or determine the initial number of
+GC threads or threads generally; therefore it is not possible to pin threads
+to cores without considerable change to OpenJ9.
+\newline\newline
+Adjusting the GC policy
+during runtime means choosing the most appropriate policy considering
+the application's runtime behaviour. For example, if the application
+starts to display characteristics that would suit a particular GC
+policy, the GC policy will change during runtime. The change will then
+result in performance gains and a reduction in GC utilisation as some GC
+policies suit some applications more than others. However, adding this
+ability means changing how the heap and GC policies are viewed, i.e.
+changing the OpenJ9 and OMR code having to be rewritten to allow this adjustment.
+\newline\newline
+\emph{ Self-adaptive approach}
+\newline\newline
+The application of self-adaptive concepts, namely the MAPE-K loop referenced in Chapter 2, is
+apparent in the threshold-based rules. These rules focus on GC
+utilisation from the monitoring of GC utilisation to the
+analysis/comparison of the measured GC utilisation to the set
+thresholds. Based on any observed variance, adjustments are made to the
+chosen variables.
+\newline\newline
+The chosen measurement variable, GC utilisation, reflects this research's
+focus on performance interference caused by GC spikes. Hence, measuring
+GC and its spikes addresses the research questions. Adjusting the chosen
+controlled variables based on other factors, such as CPU utilisation, is
+inappropriate as there are other variables affecting CPU utilisation.
+Hence, CPU utilisation may spike irrespective of the chosen controlled
+variables.
+\newline\newline
+\emph{Control theory approach}
+\newline\newline
+\emph{CatNap} also applies control theory through an incremental controller. This is a simple application of control theory used to help identify any relationships between the variables and GC utilisation. The incremental controller means that changes to the variables occur in small steps, such as +100 or -100 msec. Using this type of controller ensures that any relationships between variables and GC utilisation are not missed simply because adjustments to variables are too large.
+\subsection{Implementation}
+The implementation of \emph{CatNap} splits into four areas: the background
+structure, number of GC threads, heap size and interval between local
+GCs. The background structure involves allowing the mode to be enabled,
+setting up the struct to hold the variables and calculating GC
+utilisation. Enabling the mode is triggered through the command-line
+option of \verb|-Xgcelastic|. This sets a variable \verb|elasticEnabled| within the
+struct mentioned above to a 1. In addition, to allow the ability to
+adjust the GC interval, the following command-line option is needed
+\verb|-Xcheck:gc:::elasticGC|. Having this variable set allows the rest of the
+mode's logic to be included in the usual GC process. The full detail of
+the struct is provided below:
+
+\begin{verbatim}
+    struct gcElastic {
+        uintptr_t elasticEnabled; 
+        uintptr_t numThreads;
+        uintptr_t heapSize;
+        uintptr_t numCores;
+        uintptr_t controlFlow;
+        uint64_t currentTimeRunning;
+        int64_t gcUtilCurr;
+        int64_t gcUtilPrev;
+        uint64_t prevTimeStamp;
+        uint64_t prevTimeRunningStamp;
+        int64_t gcInterval;
+        int64_t gcUtilRangeMax; 
+        int64_t gcUtilRangeMin; 
+        
+    }
+\end{verbatim}
+Calculating GC utilisation is contained within the \emph{ParallelDispatcher}
+class. The algorithm loops through each thread and adds the time spent
+for each thread to the total time spent by the GC. The total time spent
+is divided by the total time since the last calculation. The GC utilisation calculation is provided below:
+\newline\newline
+\[GC \ Utilisation = \frac{((GC \ total \ time \ now) -  (GC\ total\ time\ last\ time))}{ (timestamp\ now\ -\ timestamp\ last\ time)}\]   
+\newline\newline
+The variables
+will be adjusted based on the calculated GC utilisation compared to the
+set threshold of 10\%. However, the actual logic behind the mode will
+not be until after 100 milliseconds. This is an attempt at dynamic
+profiling as it is expected that the first 100 milliseconds would be
+when the program is the most unstable. Therefore, not adjusting the
+variables before GC utilisation has settled down. This initial
+implementation allowed for the variables above to be specified through
+the command-line. This ability was enabled for debugging purposes.
+\newline\newline
+In
+terms of the specific variables' adjustment, the primary logic is within
+\emph{ParallelDispatcher}. The logic decides which variables are adjusted. Not
+every variable will be adjusted every time the GC utilisation either
+exceeds the maximum value or falls below the minimum value. The
+variables above are only be adjusted if the GC the variable that will
+be adjusted is determined randomly based on the modulo of the current
+running time of the application. The modulo of the current running time
+is stored in the variable \verb|controlFlow| and is set in
+\emph{ParallelDispatcher} so it is recalculated every time before the
+threads for the GC are created/dispatched. Hence, potentially a
+different variable will be adjusted each time if necessary. The
+overarching pseudo-code for the choice is provided below. In reality, it is split across the relevant classes.
+\newline\newline
+\begin{algorithm}[H]
+ \uIf{controlFlow $==$ 1}{
+  Adjust control flow\;
+  }
+\uElseIf{controlFlow $==$ 2}{
+   Adjust GC invocation\;
+   }
+ \uElseIf{controlFlow $==$ 3}{
+   Adjust heap size\;
+  }
+\caption{Control Flow Decision}
+\end{algorithm}
+The reasoning behind only changing one variable at a time is because there is insufficient data currently available showing the impact of each variable on GC utilisation. In addition, it is possible that the adjustment of variables all together might cancel each other out, resulting in no net impact on GC utilisation. The elastic GC logic relating to each variable is contained within different classes which may not be, and are unlikely to be called at the same time. Hence, there
+would be some variables that would always be adjusted first and could
+impact on the ability to adjust the other variables then. By randomly
+choosing what variable will be adjusted, it will reduce the possibility
+of competing effects as the adjustments to variables only happens when
+GC is called. In addition, there is naturally a delay between GCs. This will
+also reduce the possibility of a constantly and unnecessarily
+oscillating prototype. 
+\newline\newline
+For the threads, the number of threads increases by 1 if the GC utilisation is higher than 10\% and will
+decrease by 1 if the GC utilisation is below 5\%. This is explained in
+the pseudo-code below. There is a check to ensure the number of threads
+does not fall below 1. However, there is no maximum number of GC threads
+allowed.
+\newline\newline
+\begin{algorithm}[H]
+ \uIf{gcUtil $>$ maxGCUtil}{
+    \uIf{elasticGC.numThreads $>$ 1}{
+        Decrement elasticGC.numThreads by 1\;
+    }
+    \uElse{
+        Set elasticGC.numThreads to initial numThreads\;
+    }
+  }
+\uElseIf{gcUtil $<$ minGCUtil}{
+   Increment elasticGC.numThreads by 1\;
+   }
+ \uElse{
+   Do nothing\;
+  }
+\caption{Adjusting number of GC threads}
+\end{algorithm}
+
+\emph{Heap Size}
+\newline\newline
+Adjusting the heap size during runtime without needing allocation
+failures, out of memory failures to be created/fired is difficult as
+this is the normal behaviour. Currently, there is an ability within the
+JVM to adjust the heap size based on the number of bytes filled.
+However, this is only available for applications using RealTimeGC policy (this is not one of the default policies).
+\newline\newline
+Focusing on the heap size is preferable to actively adjusting the memory allocated to any application as it properly weights the variability of GC utilisation. Actively reducing or increasing memory is costly \cite{yang2004automatic} and is generally performed before runtime. Adjusting before runtime means that there is the risk that the memory allocated is insufficient for the application. Even if the increase or reduction in memory is conducted during runtime, i.e. dynamically, it is a costly process and may not be able to currently predict future memory requirements of the application. Therefore, adjusting the heap size, which only adjusts the amount of memory the application currently uses, without adjusting the memory allocated to the application is a preferable solution.
+\newline\newline
+A consideration for
+design is that each GC policy views the heap differently and applies
+different methods so the code to adjust heap size must be generalised to
+work with each policy. Besides, the default adjustment of the heap does
+not allow small adjustments, i.e. adjust by 100 bytes; instead, each
+adjustment must be at least a region size (usually 65535 bytes). Hence,
+the adjustment either relating to expansion or contraction, is by region
+sizes. A final consideration is that the decision to contract or expand
+depends on several factors. Therefore, the adjustment to the heap size
+focuses on contracting and expanding the heap by 65536 and assumes that
+the expected factors are met. 
+\newline\newline
+Before contracting, it is important first
+to compact the heap. Otherwise, there may be objects located near the
+end of the heap that will be lost when the heap contracts. Allowing the
+heap to be compacted requires adding elastic GC logic to the compaction
+methods within \emph{ParallelGlobalGC} and ensuring the heap size does not
+exceed active memory size. Otherwise, the adjustment is out of sync with
+memory. The decision to compact is made after the sweeping of the heap.
+Hence, the compaction is not visible until the next GC cycle. The actual
+contraction occurs in the \emph{MemorySubSpace}, more specifically,
+\emph{MemorySubSpaceUniSpace}. The entry logic into this class is the same for
+both contraction and expansion. Essentially, the elastic GC logic checks
+to see if \emph{elasticGC} is enabled and if the heap size has been chosen to
+be adjusted. 
+\newline\newline
+For contraction, the adjustment will only occur if the current GC
+utilisation is greater than the maximum GC utilisation set earlier. If
+this is true, then the chosen contraction size is the current heap size
+less one region. In addition, the contraction reason is set to \verb|HEAP_RESIZE|. The approach used above aligns with the current logic for
+contraction. There is then less overhead associated with the mode.
+However, a downside is that causing a contraction is not always
+predictable as some of the other factors, such as having a physical sub
+arena that can contract may not always be available. Either way, it
+means the heap will have compacted helping to reduce GC utilisation as
+it is easier to walk the heap (i.e. fewer gaps between objects). \newline\newline
+The configuration of the expansion of the heap is based solely in
+\emph{MemorySubSpaceUniSpace} as it builds on top of the contraction
+ability. The expansion will only be triggered if the GC utilisation is
+less than the minimum GC utilisation seen. If this is true, it will then
+increase the heap by one region size. The elastic GC expansion logic is
+aligned with existing logic by adding conditional statements that compare the new
+heap size to active memory size. This ensures the expansion is not
+allowed if the heap size will then exceed the maximum heap size set. The
+conditional statements are also in \emph{MemorySubSpaceUniSpace}. The heap size
+modification can also be described in pseudo-code as shown.
+\newline\newline
+\emph{Interval between local GCs}
+\newline\newline
+The
+adjustments to the interval between local GCs are made in +100 and -100
+steps. There is a check to ensure that the GC interval does not fall
+below 100. The code for this variable is contained within the OpenJ9
+code. The location of code differs from the other variables found within
+the OMR code. Therefore, the command-line option of \verb|-Xgcelastic| does not
+work as it does not trigger the classes that use the interval between
+normal GC. 
+\newline\newline
+Instead, another command-line option is required as mentioned
+above using \verb|-Xcheck:gc:::elasticGC|. The \verb|-Xcheck| option is necessary as
+the interval between GCs is initiated through this option. Namely,
+through the GC parameter as a miscellaneous option. Hence the three ``:''
+after gc. The ability to accept and recognise the above option
+(\verb|-Xcheck:gc:::elasticGC|)is configured within the \emph{CheckCycle} class within OpenJ9. 
+\newline\newline
+The command-line option sets the GC interval to the
+default value of 2000. The actual adjusting of the interval occurs in the
+\emph{gcchk} class. Within this class, the interval between normal GCs will increase
+by 100 if the GC utilisation is greater than the max GC utilisation
+seen. Hence, reducing the number of GCs as GCs will be invoked less
+frequently. Similarly, the interval between normal local GCs will
+decrease by 100 if the GC utilisation is below the minimum GC
+utilisation. Consequently, GC will be invoked more frequently in low load
+scenarios. 
+\newline\newline
+In addition, if GC utilisation is greater than the max GC
+utilisation, it will be less likely to trigger a GC now by adjusting the
+current check (which checks if a modulo of the global and local GC count
+by interval is not equal to 0) to a check that anything greater than 3
+will not trigger a GC now. This reduces the number of normal local GCs
+immediately, whereas adjusting the interval decreases the number of
+normal local GCs in the future.
+
+\subsection{Testing}
+Tests were conducted using the earlier-described DaCapo benchmarks\cite{blackburn2006dacapo}. They
+were repeated 16 times on a 4 and 8-CPU Linux Ubuntu Xenial 64-bit virtual
+machines to ensure repeatable results. Due to a limitation in the
+design, see below section, only the small size of the benchmarks were
+tested. The verbose GC logs from
+each test were captured as well as the terminal output. The GC logs were
+used to measure the internal movements of the \emph{CatNap} mode as well as
+the GC utilisation. The terminal output shows how the benchmark
+performs, i.e. takes to run, with the different versions of the \emph{CatNap}
+mode. In addition, there was an attempt to use MXBeans to capture
+additional information, but it was found that this delayed the JVM too
+much.
+\newline\newline
+There were 7 different versions of the \emph{CatNap} mode. These
+versions represented different combinations of the active variables.
+JVMs were made adjusting the number of cores as well, but they were
+later removed based on the decision to not adjust the number of cores.
+\newline\newline
+The JVMs created are listed in the table above along with which
+variables are enabled, i.e. which variables can be adjusted. In
+addition, to the JVMs listed, there is one other JVM; JDKF. JDKF is the
+original JVM without any modifications beyond the ability to log GC
+utilisation and the time the application has been running. There is also JDKE, which is
+the modified JVM. However, the modifications are not enabled when
+running the JVM. This is done to identify the cost of the code itself.
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+      \textbf{ Name}  & \textbf{Heap size} & \textbf{Interval} & \textbf{Threads}  \\
+          \hline
+
+        JDKA & enabled & &\\
+            \hline
+
+        JDKB & & enabled & \\
+            \hline
+
+        JDKD & & & enabled \\
+            \hline
+
+        JDKE  & & & \\
+            \hline
+
+        JDKG & enabled & enabled & \\
+            \hline
+
+        JDKI & enabled & & enabled \\
+            \hline
+
+        JDKP & & enabled & enabled \\
+            \hline
+
+        JDKR & enabled & enabled & enabled \\
+            \hline
+
+    \end{tabular}
+    \caption{Modified JVMs for \emph{CatNap}}
+    \label{tab:catnap--label}
+\end{table}
+The above-described combinations provide information around the impact
+of each variable together and apart as some JVMs only have one variable enabled whereas other JVMs have two or more variables enabled. This is important as there is
+limited literature indicating how the chosen variables affect GC
+utilisation.
+\subsection{Results}
+The results from \emph{CatNap} testing indicate that there is a difference
+between the original JVM, JDKF, and the modified JVMs. However, the
+results are limited due to a flaw that only became apparent with larger
+sized benchmarks causing the applications to crash. Successful test runs were limited to DaCapo benchmarks small size with the different policies. These are the test runs
+that are analysed. 
+\newline\newline
+Adjustments made to the variables are expressed as a
+percentage change from their original value. For example, if the initial
+number of threads is 4 and the number changes to 5, the recorded value
+in the results described below will be 25\%. This type of recording is
+done to better understand how the system works without the results being
+only relevant to a system with the exact number of threads, heap size,
+and GC interval. It also avoids inconsistent results in a scenario where
+different benchmarks may have different initial heap sizes. 
+\newline\newline
+In terms of the successful tests run, they are analysed using Python. Each test was run 16 times. The tests were then grouped by benchmark, size, policy and JVM. For example, one group of tests is \emph{JDKA GenCon small avrora}. The results are then analysed comparing different sized benchmarks with specific policies. The following
+statistics, described in the table below, were calculated to provide an
+understanding of the GC utilisation of the different JVMs:
+\begin{center}
+\begin{tabular}{ |p{3cm}| p{7cm}| }
+    \hline
+
+ \textbf{Statistic} & \textbf{Rationale}  \\ 
+     \hline
+
+ Standard correlation coefficient & Identifies the strength of a linear relationship between the data \cite{lawrence1989concordance}  \\  
+     \hline
+
+ Mean & Shows the average result \\
+     \hline
+
+ Median & Shows the middle score without being overly influenced by outliers (unlike the mean)\\
+     \hline
+
+ p-value (comparing the original JVM to the other JVMs) for GC utilisation & A p-value represents the probability of observing the given value under the null hypothesis \cite{ferreira2015does}. Generally, the p-value must be less than 0.05 to be statistically significant \cite{glantz2001even}. \\
+     \hline
+ Root Means Squared Error & Shows how spread out the difference between the regression line is from the actual points \cite{chinrungrueng1995optimal}. In other words, the standard deviation of these prediction errors. \\
+ \hline
+\end{tabular}
+\end{center}
+\subsubsection{P-values}
+After analysing the performance difference of the benchmarks with the
+different JVMs, it is clear there is no significant difference between
+the performance of the different modified JVMs. However, JDKG and JDKR showed
+worse performance time generally. The worse performance was evident in
+the 4-CPU virtual machine with small \emph{avrora} with Balanced GC Policy and
+with small \emph{xalan} with OptAvgPause GC Policy both provided below. 8-CPU had similar results except JDKD performed worse than JDKG
+generally as provided in \ref{fig:p-valueCN}. For all the JVMs, a p-value was
+calculated comparing the current JVMs results to the original OpenJ9
+JVM (JDKF) in terms of GC utilisation. The p-values for each JVM per benchmark for GenCon and Balanced is provided below in
+the table. The full listing of p-values is provided through a shared link (see Appendix A). All of the p-values are provided rounded to 2dp. Bolded p-values are statistically significant. The p-values
+were calculated using a method provided by scipy called
+\verb|ttest\_ind| \footnote{Calculates a two-sided t-test for the means of 2 individual samples assuming unequal variances \cite{scipy-ttestind}} with NaN values omitted. 
+Based on the table above, it is clear that not all of the p-values are
+below 0.05. Some p-values are significantly lower than 0.05, but there
+are some significantly higher than 0.05. OptAvgPause and OptThruPut had
+such results. The p-values imply that the results from the other
+JVMs when compared to the results from the original JVM sometimes
+significantly differs, but it is not consistent. 
+\subsubsection{Mean}
+Another key statistic
+is the mean. Based on the following pages of figures, the original JVM (JDKF)
+showed a higher mean when compared to all of the other JVMs. JDKE,
+which is the modified JVM without the modifications enabled, showed a
+higher mean. The exception was small \emph{sunflow} with Balanced and
+OptThruPut GC policy on an 8-CPUcore virtual machine which showed a minimal
+mean GC utilisation close to 0\% for JDKE. This reflected the nature of
+the Balanced and Optthruput GC policy, which resulted in minimal GCs
+occurring.
+\newline\newline
+Interestingly, JDKD, which only adjusted the number of GC threads, had a
+lower mean for the \emph{avrora} benchmark when compared to the other JVMs.
+This links to the nature of \emph{avrora}, which implements fine-grained
+concurrency as mentioned in Chapter 3, and the use of a generational
+collector; GenCon. Fine-grained concurrency allows multiple threads to
+run and complete in overlapping periods without having a detrimental
+effect on the application. Hence, \emph{avrora} has tasks that do not have a
+specific order meaning that the objects created by one task are not
+necessarily essential for another task. Therefore, most objects will not
+be promoted to the tenure part of the heap when using a generational
+collector. Instead, most objects will be quickly marked and swept.
+Hence, GC utilisation would tend to be lower when compared to the other
+benchmarks because there are a lower number of surviving objects in the
+heap. 
+\newline\newline
+Similar reasoning holds for \emph{jython} as well, which does not create
+significant objects in a generational collector. Besides JDKD for
+\emph{avrora}, the best-performing JVMs based on mean GC utilisation are any of
+the JVMs that only adjust one variable, i.e. JDKA, JDKB and JDKD.
+Therefore, it indicates that the variable adjustments work better apart
+if the adjustments are of this magnitude and occur in a round-robin manner. 
+\subsubsection{Other summary statistics}
+Another essential variable is the correlation coefficient. This was
+calculated to show whether there was a relationship between each of the
+variables and GC utilisation. A value close to 1 or -1 indicates a
+linear relationship. In addition, a consistent relationship across a JVM
+indicates that there is a concrete relationship between the variable and
+GC utilisation. None of the values was consistent across JVMs or
+benchmarks, indicating the lack of a clear relationship between the
+variables and GC utilisation. 
+\newline\newline
+The full summary statistics for each JVM
+(standard deviation, mean, count, max, min, median and correlation
+coefficient) are available through a shared link provided in Appendix A. This link also details
+the root mean squared error for each of the JVMs. This reiterates the
+findings from the correlation coefficient as none of the values is close
+to 0, indicating that they do not fit the regression line applied. 
+\subsubsection{GC Utilisation}
+In
+addition to the tables, several graphs were developed to show the
+difference between the JVMs. There were two types of graphs created;
+time-series graphs showing the distribution of GC utilisation over time
+and a box-plot graph showing how the distribution of adjustments made to
+the chosen variables. The time-series graphs, provided on the next page, echo the findings from the mean GC utilisation graph. They also highlight the variability of GC utilisation over time.  These graphs on the next page are an excerpt of the full graphs collected for each
+benchmark and policy. A key finding across all of the modified
+JVMs is that there are generally more frequent GC utilisation readings
+implying that GC occurred more frequently with the modifications. In
+contrast, JDKF, the original JVM, has fewer GCs.
+\newline\newline
+Nevertheless, there generally appears to be considerable variability for
+JDKF when compared to the other JVMs. In addition, the variability for
+JDKF is higher. An exception is JDKR with OptAvgPause GC Policy which
+has significantly greater variability that spikes higher than the
+original JVM. Therefore, the round-robin system of adjustment is
+ineffective when combined with OptAvgPause GC Policy. This relates to
+the nature of OptAvgPause, which conducts GC concurrently. Therefore,
+adjusting the variables in a round-robin must be increasing the workload
+of GC increasing its time. Alternatively, the variable adjustments are
+working against each other resulting in it taking longer for GC to
+complete.
+\subsubsection{Variables}
+The final set of graphs, on the next page, show how the variables have
+adjusted overtime in the 8-CPU virtual machine. These are a selection
+of the graphs developed. The full range is available on the Github link
+provided in Appendix A. These adjustments have been expressed in a box-plot format to
+highlight the median, minimum, maximum, upper and lower quartile. Across
+the benchmarks, there is a more significant adjustment of the variables
+with Gencon policy. This links to the higher frequency of GCs that
+occur with Gencon policy. The \emph{pmd} benchmark sees more significant
+changes in the number of threads compared to the other variables.
+\emph{Sunflow}, \emph{avrora} and, \emph{xalan} see more change in variables in comparison.
+The 4-CPU machine has similar results. Based on
+the results from the testing conducted, it is clear that there is a
+benefit to using the \emph{CatNap} approach. However, in scenarios with high
+object allocation using generational collectors, only adjusting the heap
+size, and namely, the tenure heap size, will not see any noticeable
+results.
+\newline\newline
+In contrast, adjusting the number of GC threads has an impact on
+scenarios which have fine-grained concurrency with generational
+collectors. There is no linear relationship between any of the variables
+and GC utilisation. However, the variables have a better impact on GC
+utilisation when combined even in a round-robin arrangement. There are
+unexpected results of the JVM running out of memory even without heap
+size adjustment. These unexpected results occur when the test benchmarks
+move to larger sizes such as default and large.
+\subsection{Summary of Chapter}
+\emph{CatNap} provides a garbage collection mode for a JVM that adjusts the
+number of GC threads, the heap size and the interval between local GCs.
+The adjustments occur round-robin with a random number deciding which
+variable is adjusted. According to experimental results, there is no
+linear relationship between any of the variables and GC utilisation.
+However, using this mode can create a statistically significant
+difference in GC utilisation when compared to the original JVM for
+small-sized benchmarks. This conclusion of statistical significance
+reflects most populations from each JVM having a p-value of less than
+0.05. No testing was provided on the default and large-sized benchmarks
+because of unexpected errors appearing with larger sized benchmarks. The next chapter
+discusses a different approach that aims to address these errors.

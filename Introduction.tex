@@ -1,0 +1,84 @@
+Meeting Service Level Objective (SLO) contracts is a paramount concern for cloud service providers. Mitigating this concern is made difficult in multitenant cloud solutions because of the performance interference caused by soft resource usage limits for tenants. Performance interference also impacts the fundamental tenet of cloud computing: on-demand resources.
+\newline\newline
+Multitenancy is when there are multiple tenants, or users, in the same virtual environment who share resources \cite{dillon2010cloud}. Tenants sharing resources creates a problem, namely performance
+interference, as the resources being used by one tenant reduce the available resources for other tenants \cite{mishra2013cloud}. In addition, if all tenants increase their resource usage, i.e. a
+scenario with high load, there may then be insufficient resources
+available to meet other requests. Cloud providers, as a result,  find it
+challenging to meet SLOs as resources are constrained. Providers will then choose to prioritise particular tenants based on contracts, Service Level Agreements \cite{ru2014software}. 
+\newline\newline
+Inherently, cloud computing does not place any onus on tenants to
+directly manage and curtail their resource usage  \cite{mell2011nist}. However, it is difficult for cloud providers to establish effective tools to monitor and adjust resources allocated to tenants on the fly \cite{gong2010press}.  Hence, a preferable solution is one where the tenants can indirectly manage resource usage without impacting performance. One such solution, for performance interference, is
+managing resource-intensive background processes without seeing a
+significant degradation in performance \cite{maas2014case}.  An example of a process, and the focus for this research, is Garbage Collection (GC) in Java.
+\newline\newline
+GC is responsible for memory management in managed languages, such as Java and Python. It is a naturally greedy and resource-intensive process that can actively consume CPU time, increasing the total resource utilisation of applications \cite{maas2016grail}. Patros et al.'s (2018) study highlights further that spikes in resource
+utilisation are attributable to the GC. Implementing an elastic GC mode which adjusts the resources used by the garbage collector during runtime can manage these spikes and reduce the intensiveness of GC \cite{patros2018resource}.
+\newline\newline
+This research argues that the behaviour of the GC is similar to the
+inherent greediness of a cat on a bed wanting more space. Therefore,
+this research's solution is called \emph{A Cat On A Bed} and the three
+different development phases are titled \emph{CatNap}, \emph{Circling}
+and \emph{Cat's Meow}.
+\newline\newline
+These three development phases relate to the theoretical approaches
+applied in the development process: naive,
+\emph{Proportional-Integral-Derivative} (PID) controller-influenced and
+\emph{Linear Quadratic Regulator} (LQR) approach. All three phases
+develop a mode that adjusts the heap size, the number of GC threads and
+the interval between regular collections. Applying a rigorous research
+testing methodology ensures the quality of results. The end goal is to
+develop a self-adaptive GC mode, part of the IBM OpenJ9 Java Virtual
+Machine (OpenJ9), that elastically adjusts the three chosen variables to
+reduce GC utilisation and hence, have a positive impact on performance
+interference.
+\newline\newline
+In developing a realistic solution towards managing performance
+interference through managing resource consumption of GC, there are two
+research questions:
+
+\begin{itemize}
+\item
+  Will an elastic GC mode that varies the heap size, number of threads
+  and interval between standard GCs see a reduction in GC utilisation
+  and hence overall CPU utilisation?
+\item
+  Is it possible to formulate Nash's equilibrium for co-located tenants
+  using the elastic GC mode to reduce performance interference overall?
+\end{itemize}
+The former question discusses the impact of the solution developed
+through this research on a single machine basis. The latter question
+focuses on the impact of this solution on multitenant clouds. Also,
+there are two hypotheses for the research questions:
+
+\begin{itemize}
+\item
+  The proposed GC mode will reduce GC utilisation on the OpenJ9.
+\item
+  It will be possible to formulate a Nash's equilibrium\footnote{~A
+    Nash's equilibrium is a scenario where no tenant is motivated to
+    change their actions considering the other tenants' actions
+    \cite{benslama2015game}. This will be discussed
+    further in Chapter 2.} that will tend towards conservative GC to
+  reduce performance interference overall.
+\end{itemize}
+The structure of this dissertation allows for the two research questions
+to be answered. It will begin with an analysis of the relevant
+literature including both related work and background literature.
+Subsequent chapters will iteratively discuss the approach, design, and
+testing of each development phase. A final discussion chapter will be
+provided to summarise and analyse the findings from each development
+phase. The final chapter will discuss future work and evaluate the
+effectiveness of \emph{A Cat On A Bed} in addressing the two research
+questions.
+\subsection{Contribution}
+This research makes the following contributions:
+\begin{itemize}
+\item
+  A PID controller-driven elastic GC mode implemented on OpenJ9
+\item
+  An LQR controller-driven elastic GC mode implemented on OpenJ9
+\item
+  A game-theoretic model for two co-located tenants on a multitenant
+  environment
+\end{itemize}
+

@@ -1,0 +1,157 @@
+Control theory is a relevant concept for self-adaption as it
+provides models that can map out the different decisions that may be
+made by a self-adaptive system \cite{diao2005control}. Yu, Threm and
+Ramaswamy (2011) note that control theory and self-adaption work
+well together. Control theory can formalise some of
+the aspects of self-adaptive systems \cite{yu2011toward}.
+\subsubsection{General Control Theory}
+Control theory focuses on designing systems to achieve specific
+outputs \cite{Michels2006}. It is usually
+applied to help design and analyse systems with dynamic responses and
+minimal errors in computer science \cite{simrock2008control}. These systems
+usually are closed-loop systems. By closed-loop, it means that system responses
+determine the inputs \cite{simrock2008control}. This can be seen in Figure \ref{fig:closedloop}. Therefore, from this figure, the critical components to a control system
+are inputs and outputs. In addition, a controller is needed to
+determine the output based on the input \cite{simrock2008control}.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{images/controltheory}
+    \caption{Closed loop }
+    \label{fig:closedloop}
+\end{figure}
+\subsubsection{Proportional-Integral-Derivative controller}
+One application of control theory is a
+\emph{Proportional-Integral-Derivative} (PID) controller. PID controllers are
+commonly used for engineering applications \cite{sariyildiz2015practical}. However, they are also applicable to software engineering
+problems \cite{vick2016model}. Their increased usage for
+software engineering purposes reflects PID's usefulness in providing
+accurate control without having to model the system \cite{rossiter2017model}.
+\newline\newline
+A PID controller uses a feedback loop to provide control that is
+continuously modulated to align with the system's responses \cite{litoiu2017can}. The controller calculates an error
+value, which represents the difference between the setpoint and the
+measured variable \cite{maxim20195w}. Corrective
+action is taken to move the measured variable closer to the setpoint
+based on three factors: proportional, derivative and integral \cite{rutten2017feedback}
+\newline\newline
+The proportional factor calculates a variable that is proportional
+to the current error value. The derivative factor instead focuses on the
+future trend of the error value meaning the factor is a rate of change.
+Finally, the integral factor focuses on the past values of the error. It is important when calculating the integral factor to avoid integral windup where the integral factor tends to grow exponentially \cite{xue2015modeling}. To avoid integral windup, the literature suggests either using \begin{math} e \end{math} or a sliding window \cite{white2013control}.
+\newline\newline
+The three different factors can be tuned to best suit the system \cite{xue2015modeling}. Tuning these three factors is a source of significant effort by the
+literature. Historically, most of the literature applied Ziegler-Nichols
+tuning method or undertook manual tuning \cite{he2000pi}). Using
+the Ziegler-Nichols method meant that the integral and derivative factor
+is initially set to 0. The proportional factor is then increased until
+the error value oscillates \cite{hagglund2002revisiting}.
+\subsubsection{Linear-Quadratic-Regulator controller}
+A \emph{Linear-Quadratic-Regulator} (LQR) is a control theory solution
+derived as part of modern optimal control theory \cite{he2000pi}. An
+LQR uses a model of the system, meaning that understanding how a system
+works is essential. The LQR is a feedback controller that aims to
+operate at minimum cost, i.e. the measured variable is minimised \cite{zhang2017cloudgc}.
+\newline\newline
+The following equations describe an LQR:
+\newline\newline
+$\dot x = Ax+Bu$, $x(0)=x_0$
+\newline\newline
+$u: -Kx $
+\newline\newline
+$y = Cx + Du$
+\newline\newline
+In terms of the equations, the symbols mean the following:
+\begin{itemize}
+\item
+
+  A is a matrix representing the system with no control applied
+
+\item
+
+  B is a matrix representing the system with control applied
+
+\item
+
+u is the input matrix
+
+\item
+
+C is the output measured based on the current state
+
+\item
+
+  D is the matrix representing the modification of the output based
+  on the current input
+
+\item
+
+  x is the model represented as a matrix
+
+\item
+
+y is the matrix representing the output variables, i.e. what is
+  the key variables
+
+\item 
+K is a computed matrix that is used to adjust the input matrix
+
+\end{itemize}
+There is, in addition, a cost equation called Riccati equation \cite{hassani2014optimal};
+however, this is excluded from this research as Python's control library
+allows for the minimisation of the Riccati equation inherently. The Riccati equation is provided below:
+\newline\newline
+\begin{math}
+J =
+\int_0^T  \left( x(\tau)^T Qx(\tau) +
+u(\tau)^T R u(\tau) \right) \; d\tau + x(T)^T Q_fx(T)
+\end{math}
+\newline\newline
+In the above equation, the key aspects are the \begin{math} Q \end{math} and \begin{math} R \end{math} matrices. Generally, the \begin{math} R \end{math} matrix is kept stable as a multiple of the identity matrix (\begin{math} I \end{math}) to simplify the model \cite{das2013lqr}. Q can be defined as the following:
+\newline\newline
+\begin{math}
+Q\ =\ H^{T} H\ \\
+\\
+where\ y\ =\ Hx
+\end{math}
+\newline\newline
+and \begin{math} y \end{math} is the output that needs to be minimised \cite{das2013lqr}.
+\newline\newline
+Optimising the model of the system is achieved through adjusting the
+K matrix and ensuring that the eigenvalues for the model are on the
+left-hand side (i.e. negative) \cite{munje2018state}.
+\subsubsection{Self-adaptive applications and control theory}
+The application of control theory to self-adaptive programs is
+usually seen through feedback loops \cite{litoiu2017can}. A feedback
+loop will allow a system to adjust itself based on feedback. The loop
+will usually be made up of four activities; collect, analyse, decide and
+act \cite{Brun2009}. Hence, the system will react after the event rather than before. An
+example of a feedback loop is given in Figure \ref{fig:feedback loop}. During the collect
+activity, data is collected from a range of sources. These include
+environmental sensors and application requirements. The data is then
+analysed and a decision made. The decided action then takes place. This
+type of feedback loop is very similar to the conventional MAPE-K loop for self-adaptive systems. Applying
+control theory to self-adaptive systems usually requires creating a
+model that identifies the relevant metrics \cite{litoiu2017can} such as
+CPU utilisation, energy consumption and the number of cores. 
+\begin{figure} [hbt!]
+    \centering
+    \includegraphics[scale=0.4]{images/autonomicfeedbackloop}
+    \caption{Autonomic feedback loop}
+    \label{fig:feedback loop}
+\end{figure}
+\newline\newline
+From there,
+the model details the different decisions that will be made when metrics
+reach certain levels. The model also shows what has to happen for the
+changes or decisions to occur. An example application of control theory was discussed by Litoiu et
+al. (2017) and is provided on the next page.
+\begin{displayquote}
+\emph{Example: Thermostat}
+\newline\newline
+Assume the process $P$ is a household thermostat to keep a room warm at a reference level of $yr$, and there is a  controller $C$. The tracked metric $y$ is the temperature measured from a strategically located sensor in the room. Regularly, C compares the current value of $y$ to the desired value $yr$. If $y$ is less than $yr$, $C$ will make a change. Of course, in a next cycle, whenever y is greater or equal than $yr$, $C$ will make another change. 
+\end{displayquote}
+Based on this scenario, it is then possible to formulate an equation. Firstly, $yr$ is an input and $y$ is an output. From there, the controller could be a matrix that needs to be determined. Let the controller by matrix $M$. In addition, there is $x$ which represents the feedback aspect. The simplest equation of this scenario would be:
+\newline\newline
+$y(M) = yr(M) + x(M)$
+
+

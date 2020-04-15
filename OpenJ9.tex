@@ -1,0 +1,90 @@
+Eclipse OpenJ9 is a Java Virtual Machine (JVM) created by IBM. It is an open-source JVM split into two parts: OpenJ9 and OMR. Each part contains relevant code for this research with this discussion focusing on garbage collection. Generally, OpenJ9 contains the outward-facing code, i.e. command-line options are accepted by code from OpenJ9. In contrast, the OMR code contains much of the garbage collection code related to heap size and the number of garbage collection threads. Code relating to the interval between local garbage collection is in the OpenJ9 section of code.
+\subsubsection{Rationale behind the choice to use Eclipse OpenJ9}
+Eclipse OpenJ9 is an open-source JVM supported by a vast community. Eclipse OpenJ9 has had significant effort put towards optimising and improving the JVM, particularly garbage collection. Therefore, Eclipse OpenJ9 can be modified because of its open-sourced nature while having sufficient support in case of difficulties. Finally, Eclipse OpenJ9 is likely to be at the forefront of practical garbage collection optimisation because of the effort IBM has spent on optimisation. Therefore, ensuring that \emph{A Cat On A Bed} does not repeat existing optimisations. 
+
+\subsubsection{Overview of Eclipse OpenJ9 Garbage Collection process}
+Garbage Collection is triggered in Eclipse OpenJ9 when the following conditions are met \cite{persson2006gc2}:
+\begin{itemize}
+    \item The required interval between garbage collections has been met
+    \item Allocation failure, i.e. unable to allocate an object to the heap
+    \item Unreachable objects, i.e. the object 
+\end{itemize}
+The basic concept of garbage collection is walking through memory, known as the heap, and removing objects that are no longer needed. Eclipse OpenJ9 has additional complexities to allow performance gain, such as different policies. There are four policies, mentioned in Chapter 2: GenCon, OptAvgPause, OptThruPut and Balanced. Supporting these policies in Eclipse OpenJ9 is a range of classes that provide methods that implement the characteristics of these policies and allow garbage collection to integrate effectively with the execution of applications. 
+\newline\newline
+The types of classes can be split into four areas: 
+\begin{itemize}
+    \item Heap
+    \item Basic structures
+    \item Command-line
+    \item Invoking GC
+\end{itemize}
+However, this is a simple view of the classes provided in Eclipse OpenJ9. There are additional complexities. 
+\subsubsection{Heap}
+The first area, heap, refers to the different classes that form the heap. This includes classes that provide supporting methods to walk the heap. The heap is viewed as a contiguous part of memory by the JVM. This view of the heap is reflected in an overarching class representing the entire section of memory:  \emph{Heap}. In addition, Eclipse OpenJ9 views the heap as subspaces with different classes allowing the management of each subspace. For example, there is a class called \emph{MemorySubSpaceUniSpace} that is responsible for managing memory through contractions and expansions. The entire heap is managed by the relevant classes, which dictate how the heap is viewed. This view of the heap relies extensively on the garbage collection policy. The default class is \emph{ParallelGlobalGC} which acts as a super class. This is where decisions around contracting and expanding are initiated.  
+\newline\newline
+Managing the heap is a complex process meaning there is significant effort already put into ensuring it integrates well with the execution of applications. In other words, that objects are not deleted in advance of when they should be. Therefore, any modifications made to the heap code must fit within the existing code. 
+
+\subsubsection{Basic Structures}
+
+Garbage collection is represented as a struct/class of different variables contained within a class, \emph{GCExtensionsBase}. This allows for garbage collection as a process to trigger different conditions in other code easily. The consequences of garbage collection are represented as a set of variables. This allows the rest of the Eclipse OpenJ9 code to be more general and extensible. Most of these variables part of \emph{GCExtensionsBase} are straightforward, such as garbage collection policy and heap size. Supporting \emph{GCExtensionsBase} is \emph{omrgcconsts} which stores relevant structs or constants underlying garbage collection. This latter class is usually the source of structs that are used in \emph{GCExtensionsBase}. Hence, \emph{A Cat On A Bed’s} mode is likely to be defined in \emph{omrgcconsts}. 
+
+\subsubsection{Command-line}
+Garbage collection can be somewhat modified through the command line. Currently, this involves setting the garbage collection policy, the number of threads, adjusting the interval between garbage collections, the heap size, etc. This is achieved through \emph{mmparse}, which allows the overarching command to be allowed. Arguments passed in with the command \verb|-Xgc| or \verb|-XXgc| are parsed through \emph{mmparseXgc} and \emph{mmparseXXgc} classes. Both these classes parse arguments and allow these arguments to be then accessed by other relevant classes. For example, \emph{StartUpManager} uses these command-line parses to set the different variables for garbage collection.  Enabling the \emph{A Cat On A Bed} mode would require adjusting these classes to allow the command. 
+
+\subsubsection{Invoking garbage collection}
+
+While the JVM is running, garbage collection will be invoked. The decision when to invoke a garbage collection without needing allocation failures, etc , is determined by both the local and global interval variable. This is set within \emph{gcchk} and \emph{CheckCycle}. The default value is \verb|2000 msec| in \emph{gcchk}. However, garbage collection is not always invoked every \verb|2000 msec| as \emph{CheckCycle} contains modulo arithmetic to reduce its frequency. 
+\newline\newline
+Once garbage collection has been invoked, garbage collection begins by creating threads or assigning threads to garbage collection. This is completed mainly in the \emph{Dispatcher} and associated \emph{ParallelDispatcher} class. The latter class is responsible for spinning up the garbage collection worker threads. From there, the other classes take over for assigning and completing the required garbage collection work.
+\subsubsection{Modified code within Eclipse OpenJ9}
+This research changes code from these classes in OpenJ9:
+\begin{itemize}
+\item
+  mmparse - \emph{allows command-line options to be accepted}
+\item
+  CheckCycle - \emph{allows interval command-line option to be
+  accepted}
+\item
+  gcchk - \emph{adjusts the interval between local garbage collections.}
+\end{itemize}
+This research changes code from these classes in OMR:
+\begin{itemize}
+\item
+ ParallelDispatcher - \emph{starts up garbage collection threads}
+\item
+StartupManager - \emph{starts up garbage collection}
+\item
+VerboseHandlerOutput - \emph{prints out verbose information}
+\item
+omrgcconsts - \emph{defines structs for garbage collection}
+\item
+ GCExtensionsBase - \emph{defines variables for garbage collector}
+\item
+ MemorySubSpaceUniSpace - \emph{manages the memory (heap size) and
+  is responsible for activating the heap size adjustments}
+\item
+ParallelGlobalGC - \emph{contains the majority of the heap logic}
+\end{itemize}
+
+The changes made to the OpenJ9/OMR code are available on Github in a repository called 520-ElasticGC, referenced in Appendix A. There is a separate branch for the changes made on the OpenJ9 part of code. In addition, different phases link to different branches. Table 2 shows these links.
+\begin{center}
+\begin{tabular}{|m{4cm}|m{4cm}|}
+\hline
+\textbf{Branch name} & \textbf{Phase name}\tabularnewline
+\hline
+initial-redone & CatNap - OMR code\tabularnewline
+\hline
+initial-j9 & CatNap -OpenJ9 code\tabularnewline
+\hline
+
+PID\_J9 & Circling\tabularnewline
+\hline
+
+updatedPID & Circling\tabularnewline
+\hline
+
+lqr & Cat's Meow \tabularnewline
+\hline
+
+\end{tabular}
+\end{center}
